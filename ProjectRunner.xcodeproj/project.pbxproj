@@ -63,6 +63,14 @@
 		54D69E062C3D29360048E5BD /* SubTasksSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D69E052C3D29360048E5BD /* SubTasksSheet.swift */; };
 		54D69E082C3D2BBD0048E5BD /* SubTaskSheetButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D69E072C3D2BBD0048E5BD /* SubTaskSheetButton.swift */; };
 		54D69E0A2C3D6AC90048E5BD /* CircleName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D69E092C3D6AC90048E5BD /* CircleName.swift */; };
+		54D69E0D2C3D9B580048E5BD /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 54D69E0C2C3D9B580048E5BD /* GoogleMobileAds */; };
+		54D69E142C3D9B870048E5BD /* Purchase.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54D69E0E2C3D9B870048E5BD /* Purchase.plist */; };
+		54D69E152C3D9B870048E5BD /* OpenAd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D69E0F2C3D9B870048E5BD /* OpenAd.swift */; };
+		54D69E162C3D9B870048E5BD /* BannerAd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D69E102C3D9B870048E5BD /* BannerAd.swift */; };
+		54D69E172C3D9B870048E5BD /* InterstitialAd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D69E112C3D9B870048E5BD /* InterstitialAd.swift */; };
+		54D69E182C3D9B870048E5BD /* PurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D69E122C3D9B870048E5BD /* PurchaseManager.swift */; };
+		54D69E192C3D9B870048E5BD /* RewardAd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D69E132C3D9B870048E5BD /* RewardAd.swift */; };
+		54D69E1E2C3D9C530048E5BD /* SwiftyStoreKit in Frameworks */ = {isa = PBXBuildFile; productRef = 54D69E1D2C3D9C530048E5BD /* SwiftyStoreKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,6 +150,13 @@
 		54D69E052C3D29360048E5BD /* SubTasksSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTasksSheet.swift; sourceTree = "<group>"; };
 		54D69E072C3D2BBD0048E5BD /* SubTaskSheetButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTaskSheetButton.swift; sourceTree = "<group>"; };
 		54D69E092C3D6AC90048E5BD /* CircleName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleName.swift; sourceTree = "<group>"; };
+		54D69E0E2C3D9B870048E5BD /* Purchase.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Purchase.plist; sourceTree = "<group>"; };
+		54D69E0F2C3D9B870048E5BD /* OpenAd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenAd.swift; sourceTree = "<group>"; };
+		54D69E102C3D9B870048E5BD /* BannerAd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerAd.swift; sourceTree = "<group>"; };
+		54D69E112C3D9B870048E5BD /* InterstitialAd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterstitialAd.swift; sourceTree = "<group>"; };
+		54D69E122C3D9B870048E5BD /* PurchaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchaseManager.swift; sourceTree = "<group>"; };
+		54D69E132C3D9B870048E5BD /* RewardAd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewardAd.swift; sourceTree = "<group>"; };
+		54D69E1B2C3D9BD00048E5BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +164,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54D69E0D2C3D9B580048E5BD /* GoogleMobileAds in Frameworks */,
+				54D69E1E2C3D9C530048E5BD /* SwiftyStoreKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -192,6 +209,7 @@
 		54D69D682C3D11490048E5BD /* ProjectRunner */ = {
 			isa = PBXGroup;
 			children = (
+				54D69E1B2C3D9BD00048E5BD /* Info.plist */,
 				54D69D972C3D11BA0048E5BD /* Views */,
 				54D69D962C3D11B10048E5BD /* Utils */,
 				54D69D952C3D11AA0048E5BD /* Resources */,
@@ -266,6 +284,9 @@
 		54D69D962C3D11B10048E5BD /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				54D69E1A2C3D9B8B0048E5BD /* Ads */,
+				54D69E0E2C3D9B870048E5BD /* Purchase.plist */,
+				54D69E122C3D9B870048E5BD /* PurchaseManager.swift */,
 				54D69DDC2C3D12740048E5BD /* NotificationManager.swift */,
 			);
 			path = Utils;
@@ -378,6 +399,17 @@
 			path = Sheets;
 			sourceTree = "<group>";
 		};
+		54D69E1A2C3D9B8B0048E5BD /* Ads */ = {
+			isa = PBXGroup;
+			children = (
+				54D69E102C3D9B870048E5BD /* BannerAd.swift */,
+				54D69E132C3D9B870048E5BD /* RewardAd.swift */,
+				54D69E112C3D9B870048E5BD /* InterstitialAd.swift */,
+				54D69E0F2C3D9B870048E5BD /* OpenAd.swift */,
+			);
+			path = Ads;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -394,6 +426,10 @@
 			dependencies = (
 			);
 			name = ProjectRunner;
+			packageProductDependencies = (
+				54D69E0C2C3D9B580048E5BD /* GoogleMobileAds */,
+				54D69E1D2C3D9C530048E5BD /* SwiftyStoreKit */,
+			);
 			productName = ProjectRunner;
 			productReference = 54D69D662C3D11490048E5BD /* ProjectRunner.app */;
 			productType = "com.apple.product-type.application";
@@ -467,6 +503,10 @@
 				ko,
 			);
 			mainGroup = 54D69D5D2C3D11490048E5BD;
+			packageReferences = (
+				54D69E0B2C3D9B580048E5BD /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
+				54D69E1C2C3D9C530048E5BD /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */,
+			);
 			productRefGroup = 54D69D672C3D11490048E5BD /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -486,6 +526,7 @@
 				54D69D712C3D114A0048E5BD /* Preview Assets.xcassets in Resources */,
 				54D69D6E2C3D114A0048E5BD /* Assets.xcassets in Resources */,
 				54D69DF52C3D162B0048E5BD /* Localizable.xcstrings in Resources */,
+				54D69E142C3D9B870048E5BD /* Purchase.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -518,7 +559,9 @@
 				54D69DB82C3D124D0048E5BD /* AddMemberSheet.swift in Sources */,
 				54D69DBA2C3D124D0048E5BD /* AppointmentView.swift in Sources */,
 				54D69DC12C3D124D0048E5BD /* LabelSheet.swift in Sources */,
+				54D69E162C3D9B870048E5BD /* BannerAd.swift in Sources */,
 				54D69DC02C3D124D0048E5BD /* AnimatedTimeline.swift in Sources */,
+				54D69E182C3D9B870048E5BD /* PurchaseManager.swift in Sources */,
 				54D69DBF2C3D124D0048E5BD /* ScheduleItemView.swift in Sources */,
 				54D69DBC2C3D124D0048E5BD /* BlockDivider.swift in Sources */,
 				54D69DF22C3D12880048E5BD /* String+Extensions.swift in Sources */,
@@ -533,6 +576,7 @@
 				54D69DC62C3D124D0048E5BD /* DeleteButton.swift in Sources */,
 				54D69DDA2C3D12670048E5BD /* TaskDetailView.swift in Sources */,
 				54D69DDD2C3D12740048E5BD /* NotificationManager.swift in Sources */,
+				54D69E192C3D9B870048E5BD /* RewardAd.swift in Sources */,
 				54D69DA42C3D12390048E5BD /* ClientView.swift in Sources */,
 				54D69E042C3D1E630048E5BD /* LabelSheetButton.swift in Sources */,
 				54D69D6C2C3D11490048E5BD /* ContentView.swift in Sources */,
@@ -548,7 +592,9 @@
 				54D69DA22C3D12390048E5BD /* ClientDetailView.swift in Sources */,
 				54D69DC42C3D124D0048E5BD /* MomentView.swift in Sources */,
 				54D69DC52C3D124D0048E5BD /* SelectSuperiorSheet.swift in Sources */,
+				54D69E172C3D9B870048E5BD /* InterstitialAd.swift in Sources */,
 				54D69DEA2C3D12810048E5BD /* TLabel.swift in Sources */,
+				54D69E152C3D9B870048E5BD /* OpenAd.swift in Sources */,
 				54D69DEF2C3D12810048E5BD /* TProject.swift in Sources */,
 				54D69E002C3D1CFD0048E5BD /* SelectSuperiorSheetButton.swift in Sources */,
 				54D69DF32C3D12880048E5BD /* Date+Extensions.swift in Sources */,
@@ -726,6 +772,7 @@
 				DEVELOPMENT_TEAM = 352B2432VD;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ProjectRunner/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -760,6 +807,7 @@
 				DEVELOPMENT_TEAM = 352B2432VD;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ProjectRunner/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -899,6 +947,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		54D69E0B2C3D9B580048E5BD /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.6.0;
+			};
+		};
+		54D69E1C2C3D9C530048E5BD /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/bizz84/SwiftyStoreKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.16.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		54D69E0C2C3D9B580048E5BD /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 54D69E0B2C3D9B580048E5BD /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
+		};
+		54D69E1D2C3D9C530048E5BD /* SwiftyStoreKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 54D69E1C2C3D9C530048E5BD /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */;
+			productName = SwiftyStoreKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 54D69D5E2C3D11490048E5BD /* Project object */;
 }
