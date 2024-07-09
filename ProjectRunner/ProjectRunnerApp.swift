@@ -18,7 +18,9 @@ struct ProjectRunnerApp: App {
             ContentView()
                 .onChange(of: scenePhase) {
                     if scenePhase == .active {
+                        #if !DEBUG
                         openAd.requestAppOpenAd()
+                        #endif
                     }
                 }
         }
