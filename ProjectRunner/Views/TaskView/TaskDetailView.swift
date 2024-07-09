@@ -209,81 +209,83 @@ struct TaskDetailView: View {
                 }
                 BlockDivider()
                 
-                VStack(alignment: .leading) {
-                    let tasks = appData.tasks.filter({ task.taskIds.contains($0.id) })
-                    let notDoneTasks = tasks.filter({ self.shouldShowDone ? true : $0.status != .done && $0.status != .canceled })
-                    HStack {
-                        TaskProgressBar(tasks: tasks)
-                        Spacer()
-                        Button {
-                            withAnimation(.spring) {
-                                self.isTaskFolded = !self.isTaskFolded
-                            }
-                        } label: {
-                            Image(systemName: self.isTaskFolded ? "chevron.down" : "chevron.up")
-                        }
-                    }
-                    .padding(.horizontal)
-                    .padding(.top)
-                    
-                    ScrollView(.horizontal) {
+                if task.superiorId != nil {
+                    VStack(alignment: .leading) {
+                        let tasks = appData.tasks.filter({ task.taskIds.contains($0.id) })
+                        let notDoneTasks = tasks.filter({ self.shouldShowDone ? true : $0.status != .done && $0.status != .canceled })
                         HStack {
-                            NavigationLink {
-                                TaskAddView(superior: task, appData: $appData) { newTask in
-                                    self.task.taskIds.append(newTask.id)
-                                }
-                            } label: {
-                                TopButtonChip(
-                                    title: "New Sub task",
-                                    imageName: "plus",
-                                    isSystem: true
-                                ) {
-                                    
-                                }
-                            }
-                            
-                            SubTaskSheetButton(appData: $appData, schedule: task) { taskIds in
-                                do {
-                                    try appData.changeSubTasks(schedule: task, with: taskIds)
-                                    self.task.taskIds = taskIds
-                                } catch {
-                                    print(error.localizedDescription)
-                                }
-                            } label: {
-                                TopButtonChip(
-                                    title: "Add Sub task",
-                                    imageName: "list.bullet",
-                                    isSystem: true
-                                ) {
-                                    
-                                }
-                            }
-                            
+                            TaskProgressBar(tasks: tasks)
+                            Spacer()
                             Button {
-                                self.shouldShowDone = !self.shouldShowDone
-                            } label: {
-                                TopButtonChip(
-                                    title: "Hide Done",
-                                    imageName: !self.shouldShowDone ? "checkmark.square" : "square",
-                                    isSystem: true
-                                ) {
-                                    
+                                withAnimation(.spring) {
+                                    self.isTaskFolded = !self.isTaskFolded
                                 }
+                            } label: {
+                                Image(systemName: self.isTaskFolded ? "chevron.down" : "chevron.up")
                             }
                         }
                         .padding(.horizontal)
-                    }
-                    
-                    if !self.isTaskFolded {
-                        VStack(spacing: 0) {
-                            ForEach(notDoneTasks, id: \.self) { task in
-                                ScheduleItemView(schedule: task, appData: $appData)
-                                    .navigatable()
+                        .padding(.top)
+                        
+                        ScrollView(.horizontal) {
+                            HStack {
+                                NavigationLink {
+                                    TaskAddView(superior: task, appData: $appData) { newTask in
+                                        self.task.taskIds.append(newTask.id)
+                                    }
+                                } label: {
+                                    TopButtonChip(
+                                        title: "New Sub task",
+                                        imageName: "plus",
+                                        isSystem: true
+                                    ) {
+                                        
+                                    }
+                                }
+                                
+                                SubTaskSheetButton(appData: $appData, schedule: task) { taskIds in
+                                    do {
+                                        try appData.changeSubTasks(schedule: task, with: taskIds)
+                                        self.task.taskIds = taskIds
+                                    } catch {
+                                        print(error.localizedDescription)
+                                    }
+                                } label: {
+                                    TopButtonChip(
+                                        title: "Add Sub task",
+                                        imageName: "list.bullet",
+                                        isSystem: true
+                                    ) {
+                                        
+                                    }
+                                }
+                                
+                                Button {
+                                    self.shouldShowDone = !self.shouldShowDone
+                                } label: {
+                                    TopButtonChip(
+                                        title: "Hide Done",
+                                        imageName: !self.shouldShowDone ? "checkmark.square" : "square",
+                                        isSystem: true
+                                    ) {
+                                        
+                                    }
+                                }
+                            }
+                            .padding(.horizontal)
+                        }
+                        
+                        if !self.isTaskFolded {
+                            VStack(spacing: 0) {
+                                ForEach(notDoneTasks, id: \.self) { task in
+                                    ScheduleItemView(schedule: task, appData: $appData)
+                                        .navigatable()
+                                }
                             }
                         }
                     }
+                    .padding(.bottom)
                 }
-                .padding(.bottom)
                 
                 BlockDivider()
                 

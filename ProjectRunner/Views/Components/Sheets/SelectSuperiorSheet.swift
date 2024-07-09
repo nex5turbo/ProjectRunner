@@ -39,7 +39,7 @@ struct SelectSuperiorSheet: View {
                 .font(.title3)
             }
             
-            let filteredTasks = getFilteredTasks(currentTask: task, tasks: appData.tasks.filter { $0.status != .done && $0.status != .canceled })
+            let filteredTasks = getFilteredTasks(currentTask: task, tasks: appData.tasks.filter { $0.status != .done && $0.status != .canceled && $0.superiorId != nil })
             Section {
                 ForEach(filteredTasks, id: \.self) { stask in
                     if task.id != stask.id {
