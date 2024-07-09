@@ -96,4 +96,27 @@ struct TClient: Identifiable, Hashable, Codable {
         let url = URL(string: strURL)!
         UIApplication.shared.open(url)
     }
+    
+    public func openCall() {
+        let sms = "tel:\(phoneNumber)"
+        let strURL = sms.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        let url = URL(string: strURL)!
+        UIApplication.shared.open(url)
+    }
+    
+    var clientsCountry: String? {
+        return validPhoneNumber.value(forKey: "countryCode") as? String
+    }
+    
+    internal func getFlag() -> String {
+        if let clientsCountry {
+            return clientsCountry.uppercased()
+                .unicodeScalars
+                .map({ 127397 + $0.value })
+                .compactMap(UnicodeScalar.init)
+                .map(String.init)
+                .joined()
+        }
+        return ""
+    }
 }
