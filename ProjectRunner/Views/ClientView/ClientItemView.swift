@@ -10,7 +10,13 @@ import SwiftUI
 struct ClientItemView: View {
     @Binding var appData: AppData
     @State var client: TClient
+    init(appData: Binding<AppData>, client: TClient) {
+        self._appData = appData
+        self._client = State(initialValue: client)
+    }
+    
     private let imageSize: CGFloat = 40
+    private var hideContact: Bool = false
     var body: some View {
         HStack {
             if let imageUrl = client.imageURL {
@@ -37,7 +43,57 @@ struct ClientItemView: View {
                 }
             }
             Spacer()
+            if !hideContact {
+                Menu {
+                    Section {
+                        Text(client.fullName + " \(client.getFlag())\n" + client.phoneNumber)
+                    }
+                    Button {
+                        client.openMessage()
+                    } label: {
+                        Image(systemName: "message.fill")
+                        Text("Message")
+                    }
+                    .disabled(client.phoneNumber == "")
+                    
+                    Button {
+                        client.openCall()
+                    } label: {
+                        Image(systemName: "phone.fill")
+                        Text("Call")
+                    }
+                    .disabled(client.phoneNumber == "")
+                    
+                    Button {
+                        client.openEmail()
+                    } label: {
+                        Text("Mail")
+                        Image(systemName: "envelope.fill")
+                    }
+                    .disabled(client.email == "")
+                    
+                    Button {
+                        client.openInstagram()
+                    } label: {
+                        Text("Instagram")
+                        Image(systemName: "heart.fill")
+                    }
+                    .disabled(client.instagramId == "")
+                    
+                } label: {
+                    Text("Contact")
+                        .font(.caption.weight(.semibold))
+                        .foregroundStyle(.black)
+                }
+            }
         }
+    }
+    
+    func hideButton() -> Self {
+        var view = self
+        view.hideContact = true
+        
+        return view
     }
 }
 

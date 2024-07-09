@@ -56,6 +56,9 @@
     "Are you sure to delete?" : {
 
     },
+    "Call" : {
+
+    },
     "Cancel" : {
 
     },
@@ -143,10 +146,16 @@
     "Load Data" : {
 
     },
+    "Mail" : {
+
+    },
     "Mark color" : {
 
     },
     "Members" : {
+
+    },
+    "Message" : {
 
     },
     "Moments" : {

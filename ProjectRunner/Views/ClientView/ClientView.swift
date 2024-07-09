@@ -16,6 +16,7 @@ struct ClientView: View {
                 ClientDetailView(client: client, appData: $appData)
             } label: {
                 ClientItemView(appData: $appData, client: client)
+                    .hideButton()
             }
         }
         .navigationTitle("Contact")
