@@ -161,30 +161,15 @@ struct ProjectAddView: View {
                             }
                         }
                         
-                        Menu {
-                            ForEach(MarkColor.allCases, id: \.self) { color in
-                                Button {
-                                    self.newProject.markColor = color
-                                } label: {
-                                    Label {
-                                        Text(color.title)
-                                    } icon: {
-                                        Image(systemName: "circle.fill")
-                                            .renderingMode(.template)
-                                            .foregroundStyle(color.color)
-                                    }
-                                    
-                                }
-                            }
+                        ColorSheetButton { color in
+                            self.newProject.markColor = color
                         } label: {
                             TopButtonChip(
                                 title: newProject.markColor.title,
                                 imageName: "circle.fill",
-                                isSystem: true
-                            ) {
-                                
-                            }
-                            .setImageColor(newProject.markColor.color)
+                                isSystem: true) {
+                                }
+                                .setImageColor(newProject.markColor.color)
                         }
                         
                         LabelSheetButton(appData: $appData, schedule: newProject) { labels in

@@ -165,30 +165,15 @@ struct TaskAddView: View {
                             }
                         }
                         
-                        Menu {
-                            ForEach(MarkColor.allCases, id: \.self) { color in
-                                Button {
-                                    self.newTask.markColor = color
-                                } label: {
-                                    Label {
-                                        Text(color.title)
-                                    } icon: {
-                                        Image(systemName: "circle.fill")
-                                            .renderingMode(.template)
-                                            .foregroundStyle(color.color)
-                                    }
-                                    
-                                }
-                            }
+                        ColorSheetButton { color in
+                            self.newTask.markColor = color
                         } label: {
                             TopButtonChip(
                                 title: newTask.markColor.title,
                                 imageName: "circle.fill",
-                                isSystem: true
-                            ) {
-                                
-                            }
-                            .setImageColor(newTask.markColor.color)
+                                isSystem: true) {
+                                }
+                                .setImageColor(newTask.markColor.color)
                         }
                     }
                     .padding()

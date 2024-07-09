@@ -23,6 +23,7 @@ protocol Schedulable: Markable {
     var markColor: MarkColor { get set }
     var hasDeadline: Bool { get set }
     var labels: [TLabel] { get set }
+    var taskIds: [String] { get set}
 }
 
 struct TProject: Identifiable, Hashable, Codable, Schedulable {

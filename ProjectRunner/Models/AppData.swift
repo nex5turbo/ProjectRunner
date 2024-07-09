@@ -500,4 +500,58 @@ extension AppData {
         
         try save()
     }
+    
+    mutating func changeSubTasks(schedule: Schedulable, with taskIds: [String]) throws {
+        if let task = schedule as? TTask {
+            guard let index = tasks.firstIndex(where: { $0.id == task.id }) else {
+                return
+            }
+            taskIds.forEach { id in
+                guard let newIndex = tasks.firstIndex(where: { $0.id == id }) else {
+                    return
+                }
+                let newTask = tasks[newIndex]
+                if newTask.superiorId != nil {
+                    // superior의 taskIds에서 newTask id 지우기
+                    if let supIndex = tasks.firstIndex(where: { ctask in
+                        ctask.taskIds.contains(where: { $0 == id })
+                    }) {
+                        tasks[supIndex].taskIds.removeAll(where: { $0 == id })
+                    } else if let supIndex = projects.firstIndex(where: { ctask in
+                        ctask.taskIds.contains(where: { $0 == id })
+                    }) {
+                        projects[supIndex].taskIds.removeAll(where: { $0 == id })
+                    }
+                }
+                tasks[newIndex].superiorId = schedule.id
+            }
+            tasks[index].taskIds = taskIds
+        } else if let project = schedule as? TProject {
+            guard let index = projects.firstIndex(where: { $0.id == project.id }) else {
+                return
+            }
+            taskIds.forEach { id in
+                guard let newIndex = tasks.firstIndex(where: { $0.id == id }) else {
+                    return
+                }
+                let newTask = tasks[newIndex]
+                if newTask.superiorId != nil {
+                    // superior의 taskIds에서 newTask id 지우기
+                    if let supIndex = tasks.firstIndex(where: { ctask in
+                        ctask.taskIds.contains(where: { $0 == id })
+                    }) {
+                        tasks[supIndex].taskIds.removeAll(where: { $0 == id })
+                    } else if let supIndex = projects.firstIndex(where: { ctask in
+                        ctask.taskIds.contains(where: { $0 == id })
+                    }) {
+                        projects[supIndex].taskIds.removeAll(where: { $0 == id })
+                    }
+                }
+                tasks[newIndex].superiorId = schedule.id
+            }
+            projects[index].taskIds = taskIds
+        }
+        
+        try save()
+    }
 }

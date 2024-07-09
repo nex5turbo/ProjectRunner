@@ -234,8 +234,25 @@ struct TaskDetailView: View {
                                 }
                             } label: {
                                 TopButtonChip(
-                                    title: "New Sub Task",
+                                    title: "New Sub task",
                                     imageName: "plus",
+                                    isSystem: true
+                                ) {
+                                    
+                                }
+                            }
+                            
+                            SubTaskSheetButton(appData: $appData, schedule: task) { taskIds in
+                                do {
+                                    try appData.changeSubTasks(schedule: task, with: taskIds)
+                                    self.task.taskIds = taskIds
+                                } catch {
+                                    print(error.localizedDescription)
+                                }
+                            } label: {
+                                TopButtonChip(
+                                    title: "Add Sub task",
+                                    imageName: "list.bullet",
                                     isSystem: true
                                 ) {
                                     
@@ -297,6 +314,13 @@ struct TaskDetailView: View {
                     }
                 }
                 .padding()
+            }
+        }
+        .task {
+            if let _task = appData.tasks.first(where: { $0.id == task.id }) {
+                if task != _task {
+                    self.task = _task
+                }
             }
         }
         .navigationTitle("")
