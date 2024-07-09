@@ -12,6 +12,7 @@ struct AppData: Codable, Hashable {
     var projects: [TProject]
     var clients: [TClient]
     var labels: [TLabel]
+    var clientLabels: [TLabel]
     
     var sortedTasks: [TTask] {
         self.tasks.sorted { $0.createdAt > $1.createdAt }
@@ -26,6 +27,7 @@ struct AppData: Codable, Hashable {
         case projects
         case clients
         case labels
+        case clientLabels
     }
     
     init() {
@@ -38,24 +40,35 @@ struct AppData: Codable, Hashable {
             .init("🧑‍💻Development"),
             .init("🎨Design")
         ]
+        self.clientLabels = [
+            .init("👨‍🏫teacher"),
+            .init("👩manager"),
+            .init("🧑‍💻team member"),
+            .init("👨‍🦱Client")
+        ]
     }
+    let defaultClientLabels: [TLabel] = [
+        .init("👨‍🏫teacher"),
+        .init("👩manager"),
+        .init("🧑‍💻team member"),
+        .init("👨‍🦱Client")
+    ]
+    
+    let defaultLabels: [TLabel] = [
+        .init("💪Work out"),
+        .init("📚Study"),
+        .init("🧑‍💻Development"),
+        .init("🎨Design")
+    ]
     
     init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.tasks = try container.decode([TTask].self, forKey: .tasks)
         self.projects = try container.decode([TProject].self, forKey: .projects)
         self.clients = try container.decode([TClient].self, forKey: .clients)
-         
-        let defaultLabels: [TLabel] = [
-            .init("💪Work out"),
-            .init("📚Study"),
-            .init("🧑‍💻Development"),
-            .init("🎨Design")
-        ]
+        
+        self.clientLabels = (try? container.decode([TLabel].self, forKey: .clientLabels)) ?? defaultClientLabels
         self.labels = (try? container.decode([TLabel].self, forKey: .labels)) ?? defaultLabels
-        if self.labels.isEmpty {
-            self.labels = defaultLabels
-        }
     }
     
     func save() throws {

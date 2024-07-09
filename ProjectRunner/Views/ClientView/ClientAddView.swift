@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import Contacts
+import PhotosUI
 
 struct ClientAddView: View {
     @Environment(\.dismiss) private var dismiss
@@ -23,62 +25,87 @@ struct ClientAddView: View {
         
     }
     @State private var newClient: TClient
+    @State private var isPickerPresented: Bool = false
+    @State private var selectedImage: PhotosPickerItem? = nil
+    @State private var imageURL: URL? = nil
     private var isEditing: Bool
     private var title: String {
         isEditing ? "New Contact" : "Edit Contact"
     }
-    private let imageSize: CGFloat = 120
+    private let imageSize: CGFloat = 180
     var body: some View {
-        ScrollView {
-            VStack(spacing: 16) {
-                Menu {
-                    ForEach(ClientType.allCases, id: \.self) { type in
-                        Button(type.rawValue) {
-                            self.newClient.type = type
+        VStack {
+            CircleName(markColor: newClient.markColor, text: newClient.fullName)
+                .setCircleSize(imageSize)
+
+            List {
+                Section {
+                    TextField("familyName", text: $newClient.familyName, prompt: Text("Family Name"))
+                        .keyboardType(.namePhonePad)
+                    
+                    TextField("givenName", text: $newClient.givenName, prompt: Text("Given Name"))
+                        .keyboardType(.namePhonePad)
+                }
+                .listStyle(.plain)
+                
+                Section {
+                    TextField("email", text: $newClient.email, prompt: Text("E-mail"))
+                        .keyboardType(.emailAddress)
+                    
+                    TextField("phoneNumber", text: $newClient.phoneNumber, prompt: Text("Phone Number"))
+                        .keyboardType(.phonePad)
+                    TextField("instagram", text: $newClient.instagramId, prompt: Text("Instagram Id"))
+                        .keyboardType(.twitter)
+                }
+                .listStyle(.plain)
+                
+                Section {
+                    ColorSheetButton { color in
+                        newClient.markColor = color
+                    } label: {
+                        HStack {
+                            if newClient.markColor != .noColor {
+                                Image(systemName: "circle.fill")
+                                    .foregroundStyle(newClient.markColor.color)
+                            }
+                            Text(newClient.markColor == .noColor ? "Select Mark color" : newClient.markColor.title)
                         }
                     }
-                } label: {
-                    Text("This person is my \(newClient.type.rawValue)")
-                }
-                
-                TextField("familyName", text: $newClient.familyName, prompt: Text("Family Name"))
-                    .textFieldStyle(.roundedBorder)
-                    .keyboardType(.namePhonePad)
-                
-                TextField("givenName", text: $newClient.givenName, prompt: Text("Given Name"))
-                    .textFieldStyle(.roundedBorder)
-                    .keyboardType(.namePhonePad)
-                
-                TextField("email", text: $newClient.email, prompt: Text("E-mail"))
-                    .textFieldStyle(.roundedBorder)
-                    .keyboardType(.emailAddress)
-                
-                TextField("phoneNumber", text: $newClient.phoneNumber, prompt: Text("Phone Number"))
-                    .textFieldStyle(.roundedBorder)
-                    .keyboardType(.phonePad)
-                
-                TextField("instagram", text: $newClient.instagramId, prompt: Text("Instagram Id"))
-                    .textFieldStyle(.roundedBorder)
-                    .keyboardType(.twitter)
-                
-                Spacer()
-            }
-            .navigationTitle(title)
-            .font(.headline)
-            .padding()
-            .toolbar {
-                ToolbarItemGroup {
-                    Button("save") {
-                        do {
-                            try appData.addClient(client: newClient)
-                            dismiss()
-                        } catch {
-                            print(error.localizedDescription)
+                    
+                    HStack {
+                        LabelSheetButton(appData: $appData) { label in
+                            newClient.label = label
+                        } label: {
+                            Text(newClient.label == nil ? "Select Label" : newClient.label!.content)
+                        }
+                        Spacer()
+                        if newClient.label != nil {
+                            Button {
+                                newClient.label = nil
+                            } label: {
+                                Image(systemName: "xmark")
+                                    .foregroundStyle(.red)
+                            }
                         }
                     }
                 }
             }
         }
+        .background(Color(UIColor.secondarySystemBackground))
+        .toolbar {
+            ToolbarItemGroup {
+                Button("save") {
+                    do {
+                        try appData.addClient(client: newClient)
+                        dismiss()
+                    } catch {
+                        print(error.localizedDescription)
+                    }
+                }
+            }
+        }
+        .navigationTitle("")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 

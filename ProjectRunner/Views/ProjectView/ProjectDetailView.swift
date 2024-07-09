@@ -137,7 +137,8 @@ struct ProjectDetailView: View {
                                     imageName: "",
                                     isSystem: true
                                 ) {
-                                    
+                                    CircleName(markColor: firstMember.markColor, text: firstMember.fullName)
+                                        .setCircleSize(16)
                                 }
                             } else {
                                 TopButtonChip(

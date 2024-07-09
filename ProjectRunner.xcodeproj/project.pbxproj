@@ -62,6 +62,7 @@
 		54D69E042C3D1E630048E5BD /* LabelSheetButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D69E032C3D1E630048E5BD /* LabelSheetButton.swift */; };
 		54D69E062C3D29360048E5BD /* SubTasksSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D69E052C3D29360048E5BD /* SubTasksSheet.swift */; };
 		54D69E082C3D2BBD0048E5BD /* SubTaskSheetButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D69E072C3D2BBD0048E5BD /* SubTaskSheetButton.swift */; };
+		54D69E0A2C3D6AC90048E5BD /* CircleName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D69E092C3D6AC90048E5BD /* CircleName.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -140,6 +141,7 @@
 		54D69E032C3D1E630048E5BD /* LabelSheetButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelSheetButton.swift; sourceTree = "<group>"; };
 		54D69E052C3D29360048E5BD /* SubTasksSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTasksSheet.swift; sourceTree = "<group>"; };
 		54D69E072C3D2BBD0048E5BD /* SubTaskSheetButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTaskSheetButton.swift; sourceTree = "<group>"; };
+		54D69E092C3D6AC90048E5BD /* CircleName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleName.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -319,6 +321,7 @@
 				54D69DAD2C3D124C0048E5BD /* ScheduleItemView.swift */,
 				54D69DA72C3D124C0048E5BD /* TaskProgressBar.swift */,
 				54D69DAB2C3D124C0048E5BD /* TopButtonChip.swift */,
+				54D69E092C3D6AC90048E5BD /* CircleName.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -535,6 +538,7 @@
 				54D69D6C2C3D11490048E5BD /* ContentView.swift in Sources */,
 				54D69DC22C3D124D0048E5BD /* MarqueeText.swift in Sources */,
 				54D69DD32C3D12600048E5BD /* SettingsView.swift in Sources */,
+				54D69E0A2C3D6AC90048E5BD /* CircleName.swift in Sources */,
 				54D69DD82C3D12670048E5BD /* TaskAddView.swift in Sources */,
 				54D69DD12C3D12580048E5BD /* ProjectView.swift in Sources */,
 				54D69DC32C3D124D0048E5BD /* NavigationTopItems.swift in Sources */,

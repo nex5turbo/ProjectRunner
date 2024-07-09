@@ -7,13 +7,7 @@
 
 import Foundation
 import SwiftUI
-
-enum ClientType: String, Codable, CaseIterable {
-    case team
-    case client
-    case manager
-    case teacher
-}
+import Contacts
 
 struct TClient: Identifiable, Hashable, Codable {
     var id: String = UUID().uuidString
@@ -22,8 +16,9 @@ struct TClient: Identifiable, Hashable, Codable {
     var email: String
     var phoneNumber: String
     var imagePath: String?
-    var type: ClientType = .team
+    var label: TLabel?
     var instagramId: String
+    var markColor: MarkColor = .noColor
     
     var imageURL: URL? {
         if let imagePath {
@@ -35,6 +30,10 @@ struct TClient: Identifiable, Hashable, Codable {
     
     var fullName: String {
         "\(givenName) \(familyName)"
+    }
+    
+    var validPhoneNumber: CNPhoneNumber {
+        return CNPhoneNumber(stringValue: phoneNumber)
     }
     
     static func empty() -> Self {
@@ -51,9 +50,10 @@ struct TClient: Identifiable, Hashable, Codable {
         case email
         case phoneNumber
         case imagePath
-        case type
         case createdAt
         case instagramId
+        case label
+        case markColor
     }
     
     init(familyName: String, givenName: String, createdAt: Date) {
@@ -73,9 +73,10 @@ struct TClient: Identifiable, Hashable, Codable {
         self.email = try container.decodeIfPresent(String.self, forKey: .email) ?? ""
         self.phoneNumber = try container.decodeIfPresent(String.self, forKey: .phoneNumber) ?? ""
         self.imagePath = try container.decodeIfPresent(String.self, forKey: .imagePath)
-        self.type = try container.decode(ClientType.self, forKey: .type)
+        self.label = try container.decodeIfPresent(TLabel.self, forKey: .label)
         self.instagramId = try container.decodeIfPresent(String.self, forKey: .instagramId) ?? ""
         self.createdAt = try container.decode(Date.self, forKey: .createdAt)
+        self.markColor = try container.decodeIfPresent(MarkColor.self, forKey: .markColor) ?? .noColor
     }
     
     public func openInstagram() {

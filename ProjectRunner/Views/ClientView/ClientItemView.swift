@@ -24,16 +24,12 @@ struct ClientItemView: View {
                 .clipShape(Circle())
                 .clipped()
             } else {
-                Circle()
-                    .fill(Color.gray)
-                    .frame(width: imageSize, height: imageSize)
+                CircleName(markColor: client.markColor, text: client.fullName)
+                    .setCircleSize(imageSize)
             }
             VStack(alignment: .leading) {
                 Text(client.fullName)
                     .font(.title2)
-                Text(client.type.rawValue)
-                    .font(.caption)
-                    .bold()
             }
         }
     }

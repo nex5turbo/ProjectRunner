@@ -72,6 +72,48 @@ struct LabelSheet: View {
     }
 }
 
+struct LabelSheetSingle: View {
+    @Environment(\.dismiss) private var dismiss
+    let onSelect: (TLabel) -> Void
+    @Binding var appData: AppData
+    init(appData: Binding<AppData>, onSelect: @escaping (TLabel) -> Void) {
+        self.onSelect = onSelect
+        self._appData = appData
+    }
+    @State private var content: String = ""
+    var body: some View {
+        VStack(spacing: 0) {
+            TextField("content", text: $content, prompt: Text("Label"))
+                .font(.title)
+                .padding()
+                .padding(.top)
+                .onSubmit {
+                    do {
+                        appData.clientLabels.append(TLabel(content))
+                        try appData.save()
+                    } catch {
+                        print(error.localizedDescription)
+                    }
+                }
+            Divider()
+            List {
+                ForEach(appData.clientLabels, id: \.self) { label in
+                    HStack {
+                        Button {
+                            onSelect(label)
+                            dismiss()
+                        } label: {
+                            Text(label.content)
+                        }
+                        .foregroundStyle(.black)
+                        Spacer()
+                    }
+                }
+            }
+        }
+    }
+}
+
 #Preview {
     ContentView()
 }

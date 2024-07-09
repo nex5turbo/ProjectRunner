@@ -62,24 +62,48 @@ struct ScheduleItemView: View {
                             .frame(width: titleTextHeight, height: titleTextHeight)
                     }
                     if isNavigatable {
-                        NavigationLink {
-                            if let task = schedule as? TTask {
-                                TaskDetailView(task: task, appData: $appData)
-                            } else if let project = schedule as? TProject {
-                                ProjectDetailView(project: project, appData: $appData)
-                            }
-                        } label: {
-                            Text(schedule.name)
-                                .font(.footnote.weight(.semibold))
-                                .foregroundStyle(.black)
-                                .overlay {
-                                    GeometryReader { proxy in
-                                        Color.clear.task {
-                                            self.titleTextHeight = proxy.size.height
+                        HStack(spacing: 4) {
+                            NavigationLink {
+                                if let task = schedule as? TTask {
+                                    TaskDetailView(task: task, appData: $appData)
+                                } else if let project = schedule as? TProject {
+                                    ProjectDetailView(project: project, appData: $appData)
+                                }
+                            } label: {
+                                Text(schedule.name)
+                                    .font(.footnote.weight(.semibold))
+                                    .foregroundStyle(.black)
+                                    .overlay {
+                                        GeometryReader { proxy in
+                                            Color.clear.task {
+                                                self.titleTextHeight = proxy.size.height
+                                            }
                                         }
                                     }
+                                    .lineLimit(1)
+                            }
+                            if let task = schedule as? TTask,
+                               let superiorId = task.superiorId
+                            {
+                                if let superiorTask = appData.tasks.first(where: { $0.id == superiorId}) {
+                                    arrow()
+                                    NavigationLink {
+                                        TaskDetailView(task: superiorTask, appData: $appData)
+                                    } label: {
+                                        superiorText(superiorTask.name)
+                                    }
+                                    
+                                } else if let superiorProject = appData.tasks.first(where: { $0.id == superiorId}) {
+                                    arrow()
+                                    NavigationLink {
+                                        TaskDetailView(task: superiorProject, appData: $appData)
+                                    } label: {
+                                        superiorText(superiorProject.name)
+                                    }
                                 }
+                            }
                         }
+                        
                     } else {
                         Text(schedule.name)
                             .font(.footnote.weight(.semibold))
@@ -180,6 +204,18 @@ struct ScheduleItemView: View {
                 self.dragOffset = 0
             }
         )
+    }
+    
+    @ViewBuilder private func arrow() -> some View {
+        Image(systemName: "arrow.right")
+            .font(.caption2)
+    }
+    
+    @ViewBuilder private func superiorText(_ text: String) -> some View {
+        Text(text)
+            .font(.footnote.weight(.semibold))
+            .foregroundStyle(.black.opacity(0.6))
+            .lineLimit(1)
     }
     
     public func navigatable() -> Self {
