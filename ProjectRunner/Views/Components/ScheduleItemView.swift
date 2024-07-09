@@ -70,7 +70,7 @@ struct ScheduleItemView: View {
                             }
                         } label: {
                             Text(schedule.name)
-                                .font(.callout.weight(.semibold))
+                                .font(.footnote.weight(.semibold))
                                 .foregroundStyle(.black)
                                 .overlay {
                                     GeometryReader { proxy in
@@ -82,21 +82,13 @@ struct ScheduleItemView: View {
                         }
                     } else {
                         Text(schedule.name)
-                            .font(.callout.weight(.semibold))
+                            .font(.footnote.weight(.semibold))
                             .foregroundStyle(.black)
                     }
-                    if let project = schedule as? TProject {
-                        let tasks = appData.tasks.filter { project.taskIds.contains($0.id) }
-                        if !tasks.isEmpty {
-                            TaskProgressBar(tasks: tasks)
-                                .hideHeader()
-                        }
-                    } else if let task = schedule as? TTask {
-                        let tasks = appData.tasks.filter { task.taskIds.contains($0.id) }
-                        if !tasks.isEmpty {
-                            TaskProgressBar(tasks: tasks)
-                                .hideHeader()
-                        }
+                    let tasks = appData.tasks.filter { schedule.taskIds.contains($0.id) }
+                    if !tasks.isEmpty {
+                        TaskProgressBar(tasks: tasks)
+                            .hideHeader()
                     }
                 }
                 
@@ -109,8 +101,13 @@ struct ScheduleItemView: View {
             .offset(x: max(0.0, offset))
         }
         .foregroundStyle(Color.black)
-        .padding()
+        .padding(.vertical, 8)
+        .padding(.horizontal)
         .background(.white)
+        .overlay {
+            RoundedRectangle(cornerRadius: 0)
+                .stroke(.gray, lineWidth: 0.2)
+        }
         .overlay {
             ZStack {
                 HStack {
@@ -170,13 +167,6 @@ struct ScheduleItemView: View {
             }
         }
         .animation(.spring, value: dragOffset == 0.0)
-        .cornerRadius(8)
-        .overlay {
-            RoundedRectangle(cornerRadius: 8)
-                .stroke(.gray, lineWidth: 0.1)
-        }
-        .shadow(color: .gray.opacity(0.2), radius: 1, y: 1)
-        .padding(.horizontal)
         .highPriorityGesture(DragGesture()
             .onChanged({ value in
                 self.dragOffset = value.translation.width
@@ -190,12 +180,6 @@ struct ScheduleItemView: View {
                 self.dragOffset = 0
             }
         )
-        .gesture(DragGesture()
-            .onChanged({ value in
-                self.dragOffset = value.translation.width
-            })
-        )
-        
     }
     
     public func navigatable() -> Self {

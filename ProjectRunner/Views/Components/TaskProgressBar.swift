@@ -27,7 +27,7 @@ struct TaskProgressBar: View {
             let doneCount = tasks.filter { $0.status == .done }.count
             
             ZStack {
-                RoundedRectangle(cornerRadius: 10)
+                RoundedRectangle(cornerRadius: 8)
                     .fill(.gray)
                     .overlay {
                         HStack {
@@ -37,16 +37,16 @@ struct TaskProgressBar: View {
                             Spacer(minLength: 0)
                         }
                     }
-                    .cornerRadius(10)
+                    .cornerRadius(8)
                     .clipped()
                     .frame(width: textWidth, height: textHeight)
                 Text("\(doneCount) / \(taskCount)")
-                    .font(.footnote)
+                    .font(.system(size: 7, weight: .semibold))
                     .foregroundStyle(.white)
                     .overlay {
                         GeometryReader { proxy in
                             Color.clear.task {
-                                self.textHeight = proxy.size.height + 8
+                                self.textHeight = proxy.size.height + 6
                                 self.textWidth = proxy.size.width + 12
                             }
                         }

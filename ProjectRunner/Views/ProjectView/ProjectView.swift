@@ -37,7 +37,7 @@ struct ProjectView: View {
     @AppStorage("timeline") private var shouldShowTimeline = false
     @AppStorage("showDone") private var shouldShowDone = false
     
-    private let titleFont: Font = .title3
+    private let titleFont: Font = .headline
     
     var projectListWithDone: [TProject] {
         if !shouldShowDone {
@@ -194,7 +194,7 @@ extension ProjectView {
                         if let list = labelProjectList[label.content], !list.isEmpty {
                             HStack {
                                 Text(label.content)
-                                    .font(.title3)
+                                    .font(titleFont)
                                 CountChip(count: list.count)
                                 Spacer()
                             }
@@ -222,12 +222,10 @@ extension ProjectView {
             ForEach(list, id: \.self) { project in
                 ScheduleItemView(schedule: project, appData: $appData)
                     .navigatable()
-                    .padding(.vertical, 8)
             }
-            
-            BlockDivider()
-                .padding(.vertical)
         }
+        .padding(.top, 8)
+        .padding(.bottom)
     }
     
     @ViewBuilder func colorSortedList() -> some View {

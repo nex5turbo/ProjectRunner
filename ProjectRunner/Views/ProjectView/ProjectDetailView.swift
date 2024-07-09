@@ -148,6 +148,25 @@ struct ProjectDetailView: View {
                                     }
                             }
                         }
+                        
+                        TopButtonChip(
+                            title: project.dueDate.toString(),
+                            imageName: "",
+                            isSystem: true) {
+                                
+                            }
+                            .overlay {
+                                DatePicker(selection: $project.dueDate, displayedComponents: .date) {}
+                                    .labelsHidden()
+                                    .colorMultiply(.clear)       // <<< here
+                            }
+                            .onChange(of: project.dueDate, perform: { value in
+                                do {
+                                    try appData.changeDueDate(schedule: project, project.hasDeadline, to: project.dueDate)
+                                } catch {
+                                    print(error.localizedDescription)
+                                }
+                            })
                     }
                     .hideDivider()
                 }

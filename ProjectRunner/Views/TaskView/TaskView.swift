@@ -39,6 +39,8 @@ struct TaskView: View {
     @AppStorage("timeline") private var shouldShowTimeline = false
     @AppStorage("showDone") private var shouldShowDone = false
     
+    let titleFont: Font = .headline
+    
     var taskListWithDone: [TTask] {
         if !shouldShowDone {
             return appData.sortedTasks.filter { $0.status != .done && $0.status != .canceled }
@@ -206,7 +208,7 @@ extension TaskView {
                         if let list = labelTaskList[label.content], !list.isEmpty {
                             HStack {
                                 Text(label.content)
-                                    .font(.title3)
+                                    .font(titleFont)
                                 CountChip(count: list.count)
                                 Spacer()
                             }
@@ -233,12 +235,10 @@ extension TaskView {
             ForEach(list, id: \.self) { task in
                 ScheduleItemView(schedule: task, appData: $appData)
                     .navigatable()
-                    .padding(.vertical, 8)
             }
-            
-            BlockDivider()
-                .padding(.vertical)
         }
+        .padding(.top, 8)
+        .padding(.bottom)
     }
     
     @ViewBuilder func projectSortedList() -> some View {
@@ -252,7 +252,7 @@ extension TaskView {
                                 CountChip(count: list.count)
                                 Spacer()
                             }
-                            .font(.title3)
+                            .font(titleFont)
                             .padding(.horizontal)
                             
                             taskList(list: list)
@@ -263,7 +263,7 @@ extension TaskView {
                                     CountChip(count: list.count)
                                     Spacer()
                                 }
-                                .font(.title3)
+                                .font(titleFont)
                                 .padding(.horizontal)
                                 
                                 taskList(list: list)
@@ -309,7 +309,7 @@ extension TaskView {
                             CountChip(count: list.count)
                             Spacer()
                         }
-                        .font(.title3)
+                        .font(titleFont)
                         .padding(.horizontal)
                         
                         taskList(list: list)
@@ -330,7 +330,7 @@ extension TaskView {
                             CountChip(count: list.count)
                             Spacer()
                         }
-                        .font(.title3)
+                        .font(titleFont)
                         .padding(.horizontal)
                         
                         taskList(list: list)
@@ -363,7 +363,7 @@ extension TaskView {
                             CountChip(count: list.count)
                             Spacer()
                         }
-                        .font(.title3)
+                        .font(titleFont)
                         .padding(.horizontal)
                         
                         taskList(list: list)

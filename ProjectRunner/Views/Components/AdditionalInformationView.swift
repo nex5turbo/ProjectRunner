@@ -20,6 +20,7 @@ struct AdditionalInformationView: View {
                 .frame(width: iconSize, height: iconSize)
             
             Text("\(schedule.appointments.count)")
+                .font(.caption2)
                 .overlay {
                     GeometryReader { proxy in
                         Color.clear
@@ -40,11 +41,12 @@ struct AdditionalInformationView: View {
                 .scaledToFit()
                 .frame(width: iconSize, height: iconSize)
             Text("\(schedule.moments.count)")
+                .font(.caption2)
             Spacer()
             
             if schedule.hasDeadline && (schedule.status != .done && schedule.status != .canceled) {
                 Text("\(Calendar.current.timeLeft(from: currentDate, to: schedule.dueDate))")
-                    .font(Font.footnote)
+                    .font(.caption2)
             }
         }
         .foregroundStyle(.gray)
