@@ -9,9 +9,9 @@ import SwiftUI
 
 struct BlockDivider: View {
     var body: some View {
-        Color.gray.opacity(0.3)
+        Color(UIColor.secondarySystemBackground)
         .frame(maxWidth: .infinity)
-        .frame(height: 4)
+        .frame(height: 8)
     }
 }
 

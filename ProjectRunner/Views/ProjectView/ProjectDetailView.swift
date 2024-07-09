@@ -137,8 +137,13 @@ struct ProjectDetailView: View {
                                     imageName: "",
                                     isSystem: true
                                 ) {
-                                    CircleName(markColor: firstMember.markColor, text: firstMember.fullName)
-                                        .setCircleSize(16)
+                                    CircleNames(views:
+                                        members.map {
+                                            CircleName(markColor: $0.markColor, text: $0.fullName)
+                                                .setCircleSize(16)
+                                        }
+                                    )
+                                    
                                 }
                             } else {
                                 TopButtonChip(
@@ -275,9 +280,11 @@ struct ProjectDetailView: View {
                     }
                     
                     if !self.isTaskFolded {
-                        ForEach(notDoneTasks, id: \.self) { task in
-                            ScheduleItemView(schedule: task, appData: $appData)
-                                .navigatable()
+                        VStack(spacing: 0) {
+                            ForEach(notDoneTasks, id: \.self) { task in
+                                ScheduleItemView(schedule: task, appData: $appData)
+                                    .navigatable()
+                            }
                         }
                     }
                 }
@@ -306,10 +313,13 @@ struct ProjectDetailView: View {
                         print($0.id)
                         print(project.clientIds)
                         return project.clientIds.contains($0.id) })
-                    ForEach(clients, id: \.self) { client in
-                        ClientItemView(appData: $appData, client: client)
+                    VStack(spacing: 0) {
+                        ForEach(clients, id: \.self) { client in
+                            ClientItemView(appData: $appData, client: client)
+                                .padding()
+                            Divider()
+                        }
                     }
-                    .padding(.horizontal)
                 }
                 .padding(.bottom)
                 

@@ -275,9 +275,11 @@ struct TaskDetailView: View {
                     }
                     
                     if !self.isTaskFolded {
-                        ForEach(notDoneTasks, id: \.self) { task in
-                            ScheduleItemView(schedule: task, appData: $appData)
-                                .navigatable()
+                        VStack(spacing: 0) {
+                            ForEach(notDoneTasks, id: \.self) { task in
+                                ScheduleItemView(schedule: task, appData: $appData)
+                                    .navigatable()
+                            }
                         }
                     }
                 }

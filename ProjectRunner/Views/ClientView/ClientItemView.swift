@@ -10,7 +10,7 @@ import SwiftUI
 struct ClientItemView: View {
     @Binding var appData: AppData
     @State var client: TClient
-    private let imageSize: CGFloat = 50
+    private let imageSize: CGFloat = 40
     var body: some View {
         HStack {
             if let imageUrl = client.imageURL {
@@ -30,7 +30,13 @@ struct ClientItemView: View {
             VStack(alignment: .leading) {
                 Text(client.fullName)
                     .font(.title2)
+                if let label = client.label {
+                    Text(label.content)
+                        .font(.caption2)
+                        .foregroundStyle(.gray)
+                }
             }
+            Spacer()
         }
     }
 }
