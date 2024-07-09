@@ -36,7 +36,6 @@
 		54D69DC72C3D124D0048E5BD /* CountChip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D69DB52C3D124D0048E5BD /* CountChip.swift */; };
 		54D69DC82C3D124D0048E5BD /* ColorSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D69DB62C3D124D0048E5BD /* ColorSheet.swift */; };
 		54D69DC92C3D124D0048E5BD /* PremiumButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D69DB72C3D124D0048E5BD /* PremiumButton.swift */; };
-		54D69DCE2C3D12580048E5BD /* ProjectItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D69DCA2C3D12570048E5BD /* ProjectItemView.swift */; };
 		54D69DCF2C3D12580048E5BD /* ProjectAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D69DCB2C3D12580048E5BD /* ProjectAddView.swift */; };
 		54D69DD02C3D12580048E5BD /* ProjectDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D69DCC2C3D12580048E5BD /* ProjectDetailView.swift */; };
 		54D69DD12C3D12580048E5BD /* ProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D69DCD2C3D12580048E5BD /* ProjectView.swift */; };
@@ -44,7 +43,6 @@
 		54D69DD82C3D12670048E5BD /* TaskAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D69DD42C3D12670048E5BD /* TaskAddView.swift */; };
 		54D69DD92C3D12670048E5BD /* TaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D69DD52C3D12670048E5BD /* TaskView.swift */; };
 		54D69DDA2C3D12670048E5BD /* TaskDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D69DD62C3D12670048E5BD /* TaskDetailView.swift */; };
-		54D69DDB2C3D12670048E5BD /* TaskItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D69DD72C3D12670048E5BD /* TaskItemView.swift */; };
 		54D69DDD2C3D12740048E5BD /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D69DDC2C3D12740048E5BD /* NotificationManager.swift */; };
 		54D69DE72C3D12810048E5BD /* TTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D69DDE2C3D12810048E5BD /* TTask.swift */; };
 		54D69DE82C3D12810048E5BD /* TClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D69DDF2C3D12810048E5BD /* TClient.swift */; };
@@ -116,7 +114,6 @@
 		54D69DB52C3D124D0048E5BD /* CountChip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountChip.swift; sourceTree = "<group>"; };
 		54D69DB62C3D124D0048E5BD /* ColorSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorSheet.swift; sourceTree = "<group>"; };
 		54D69DB72C3D124D0048E5BD /* PremiumButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PremiumButton.swift; sourceTree = "<group>"; };
-		54D69DCA2C3D12570048E5BD /* ProjectItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectItemView.swift; sourceTree = "<group>"; };
 		54D69DCB2C3D12580048E5BD /* ProjectAddView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectAddView.swift; sourceTree = "<group>"; };
 		54D69DCC2C3D12580048E5BD /* ProjectDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectDetailView.swift; sourceTree = "<group>"; };
 		54D69DCD2C3D12580048E5BD /* ProjectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectView.swift; sourceTree = "<group>"; };
@@ -124,7 +121,6 @@
 		54D69DD42C3D12670048E5BD /* TaskAddView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskAddView.swift; sourceTree = "<group>"; };
 		54D69DD52C3D12670048E5BD /* TaskView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskView.swift; sourceTree = "<group>"; };
 		54D69DD62C3D12670048E5BD /* TaskDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskDetailView.swift; sourceTree = "<group>"; };
-		54D69DD72C3D12670048E5BD /* TaskItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskItemView.swift; sourceTree = "<group>"; };
 		54D69DDC2C3D12740048E5BD /* NotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		54D69DDE2C3D12810048E5BD /* TTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TTask.swift; sourceTree = "<group>"; };
 		54D69DDF2C3D12810048E5BD /* TClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TClient.swift; sourceTree = "<group>"; };
@@ -332,7 +328,6 @@
 			children = (
 				54D69DCB2C3D12580048E5BD /* ProjectAddView.swift */,
 				54D69DCC2C3D12580048E5BD /* ProjectDetailView.swift */,
-				54D69DCA2C3D12570048E5BD /* ProjectItemView.swift */,
 				54D69DCD2C3D12580048E5BD /* ProjectView.swift */,
 			);
 			path = ProjectView;
@@ -343,7 +338,6 @@
 			children = (
 				54D69DD42C3D12670048E5BD /* TaskAddView.swift */,
 				54D69DD62C3D12670048E5BD /* TaskDetailView.swift */,
-				54D69DD72C3D12670048E5BD /* TaskItemView.swift */,
 				54D69DD52C3D12670048E5BD /* TaskView.swift */,
 			);
 			path = TaskView;
@@ -519,7 +513,6 @@
 				54D69DED2C3D12810048E5BD /* Priority.swift in Sources */,
 				54D69DBD2C3D124D0048E5BD /* TopButtonChip.swift in Sources */,
 				54D69DB82C3D124D0048E5BD /* AddMemberSheet.swift in Sources */,
-				54D69DCE2C3D12580048E5BD /* ProjectItemView.swift in Sources */,
 				54D69DBA2C3D124D0048E5BD /* AppointmentView.swift in Sources */,
 				54D69DC12C3D124D0048E5BD /* LabelSheet.swift in Sources */,
 				54D69DC02C3D124D0048E5BD /* AnimatedTimeline.swift in Sources */,
@@ -534,7 +527,6 @@
 				54D69DD92C3D12670048E5BD /* TaskView.swift in Sources */,
 				54D69DBE2C3D124D0048E5BD /* AdditionalInformationView.swift in Sources */,
 				54D69DA52C3D12390048E5BD /* ClientAddView.swift in Sources */,
-				54D69DDB2C3D12670048E5BD /* TaskItemView.swift in Sources */,
 				54D69DC62C3D124D0048E5BD /* DeleteButton.swift in Sources */,
 				54D69DDA2C3D12670048E5BD /* TaskDetailView.swift in Sources */,
 				54D69DDD2C3D12740048E5BD /* NotificationManager.swift in Sources */,

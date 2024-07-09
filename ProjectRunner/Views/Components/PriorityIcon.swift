@@ -41,7 +41,7 @@ struct PriorityIcon: View {
                     Text("1")
                 }
             }
-            .font(.footnote)
+            .font(.caption2)
             .foregroundStyle(.white)
         }
         .cornerRadius(4)

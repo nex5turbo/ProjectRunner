@@ -70,7 +70,7 @@ struct ScheduleItemView: View {
                             }
                         } label: {
                             Text(schedule.name)
-                                .font(.callout)
+                                .font(.callout.weight(.semibold))
                                 .foregroundStyle(.black)
                                 .overlay {
                                     GeometryReader { proxy in
