@@ -13,7 +13,6 @@ enum TaskSortType: String, CaseIterable {
     case priority
     case date
     case label
-    case project
     
     var title: String {
         return switch self {
@@ -24,11 +23,9 @@ enum TaskSortType: String, CaseIterable {
         case .priority:
             "Priority"
         case .date:
-            "Date"
+            "Due date"
         case .label:
             "Label"
-        case .project:
-            "Project"
         }
     }
 }
@@ -38,14 +35,48 @@ struct TaskView: View {
     @Binding var appData: AppData
     @AppStorage("timeline") private var shouldShowTimeline = false
     @AppStorage("showDone") private var shouldShowDone = false
+    @AppStorage("selectedProjectId") private var selectedProjectId: String = "All Tasks"
+    @State private var selectedProject: TProject? = nil
     
     let titleFont: Font = .headline
     
+    var taskListWithProject: [TTask] {
+        switch selectedProjectId {
+        case "Todo":
+            return appData.tasks.filter { $0.superiorId == nil }
+        case "All Tasks":
+            return appData.tasks
+        default:
+            let sortedTasks = appData.tasks.filter { $0.superiorId == selectedProjectId }
+            var returnTask: [TTask] = sortedTasks
+            sortedTasks.forEach { task in
+                returnTask = getAllTasks(current: task, tasks: returnTask)
+            }
+            return returnTask
+        }
+    }
+    
+    func getAllTasks(current: TTask, tasks: [TTask]) -> [TTask] {
+        
+        guard !current.taskIds.isEmpty else {
+            return tasks
+        }
+        var tasks = tasks
+        current.taskIds.forEach { id in
+            guard let ctask = appData.tasks.first(where: { $0.id == id }) else {
+                return
+            }
+            tasks.append(ctask)
+            tasks = getAllTasks(current: ctask, tasks: tasks)
+        }
+        return tasks
+    }
+    
     var taskListWithDone: [TTask] {
         if !shouldShowDone {
-            return appData.sortedTasks.filter { $0.status != .done && $0.status != .canceled }
+            return taskListWithProject.filter { $0.status != .done && $0.status != .canceled }
         } else {
-            return appData.sortedTasks
+            return taskListWithProject
         }
     }
     
@@ -71,12 +102,42 @@ struct TaskView: View {
                     dateSortedList()
                 case .label:
                     labelSortedList()
-                case .project:
-                    projectSortedList()
                 }
             }
         }
-        .navigationTitle("Task")
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle(
+            selectedProject != nil ? selectedProject!.name : selectedProjectId
+        )
+        .toolbarTitleMenu {
+            Section {
+                Button {
+                    self.selectedProjectId = "All Tasks"
+                } label: {
+                    Text("All Tasks")
+                }
+                Button {
+                    self.selectedProjectId = "Todo"
+                } label: {
+                    Text("Todo")
+                }
+            }
+            Section {
+                ForEach(appData.projects, id: \.self) { project in
+                    Button {
+                        self.selectedProjectId = project.id
+                    } label: {
+                        Text(project.name)
+                    }
+                }
+            }
+        }
+        .onChange(of: selectedProjectId) {
+            selectedProject = appData.projects.first(where: { $0.id == selectedProjectId })
+        }
+        .task {
+            selectedProject = appData.projects.first(where: { $0.id == selectedProjectId })
+        }
         .safeAreaInset(edge: .top, content: {
             navigationTopItems()
         })
@@ -164,15 +225,6 @@ extension TaskView {
         return returnValue
     }
     
-    var projectTaskList: [String: [TTask]] {
-        var returnValue: [String: [TTask]] = [:]
-        appData.projects.map { $0.id }.forEach { project in
-            returnValue[project] = taskListWithDone.filter { $0.superiorId == project }
-        }
-        returnValue["Stand Alone"] = taskListWithDone.filter { $0.superiorId == nil }
-        return returnValue
-    }
-    
     var dateTaskList: [String: [TTask]] {
         var returnValue: [String: [TTask]] = [:]
         var dates: Set<String> = []
@@ -239,41 +291,6 @@ extension TaskView {
         }
         .padding(.top, 8)
         .padding(.bottom)
-    }
-    
-    @ViewBuilder func projectSortedList() -> some View {
-        ScrollView {
-            VStack(spacing: 0) {
-                ForEach(Array(projectTaskList.keys.filter { $0 != "Stand Alone"}).sorted() + ["Stand Alone"], id: \.self) { projectId in
-                    if let list = projectTaskList[projectId], !list.isEmpty {
-                        if projectId == "Stand Alone" {
-                            HStack {
-                                Text(projectId)
-                                CountChip(count: list.count)
-                                Spacer()
-                            }
-                            .font(titleFont)
-                            .padding(.horizontal)
-                            
-                            taskList(list: list)
-                        } else {
-                            if let project = appData.projects.first(where: {$0.id == projectId}) {
-                                HStack {
-                                    Text(project.name)
-                                    CountChip(count: list.count)
-                                    Spacer()
-                                }
-                                .font(titleFont)
-                                .padding(.horizontal)
-                                
-                                taskList(list: list)
-                            }
-                        }
-                    }
-                }
-            }
-            .padding(.top, 8)
-        }
     }
     
     @ViewBuilder func colorSortedList() -> some View {

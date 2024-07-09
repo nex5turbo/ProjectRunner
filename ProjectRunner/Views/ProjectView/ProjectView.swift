@@ -72,6 +72,7 @@ struct ProjectView: View {
                 }
             }
         }
+        .navigationBarTitleDisplayMode(.inline)
         .navigationTitle("Project")
         .safeAreaInset(edge: .top, content: {
             navigationTopItems()
