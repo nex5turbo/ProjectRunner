@@ -13,9 +13,6 @@ struct TaskDetailView: View {
     @Binding var appData: AppData
 
     @State private var isDeleteConfirm: Bool = false
-    @State private var isLabelSheetPresented: Bool = false
-    @State private var isSuperiorSheetPresented: Bool = false
-    @State private var isColorSheetPresented: Bool = false
     
     @AppStorage("showDone") var shouldShowDone: Bool = false
     @AppStorage("isTaskFolded") private var isTaskFolded: Bool = false
@@ -82,8 +79,14 @@ struct TaskDetailView: View {
                                 }
                         }
                         
-                        Button { // label
-                            self.isLabelSheetPresented = true
+                        
+                        LabelSheetButton(appData: $appData, schedule: task) { labels in
+                            do {
+                                try appData.setLabel(schedule: task, labels: labels)
+                                self.task.labels = labels
+                            } catch {
+                                print(error.localizedDescription)
+                            }
                         } label: {
                             let labels = task.labels
                             if let firstLabel = labels.first {
@@ -103,20 +106,14 @@ struct TaskDetailView: View {
                                     }
                             }
                         }
-                        .sheet(isPresented: $isLabelSheetPresented) {
-                            LabelSheet(schedule: task, appData: $appData) { labels in
-                                do {
-                                    try appData.setLabel(schedule: task, labels: labels)
-                                    self.task.labels = labels
-                                } catch {
-                                    print(error.localizedDescription)
-                                }
+
+                        ColorSheetButton { color in
+                            do {
+                                try appData.changeColor(schedule: task, to: color)
+                                self.task.markColor = color
+                            } catch {
+                                print(error.localizedDescription)
                             }
-                            .presentationDetents([.medium])
-                        }
-                        
-                        Button {
-                            self.isColorSheetPresented = true
                         } label: {
                             TopButtonChip(
                                 title: task.markColor.title,
@@ -124,17 +121,6 @@ struct TaskDetailView: View {
                                 isSystem: true) {
                                 }
                                 .setImageColor(task.markColor.color)
-                        }
-                        .sheet(isPresented: $isColorSheetPresented) {
-                            ColorSheet(appData: $appData) { color in
-                                do {
-                                    try appData.changeColor(schedule: task, to: color)
-                                    self.task.markColor = color
-                                } catch {
-                                    print(error.localizedDescription)
-                                }
-                            }
-                            .presentationDetents([.medium])
                         }
                     }
                     .hideDivider()
@@ -182,8 +168,13 @@ struct TaskDetailView: View {
                         HStack(spacing: 0) {
                             Text("Sub task of ")
                                 .font(.headline)
-                            Button {
-                                self.isSuperiorSheetPresented = true
+                            SelectSuperiorSheetButton(appData: $appData, task: task) { superior in
+                                do {
+                                    try appData.changeSuperior(task: task, to: superior)
+                                    self.task.superiorId = superior.id
+                                } catch {
+                                    print(error.localizedDescription)
+                                }
                             } label: {
                                 Text(superior.name)
                                     .font(.headline)
@@ -201,8 +192,13 @@ struct TaskDetailView: View {
                         HStack(spacing: 0) {
                             Text("Sub task of ")
                                 .font(.headline)
-                            Button {
-                                self.isSuperiorSheetPresented = true
+                            SelectSuperiorSheetButton(appData: $appData, task: task) { superior in
+                                do {
+                                    try appData.changeSuperior(task: task, to: superior)
+                                    self.task.superiorId = superior.id
+                                } catch {
+                                    print(error.localizedDescription)
+                                }
                             } label: {
                                 Text("Select Superior")
                                     .font(.headline)
@@ -211,17 +207,6 @@ struct TaskDetailView: View {
                         .padding()
                     }
                 }
-                .sheet(isPresented: $isSuperiorSheetPresented) {
-                    SelectSuperiorSheet(task: task, appData: $appData) { superior in
-                        do {
-                            try appData.changeSuperior(task: task, to: superior)
-                            self.task.superiorId = superior.id
-                        } catch {
-                            print(error.localizedDescription)
-                        }
-                    }
-                }
-                
                 BlockDivider()
                 
                 VStack(alignment: .leading) {

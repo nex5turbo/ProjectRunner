@@ -53,8 +53,22 @@ struct ContentView: View {
         .preferredColorScheme(.light)
         .task {
             if isFirst {
-                let appData = AppData()
-                self.appData = appData
+                do {
+                    let folder = try FileManager.default.url(for: FileManager.SearchPathDirectory.documentDirectory, in: FileManager.SearchPathDomainMask.userDomainMask, appropriateFor: nil, create: false).appendingPathComponent("AppData.tm")
+                    if FileManager.default.fileExists(atPath: folder.path) {
+                        let data = try Data(contentsOf: folder)
+                        let decoder = JSONDecoder()
+                        let appData = try decoder.decode(AppData.self, from: data)
+                        self.appData = appData
+                    } else {
+                        print("file not found")
+                    }
+                } catch {
+                    let appData = AppData()
+                    self.appData = appData
+                    print("Reason: ",error.localizedDescription)
+                }
+                self.isFirst = false
             } else {
                 do {
                     let folder = try FileManager.default.url(for: FileManager.SearchPathDirectory.documentDirectory, in: FileManager.SearchPathDomainMask.userDomainMask, appropriateFor: nil, create: false).appendingPathComponent("AppData.tm")

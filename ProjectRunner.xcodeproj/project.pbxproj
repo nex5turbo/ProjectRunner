@@ -58,6 +58,10 @@
 		54D69DF22C3D12880048E5BD /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D69DF02C3D12880048E5BD /* String+Extensions.swift */; };
 		54D69DF32C3D12880048E5BD /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D69DF12C3D12880048E5BD /* Date+Extensions.swift */; };
 		54D69DF52C3D162B0048E5BD /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 54D69DF42C3D162B0048E5BD /* Localizable.xcstrings */; };
+		54D69DF72C3D1B310048E5BD /* ColorSheetButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D69DF62C3D1B310048E5BD /* ColorSheetButton.swift */; };
+		54D69E002C3D1CFD0048E5BD /* SelectSuperiorSheetButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D69DFF2C3D1CFD0048E5BD /* SelectSuperiorSheetButton.swift */; };
+		54D69E022C3D1D0B0048E5BD /* AddMemberSheetButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D69E012C3D1D0B0048E5BD /* AddMemberSheetButton.swift */; };
+		54D69E042C3D1E630048E5BD /* LabelSheetButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D69E032C3D1E630048E5BD /* LabelSheetButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -132,6 +136,10 @@
 		54D69DF02C3D12880048E5BD /* String+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		54D69DF12C3D12880048E5BD /* Date+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		54D69DF42C3D162B0048E5BD /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		54D69DF62C3D1B310048E5BD /* ColorSheetButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSheetButton.swift; sourceTree = "<group>"; };
+		54D69DFF2C3D1CFD0048E5BD /* SelectSuperiorSheetButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectSuperiorSheetButton.swift; sourceTree = "<group>"; };
+		54D69E012C3D1D0B0048E5BD /* AddMemberSheetButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMemberSheetButton.swift; sourceTree = "<group>"; };
+		54D69E032C3D1E630048E5BD /* LabelSheetButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelSheetButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -295,22 +303,20 @@
 		54D69D9A2C3D12030048E5BD /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				54D69DF92C3D1C920048E5BD /* Sheets */,
+				54D69DF82C3D1C810048E5BD /* SheetButton */,
 				54D69DAC2C3D124C0048E5BD /* AdditionalInformationView.swift */,
-				54D69DA62C3D124C0048E5BD /* AddMemberSheet.swift */,
 				54D69DAE2C3D124C0048E5BD /* AnimatedTimeline.swift */,
 				54D69DA82C3D124C0048E5BD /* AppointmentView.swift */,
 				54D69DAA2C3D124C0048E5BD /* BlockDivider.swift */,
-				54D69DB62C3D124D0048E5BD /* ColorSheet.swift */,
 				54D69DB52C3D124D0048E5BD /* CountChip.swift */,
 				54D69DB42C3D124C0048E5BD /* DeleteButton.swift */,
-				54D69DAF2C3D124C0048E5BD /* LabelSheet.swift */,
 				54D69DB02C3D124C0048E5BD /* MarqueeText.swift */,
 				54D69DB22C3D124C0048E5BD /* MomentView.swift */,
 				54D69DB12C3D124C0048E5BD /* NavigationTopItems.swift */,
 				54D69DB72C3D124D0048E5BD /* PremiumButton.swift */,
 				54D69DA92C3D124C0048E5BD /* PriorityIcon.swift */,
 				54D69DAD2C3D124C0048E5BD /* ScheduleItemView.swift */,
-				54D69DB32C3D124C0048E5BD /* SelectSuperiorSheet.swift */,
 				54D69DA72C3D124C0048E5BD /* TaskProgressBar.swift */,
 				54D69DAB2C3D124C0048E5BD /* TopButtonChip.swift */,
 			);
@@ -345,6 +351,28 @@
 				54D69DD22C3D12600048E5BD /* SettingsView.swift */,
 			);
 			path = SettingsView;
+			sourceTree = "<group>";
+		};
+		54D69DF82C3D1C810048E5BD /* SheetButton */ = {
+			isa = PBXGroup;
+			children = (
+				54D69DF62C3D1B310048E5BD /* ColorSheetButton.swift */,
+				54D69E012C3D1D0B0048E5BD /* AddMemberSheetButton.swift */,
+				54D69DFF2C3D1CFD0048E5BD /* SelectSuperiorSheetButton.swift */,
+				54D69E032C3D1E630048E5BD /* LabelSheetButton.swift */,
+			);
+			path = SheetButton;
+			sourceTree = "<group>";
+		};
+		54D69DF92C3D1C920048E5BD /* Sheets */ = {
+			isa = PBXGroup;
+			children = (
+				54D69DB32C3D124C0048E5BD /* SelectSuperiorSheet.swift */,
+				54D69DA62C3D124C0048E5BD /* AddMemberSheet.swift */,
+				54D69DAF2C3D124C0048E5BD /* LabelSheet.swift */,
+				54D69DB62C3D124D0048E5BD /* ColorSheet.swift */,
+			);
+			path = Sheets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -494,6 +522,7 @@
 				54D69DF22C3D12880048E5BD /* String+Extensions.swift in Sources */,
 				54D69DE82C3D12810048E5BD /* TClient.swift in Sources */,
 				54D69DEC2C3D12810048E5BD /* MarkColor.swift in Sources */,
+				54D69DF72C3D1B310048E5BD /* ColorSheetButton.swift in Sources */,
 				54D69DA32C3D12390048E5BD /* ClientItemView.swift in Sources */,
 				54D69DD92C3D12670048E5BD /* TaskView.swift in Sources */,
 				54D69DBE2C3D124D0048E5BD /* AdditionalInformationView.swift in Sources */,
@@ -503,6 +532,7 @@
 				54D69DDA2C3D12670048E5BD /* TaskDetailView.swift in Sources */,
 				54D69DDD2C3D12740048E5BD /* NotificationManager.swift in Sources */,
 				54D69DA42C3D12390048E5BD /* ClientView.swift in Sources */,
+				54D69E042C3D1E630048E5BD /* LabelSheetButton.swift in Sources */,
 				54D69D6C2C3D11490048E5BD /* ContentView.swift in Sources */,
 				54D69DC22C3D124D0048E5BD /* MarqueeText.swift in Sources */,
 				54D69DD32C3D12600048E5BD /* SettingsView.swift in Sources */,
@@ -517,9 +547,11 @@
 				54D69DC52C3D124D0048E5BD /* SelectSuperiorSheet.swift in Sources */,
 				54D69DEA2C3D12810048E5BD /* TLabel.swift in Sources */,
 				54D69DEF2C3D12810048E5BD /* TProject.swift in Sources */,
+				54D69E002C3D1CFD0048E5BD /* SelectSuperiorSheetButton.swift in Sources */,
 				54D69DF32C3D12880048E5BD /* Date+Extensions.swift in Sources */,
 				54D69DEE2C3D12810048E5BD /* TMoment.swift in Sources */,
 				54D69D6A2C3D11490048E5BD /* ProjectRunnerApp.swift in Sources */,
+				54D69E022C3D1D0B0048E5BD /* AddMemberSheetButton.swift in Sources */,
 				54D69DEB2C3D12810048E5BD /* Status.swift in Sources */,
 				54D69DE92C3D12810048E5BD /* AppData.swift in Sources */,
 				54D69DC82C3D124D0048E5BD /* ColorSheet.swift in Sources */,

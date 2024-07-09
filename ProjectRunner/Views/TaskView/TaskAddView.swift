@@ -42,8 +42,7 @@ struct TaskAddView: View {
         isEditing ? "Edit Task" : "New Task"
     }
     @State private var newTask: TTask
-    @State private var isLabelAddSheetPresented: Bool = false
-    @State private var isSuperiorSheetPresented: Bool = false
+
     private var isDuplicated: Bool {
         return appData.tasks.contains { $0.name == newTask.name && $0.id != newTask.id }
     }
@@ -95,8 +94,8 @@ struct TaskAddView: View {
                 
                 ScrollView(.horizontal) {
                     HStack {
-                        Button {
-                            self.isSuperiorSheetPresented = true
+                        SelectSuperiorSheetButton(appData: $appData, task: newTask) { superior in
+                            self.newTask.superiorId = superior.id
                         } label: {
                             let title: String = {
                                 if let selectedSuperiorId = newTask.superiorId,
@@ -112,11 +111,6 @@ struct TaskAddView: View {
                                 isSystem: true
                             ) {
                                 
-                            }
-                        }
-                        .sheet(isPresented: $isSuperiorSheetPresented) {
-                            SelectSuperiorSheet(task: newTask, appData: $appData) { superior in
-                                self.newTask.superiorId = superior.id
                             }
                         }
                         
@@ -158,8 +152,8 @@ struct TaskAddView: View {
                             }
                         }
                         
-                        Button {
-                            self.isLabelAddSheetPresented = true
+                        LabelSheetButton(appData: $appData, schedule: newTask) { labels in
+                            self.newTask.labels = labels
                         } label: {
                             if self.newTask.labels.isEmpty {
                                 TopButtonChip(title: "Label", imageName: "tag", isSystem: true) {
@@ -167,13 +161,7 @@ struct TaskAddView: View {
                                 }
                             } else {
                                 TopButtonChip(title: "\(self.newTask.labels.first!.content)\(self.newTask.labels.count == 1 ? "" : " +\(self.newTask.labels.count - 1)")", imageName: "", isSystem: true) {
-                                    
                                 }
-                            }
-                        }
-                        .sheet(isPresented: $isLabelAddSheetPresented) {
-                            LabelSheet(schedule: newTask, appData: $appData) { labels in
-                                self.newTask.labels = labels
                             }
                         }
                         

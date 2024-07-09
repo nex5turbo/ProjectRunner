@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ColorSheet: View {
     @Environment(\.dismiss) private var dismiss
-    @Binding var appData: AppData
     let onSelect: (MarkColor) -> Void
     
     var body: some View {

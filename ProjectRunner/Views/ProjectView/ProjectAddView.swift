@@ -10,7 +10,6 @@ import SwiftUI
 struct ProjectAddView: View {
     @Environment(\.dismiss) private var dismiss
     @Binding var appData: AppData
-    @State private var isLabelAddSheetPresented: Bool = false
     
     init(project: TProject, appData: Binding<AppData>) {
         self._newProject = State(initialValue: project)
@@ -188,8 +187,8 @@ struct ProjectAddView: View {
                             .setImageColor(newProject.markColor.color)
                         }
                         
-                        Button {
-                            self.isLabelAddSheetPresented = true
+                        LabelSheetButton(appData: $appData, schedule: newProject) { labels in
+                            self.newProject.labels = labels
                         } label: {
                             if self.newProject.labels.isEmpty {
                                 TopButtonChip(title: "Label", imageName: "tag", isSystem: true) {
@@ -199,11 +198,6 @@ struct ProjectAddView: View {
                                 TopButtonChip(title: "\(self.newProject.labels.first!.content)\(self.newProject.labels.count == 1 ? "" : " +\(self.newProject.labels.count - 1)")", imageName: "", isSystem: true) {
                                     
                                 }
-                            }
-                        }
-                        .sheet(isPresented: $isLabelAddSheetPresented) {
-                            LabelSheet(schedule: newProject, appData: $appData) { labels in
-                                self.newProject.labels = labels
                             }
                         }
                     }

@@ -15,10 +15,6 @@ struct ProjectDetailView: View {
     @State private var isDeleteConfirm: Bool = false
     @AppStorage("showDone") private var shouldShowDone = false
     
-    @State private var isLabelSheetPresented: Bool = false
-    @State private var isMemberSheetPresented: Bool = false
-    @State private var isColorSheetPresented: Bool = false
-    
     init(project: TProject, appData: Binding<AppData>) {
         self._project = State(initialValue: project)
         self._appData = appData
@@ -81,8 +77,13 @@ struct ProjectDetailView: View {
                                 }
                         }
                         
-                        Button { // label
-                            self.isLabelSheetPresented = true
+                        LabelSheetButton(appData: $appData, schedule: project) { labels in
+                            do {
+                                try appData.setLabel(schedule: project, labels: labels)
+                                self.project.labels = labels
+                            } catch {
+                                print(error.localizedDescription)
+                            }
                         } label: {
                             let labels = project.labels
                             if let firstLabel = labels.first {
@@ -102,20 +103,14 @@ struct ProjectDetailView: View {
                                     }
                             }
                         }
-                        .sheet(isPresented: $isLabelSheetPresented) {
-                            LabelSheet(schedule: project, appData: $appData) { labels in
-                                do {
-                                    try appData.setLabel(schedule: project, labels: labels)
-                                    self.project.labels = labels
-                                } catch {
-                                    print(error.localizedDescription)
-                                }
+
+                        ColorSheetButton { color in
+                            do {
+                                try appData.changeColor(schedule: project, to: color)
+                                self.project.markColor = color
+                            } catch {
+                                print(error.localizedDescription)
                             }
-                            .presentationDetents([.medium])
-                        }
-                        
-                        Button {
-                            self.isColorSheetPresented = true
                         } label: {
                             TopButtonChip(
                                 title: project.markColor.title,
@@ -124,20 +119,15 @@ struct ProjectDetailView: View {
                                 }
                                 .setImageColor(project.markColor.color)
                         }
-                        .sheet(isPresented: $isColorSheetPresented) {
-                            ColorSheet(appData: $appData) { color in
-                                do {
-                                    try appData.changeColor(schedule: project, to: color)
-                                    self.project.markColor = color
-                                } catch {
-                                    print(error.localizedDescription)
-                                }
-                            }
-                            .presentationDetents([.medium])
-                        }
                         
-                        Button { // members
-                            self.isMemberSheetPresented = true
+                        let members = appData.clients.filter { project.clientIds.contains($0.id) }
+                        AddMemberSheetButton(appData: $appData, members: members) { newMembers in
+                            do {
+                                try appData.changeProjectMembers(project: project, to: newMembers)
+                                self.project.clientIds = newMembers.map { $0.id }
+                            } catch {
+                                print(error.localizedDescription)
+                            }
                         } label: {
                             let memberIds = project.clientIds
                             let members = appData.clients.filter { memberIds.contains($0.id) }
@@ -157,18 +147,6 @@ struct ProjectDetailView: View {
                                         
                                     }
                             }
-                        }
-                        .sheet(isPresented: $isMemberSheetPresented) {
-                            let members = appData.clients.filter { project.clientIds.contains($0.id) }
-                            AddMemberSheet(members: members, appData: $appData) { newMembers in
-                                do {
-                                    try appData.changeProjectMembers(project: project, to: newMembers)
-                                    self.project.clientIds = newMembers.map { $0.id }
-                                } catch {
-                                    print(error.localizedDescription)
-                                }
-                            }
-                            .presentationDetents([.medium])
                         }
                     }
                     .hideDivider()
