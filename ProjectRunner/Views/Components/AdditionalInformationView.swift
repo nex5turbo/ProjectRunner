@@ -18,6 +18,7 @@ struct AdditionalInformationView: View {
                 .resizable()
                 .scaledToFit()
                 .frame(width: iconSize, height: iconSize)
+            
             Text("\(schedule.appointments.count)")
                 .overlay {
                     GeometryReader { proxy in

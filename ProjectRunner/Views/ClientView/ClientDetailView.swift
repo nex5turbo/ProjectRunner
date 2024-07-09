@@ -100,12 +100,6 @@ struct ClientDetailView: View {
                 }
             }
         }
-        .onChange(of: appData) { newValue in
-            guard let newClient = appData.clients.first(where: { $0.id == self.client.id }) else {
-                return
-            }
-            self.client = newClient
-        }
     }
 }
 

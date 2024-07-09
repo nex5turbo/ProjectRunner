@@ -14,6 +14,7 @@ enum Tab : String, Hashable {
 
 struct ContentView: View {
     
+    @AppStorage("isFirst") var isFirst = true
     @AppStorage("tab") var tab = Tab.project
     @State private var appData: AppData = AppData()
 
@@ -51,18 +52,23 @@ struct ContentView: View {
         }
         .preferredColorScheme(.light)
         .task {
-            do {
-                let folder = try FileManager.default.url(for: FileManager.SearchPathDirectory.documentDirectory, in: FileManager.SearchPathDomainMask.userDomainMask, appropriateFor: nil, create: false).appendingPathComponent("AppData.tm")
-                if FileManager.default.fileExists(atPath: folder.path) {
-                    let data = try Data(contentsOf: folder)
-                    let decoder = JSONDecoder()
-                    let appData = try decoder.decode(AppData.self, from: data)
-                    self.appData = appData
-                } else {
-                    print("file not found")
+            if isFirst {
+                let appData = AppData()
+                self.appData = appData
+            } else {
+                do {
+                    let folder = try FileManager.default.url(for: FileManager.SearchPathDirectory.documentDirectory, in: FileManager.SearchPathDomainMask.userDomainMask, appropriateFor: nil, create: false).appendingPathComponent("AppData.tm")
+                    if FileManager.default.fileExists(atPath: folder.path) {
+                        let data = try Data(contentsOf: folder)
+                        let decoder = JSONDecoder()
+                        let appData = try decoder.decode(AppData.self, from: data)
+                        self.appData = appData
+                    } else {
+                        print("file not found")
+                    }
+                } catch {
+                    print("Reason: ",error.localizedDescription)
                 }
-            } catch {
-                print("Reason: ",error.localizedDescription)
             }
         }
     }

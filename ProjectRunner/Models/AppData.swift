@@ -32,7 +32,12 @@ struct AppData: Codable, Hashable {
         self.tasks = []
         self.projects = []
         self.clients = []
-        self.labels = []
+        self.labels = [
+            .init("💪Work out"),
+            .init("📚Study"),
+            .init("🧑‍💻Development"),
+            .init("🎨Design")
+        ]
     }
     
     init(from decoder: any Decoder) throws {
@@ -59,8 +64,8 @@ struct AppData: Codable, Hashable {
         
         let data = try encoder.encode(self)
         let folder = try FileManager.default.url(for: FileManager.SearchPathDirectory.documentDirectory, in: FileManager.SearchPathDomainMask.userDomainMask, appropriateFor: nil, create: false).appendingPathComponent("AppData.tm")
-        print(folder.path)
-        FileManager.default.createFile(atPath: folder.path, contents: data)
+        try data.write(to: folder)
+        
         return
     }
 }
