@@ -1,0 +1,56 @@
+//
+//  SwiftUIView.swift
+//  
+//
+//  Created by 워뇨옹 on 7/5/24.
+//
+
+import SwiftUI
+
+struct AdditionalInformationView: View {
+    let schedule: Schedulable
+    @State private var iconSize: CGFloat = 0
+    let currentDate = Date.now
+    var body: some View {
+        HStack(spacing: 4) {
+            Image("appointment")
+                .renderingMode(.template)
+                .resizable()
+                .scaledToFit()
+                .frame(width: iconSize, height: iconSize)
+            Text("\(schedule.appointments.count)")
+                .overlay {
+                    GeometryReader { proxy in
+                        Color.clear
+                            .task {
+                                self.iconSize = proxy.size.height
+                            }
+                            .onChange(of: proxy.size, perform: { _ in
+                                self.iconSize = proxy.size.height
+                            })
+                    }
+                }
+            
+            Color.clear.frame(width: 1, height: 1)
+            
+            Image("moment")
+                .renderingMode(.template)
+                .resizable()
+                .scaledToFit()
+                .frame(width: iconSize, height: iconSize)
+            Text("\(schedule.moments.count)")
+            Spacer()
+            
+            if schedule.hasDeadline && (schedule.status != .done && schedule.status != .canceled) {
+                Text("\(Calendar.current.timeLeft(from: currentDate, to: schedule.dueDate))")
+                    .font(Font.footnote)
+            }
+        }
+        .foregroundStyle(.gray)
+        .font(.footnote)
+    }
+}
+
+#Preview {
+    ContentView()
+}
