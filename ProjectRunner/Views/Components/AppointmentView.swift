@@ -52,16 +52,22 @@ struct AppointmentView: View {
                     VStack {
                         HStack {
                             Button {
-                                guard let index = schedule.appointments.firstIndex(of: appointment) else {
-                                    return
-                                }
-                                var modifiedAppointment = appointment
-                                modifiedAppointment.hasNotification = !modifiedAppointment.hasNotification
-                                do {
-                                    try appData.addAppointment(schedule: schedule, appintment: modifiedAppointment)
-                                    schedule.appointments[index] = modifiedAppointment
-                                } catch {
-                                    print(error.localizedDescription)
+                                NotificationManager.instance.requestAuthorization { granted in
+                                    if granted {
+                                        guard let index = schedule.appointments.firstIndex(of: appointment) else {
+                                            return
+                                        }
+                                        var modifiedAppointment = appointment
+                                        modifiedAppointment.hasNotification = !modifiedAppointment.hasNotification
+                                        do {
+                                            try appData.addAppointment(schedule: schedule, appintment: modifiedAppointment)
+                                            schedule.appointments[index] = modifiedAppointment
+                                        } catch {
+                                            print(error.localizedDescription)
+                                        }
+                                    } else {
+                                        self.permissionAlert.toggle()
+                                    }
                                 }
                             } label: {
                                 Image(systemName: appointment.hasNotification ? "bell.fill" : "bell.slash")
@@ -164,21 +170,21 @@ struct AppointmentView: View {
                                 print(error.localizedDescription)
                             }
                         }
-                        .alert("Allow notification permission to set notification.", isPresented: $permissionAlert) {
-                            Button("Settings") {
-                                if let url = URL(string: UIApplication.openSettingsURLString) {
-                                    UIApplication.shared.open(url)
-                                }
-                            }
-                            Button("Cancel", role: .cancel) {
-                                
-                            }
-                        }
                     }
                 }
             }
             .presentationDetents([.medium])
         })
+        .alert("Allow notification permission to set notification.", isPresented: $permissionAlert) {
+            Button("Settings") {
+                if let url = URL(string: UIApplication.openSettingsURLString) {
+                    UIApplication.shared.open(url)
+                }
+            }
+            Button("Cancel", role: .cancel) {
+                
+            }
+        }
     }
 }
 

@@ -67,18 +67,22 @@ struct CircleName: View {
 struct CircleNames: View {
 
     var views: [CircleName]
+    var size: CGFloat = 16
     
-    init(views: [CircleName]) {
+    init(views: [CircleName], size: CGFloat = 16) {
         self.views = views
+        self.size = size
     }
     var body: some View {
         ZStack {
             ForEach(0..<min(views.count, 3), id: \.self) { index in
                 views[index]
-                    .scaleEffect((100 - (CGFloat(2 - index) * 3)) / 100)
-                    .offset(x: CGFloat(index) * 3)
+                    .setCircleSize(size)
+                    .scaleEffect((100 - (CGFloat(2 - index) * 4)) / 100)
+                    .offset(x: CGFloat(index - 1) * 4)
             }
         }
+        .frame(width: size + (4 * min(2.0, CGFloat(views.count) - 1)))
     }
 }
 

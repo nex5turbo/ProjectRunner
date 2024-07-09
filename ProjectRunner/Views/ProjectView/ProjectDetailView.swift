@@ -145,6 +145,7 @@ struct ProjectDetailView: View {
                                     )
                                     
                                 }
+                                .fixedWidth()
                             } else {
                                 TopButtonChip(
                                     title: "Members",

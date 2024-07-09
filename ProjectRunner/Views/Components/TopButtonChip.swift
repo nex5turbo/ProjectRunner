@@ -21,22 +21,12 @@ struct TopButtonChip<Content: View>: View {
     private var imageColor: Color? = nil
     
     @State private var iconSize: CGFloat = 0
+    var shouldFixWidth: Bool = true
     var body: some View {
-        Label {
-            Text(title)
-                .foregroundStyle(.black)
-                .font(.caption)
-                .overlay {
-                    GeometryReader { proxy in
-                        Color.clear.task {
-                            self.iconSize = proxy.size.height
-                        }
-                    }
-                }
-        } icon: {
+        HStack {
             if imageName == "" {
                content
-                    .frame(width: iconSize, height: iconSize)
+                    .frame(width: shouldFixWidth ? iconSize : nil, height: iconSize)
             } else {
                 if isSystem {
                     if let imageColor {
@@ -53,7 +43,49 @@ struct TopButtonChip<Content: View>: View {
                         .resizable()
                 }
             }
+            Text(title)
+                .foregroundStyle(.black)
+                .font(.caption)
+                .overlay {
+                    GeometryReader { proxy in
+                        Color.clear.task {
+                            self.iconSize = proxy.size.height
+                        }
+                    }
+                }
         }
+//        Label {
+//            Text(title)
+//                .foregroundStyle(.black)
+//                .font(.caption)
+//                .overlay {
+//                    GeometryReader { proxy in
+//                        Color.clear.task {
+//                            self.iconSize = proxy.size.height
+//                        }
+//                    }
+//                }
+//        } icon: {
+//            if imageName == "" {
+//               content
+//                    .frame(width: iconSize, height: iconSize)
+//            } else {
+//                if isSystem {
+//                    if let imageColor {
+//                        Image(systemName: imageName)
+//                            .foregroundStyle(imageColor)
+//                            .font(.caption)
+//                    } else {
+//                        Image(systemName: imageName)
+//                            .foregroundStyle(.black)
+//                            .font(.caption)
+//                    }
+//                } else {
+//                    Image(imageName)
+//                        .resizable()
+//                }
+//            }
+//        }
         .padding(.vertical, 8)
         .padding(.horizontal, 8)
         .background(.white)
@@ -65,6 +97,13 @@ struct TopButtonChip<Content: View>: View {
         }
         .padding(.vertical, 8)
 
+    }
+    
+    func fixedWidth() -> Self {
+        var view = self
+        view.shouldFixWidth = false
+        
+        return view
     }
     
     func setImageColor(_ value: Color) -> Self {
