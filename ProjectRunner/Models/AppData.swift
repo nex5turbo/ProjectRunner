@@ -244,6 +244,14 @@ extension AppData {
 
 /// status functions
 extension AppData {
+    mutating func setStatus(schedule: Schedulable, to status: Status) throws {
+        if let task = schedule as? TTask {
+            try setTaskStatus(task: task, to: status)
+        } else if let project = schedule as? TProject {
+            try setProjectStatus(project: project, to: status)
+        }
+    }
+    
     mutating func setProjectStatus(project: TProject, to status: Status) throws {
         guard let index = projects.firstIndex(where: { $0.id == project.id }) else {
             return
@@ -271,6 +279,15 @@ extension AppData {
 
 /// priority functions
 extension AppData {
+    
+    mutating func setPriority(schedule: Schedulable, to priority: Priority) throws {
+        if let task = schedule as? TTask {
+            try setTaskPriority(task: task, to: priority)
+        } else if let project = schedule as? TProject {
+            try setProjectPriority(project: project, to: priority)
+        }
+    }
+    
     mutating func setProjectPriority(project: TProject, to priority: Priority) throws {
         guard let index = projects.firstIndex(where: { $0.id == project.id }) else {
             return

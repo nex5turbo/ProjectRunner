@@ -9,6 +9,7 @@ import Foundation
 
 protocol Schedulable: Markable {
     var id: String { get set }
+    var description: String { get set }
     var name: String { get set}
     var moments: [TMoment] { get set }
     var appointments: [TAppointment] { get set }

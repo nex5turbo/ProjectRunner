@@ -29,11 +29,12 @@ struct ScheduleItemView: View {
         ZStack {
             if isNavigatable {
                 NavigationLink {
-                    if let task = schedule as? TTask {
-                        TaskDetailView(task: task, appData: $appData)
-                    } else if let project = schedule as? TProject {
-                        ProjectDetailView(project: project, appData: $appData)
-                    }
+                    DetailView(schedule: schedule, appData: $appData)
+//                    if let task = schedule as? TTask {
+//                        TaskDetailView(task: task, appData: $appData)
+//                    } else if let project = schedule as? TProject {
+//                        ProjectDetailView(project: project, appData: $appData)
+//                    }
                 } label: {
                     Color.white
                 }
@@ -64,11 +65,12 @@ struct ScheduleItemView: View {
                     if isNavigatable {
                         HStack(spacing: 4) {
                             NavigationLink {
-                                if let task = schedule as? TTask {
-                                    TaskDetailView(task: task, appData: $appData)
-                                } else if let project = schedule as? TProject {
-                                    ProjectDetailView(project: project, appData: $appData)
-                                }
+                                DetailView(schedule: schedule, appData: $appData)
+//                                if let task = schedule as? TTask {
+//                                    TaskDetailView(task: task, appData: $appData)
+//                                } else if let project = schedule as? TProject {
+//                                    ProjectDetailView(project: project, appData: $appData)
+//                                }
                             } label: {
                                 Text(schedule.name)
                                     .font(.footnote.weight(.semibold))
@@ -88,18 +90,12 @@ struct ScheduleItemView: View {
                                 if let superiorTask = appData.tasks.first(where: { $0.id == superiorId}) {
                                     arrow()
                                     NavigationLink {
-                                        TaskDetailView(task: superiorTask, appData: $appData)
+                                        DetailView(schedule: superiorTask, appData: $appData)
+//                                        TaskDetailView(task: superiorTask, appData: $appData)
                                     } label: {
                                         superiorText(superiorTask.name)
                                     }
                                     
-                                } else if let superiorProject = appData.tasks.first(where: { $0.id == superiorId}) {
-                                    arrow()
-                                    NavigationLink {
-                                        TaskDetailView(task: superiorProject, appData: $appData)
-                                    } label: {
-                                        superiorText(superiorProject.name)
-                                    }
                                 }
                             }
                         }
@@ -163,13 +159,14 @@ struct ScheduleItemView: View {
 
                         
                         NavigationLink {
-                            if let task = schedule as? TTask {
-                                TaskAddView(task: task, appData: $appData)
-                            } else if let project = schedule as? TProject {
-                                ProjectAddView(project: project, appData: $appData)
-                            } else {
-                                Text("Error Occured")
-                            }
+                            DetailView(schedule: schedule, appData: $appData)
+//                            if let task = schedule as? TTask {
+//                                TaskAddView(task: task, appData: $appData)
+//                            } else if let project = schedule as? TProject {
+//                                ProjectAddView(project: project, appData: $appData)
+//                            } else {
+//                                Text("Error Occured")
+//                            }
                         } label: {
                             Image(systemName: "pencil")
                         }
