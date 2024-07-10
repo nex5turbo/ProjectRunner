@@ -107,7 +107,7 @@ struct TaskView: View {
         }
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle(
-            selectedProject != nil ? selectedProject!.name : selectedProjectId
+            selectedProject != nil ? selectedProject!.name : selectedProjectId == "All Tasks" || selectedProjectId == "Todo" ? selectedProjectId : "Loading..."
         )
         .toolbarTitleMenu {
             Section {
@@ -145,9 +145,14 @@ struct TaskView: View {
     @ViewBuilder func navigationTopItems() -> some View {
         NavigationTopItems {
             NavigationLink {
-                TaskAddView(
-                    appData: $appData
-                )
+                if let selectedProject {
+                    TaskAddView(
+                        superior: selectedProject, appData: $appData) { _ in }
+                } else {
+                    TaskAddView(
+                        appData: $appData
+                    )
+                }
             } label: {
                 TopButtonChip(title: "New Task", imageName: "plus", isSystem: true) {
                     
