@@ -180,12 +180,28 @@ struct DetailView: View {
                                     }
                                 }
                             }
-                            ///////////////////////
+                            
+                            let dueDate = schedule.hasDeadline ?
+                            "Due date : " + schedule.dueDate.toString() :
+                            "No due date"
                             TopButtonChip(
-                                title: schedule.dueDate.toString(),
+                                title: dueDate,
                                 imageName: "",
                                 isSystem: true) {
-                                    
+                                    if self.schedule.hasDeadline {
+                                        Button {
+                                            do {
+                                                try appData.changeDueDate(schedule: schedule, !self.schedule.hasDeadline, to: schedule.dueDate)
+                                                self.schedule.hasDeadline = !self.schedule.hasDeadline
+                                            } catch {
+                                                print(error.localizedDescription)
+                                            }
+                                        } label: {
+                                            Image(systemName: schedule.hasDeadline ? "checkmark.square" : "square")
+                                                .font(.caption)
+                                                .foregroundStyle(.black)
+                                        }
+                                    }
                                 }
                                 .overlay {
                                     DatePicker(selection: $schedule.dueDate, displayedComponents: .date) {}
@@ -194,7 +210,8 @@ struct DetailView: View {
                                 }
                                 .onChange(of: schedule.dueDate, perform: { value in
                                     do {
-                                        try appData.changeDueDate(schedule: schedule, schedule.hasDeadline, to: schedule.dueDate)
+                                        try appData.changeDueDate(schedule: schedule, true, to: schedule.dueDate)
+                                        self.schedule.hasDeadline = true
                                     } catch {
                                         print(error.localizedDescription)
                                     }
