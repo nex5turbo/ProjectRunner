@@ -240,9 +240,10 @@ extension TaskView {
         }
         dates.insert("No Due date")
         dates.forEach { date in
-            returnValue[date] = taskListWithDone.filter { $0.dueDate.toString(false) == date && $0.hasDeadline }
+            returnValue[date] = taskListWithDone.filter { $0.dueDate.toString(false) == date && $0.hasDeadline && $0.dueDate > Date.now }
         }
         returnValue["No Due date"] = taskListWithDone.filter { !$0.hasDeadline }
+        returnValue["Over due"] = taskListWithDone.filter { $0.hasDeadline && $0.dueDate < Date.now }
         return returnValue
     }
     
@@ -377,7 +378,7 @@ extension TaskView {
                         let dateFormatter = DateFormatter()
                         dateFormatter.dateFormat = "yyyy-MM-dd"
                         return dateFormatter.date(from: $0)! < dateFormatter.date(from: $1)!
-                    } + ["No Due date"]
+                    } + ["No Due date"] + ["Over due"]
                 ForEach(sortedDateKey, id: \.self) { date in
                     if let list = dateTaskList[date], !list.isEmpty {
                         HStack {
