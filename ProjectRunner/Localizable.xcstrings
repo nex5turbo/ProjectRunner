@@ -1,0 +1,265 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "" : {
+
+    },
+    "* Duplicated name" : {
+
+    },
+    "%@" : {
+
+    },
+    "%lld" : {
+
+    },
+    "%lld / %lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld / %2$lld"
+          }
+        }
+      }
+    },
+    "%lld Members Included" : {
+
+    },
+    "+ New Event" : {
+
+    },
+    "1" : {
+
+    },
+    "2" : {
+
+    },
+    "3" : {
+
+    },
+    "4" : {
+
+    },
+    "5" : {
+
+    },
+    "Add description..." : {
+
+    },
+    "All Tasks" : {
+
+    },
+    "Allow notification permission to set notification." : {
+
+    },
+    "Any idea or achivement at this time." : {
+
+    },
+    "Apply" : {
+
+    },
+    "Are you sure to delete?" : {
+
+    },
+    "Call" : {
+
+    },
+    "Cancel" : {
+
+    },
+    "Contact" : {
+
+    },
+    "Contacts" : {
+
+    },
+    "content" : {
+
+    },
+    "Created by Wonyoung Jang" : {
+
+    },
+    "Creators" : {
+
+    },
+    "Data" : {
+
+    },
+    "Delete" : {
+
+    },
+    "Designed by Anfaloumrani" : {
+
+    },
+    "Done" : {
+
+    },
+    "Due Date" : {
+
+    },
+    "Due date must be later than start date!" : {
+
+    },
+    "E-mail" : {
+
+    },
+    "Edit" : {
+
+    },
+    "email" : {
+
+    },
+    "Event at" : {
+
+    },
+    "Event description..." : {
+
+    },
+    "Events" : {
+
+    },
+    "Export Data" : {
+
+    },
+    "Family Name" : {
+
+    },
+    "familyName" : {
+
+    },
+    "Filters" : {
+
+    },
+    "Given Name" : {
+
+    },
+    "givenName" : {
+
+    },
+    "instagram" : {
+
+    },
+    "Instagram" : {
+
+    },
+    "Instagram Id" : {
+
+    },
+    "Label" : {
+
+    },
+    "Load Data" : {
+
+    },
+    "Mail" : {
+
+    },
+    "Mark color" : {
+
+    },
+    "Mark colors" : {
+
+    },
+    "Members" : {
+
+    },
+    "Message" : {
+
+    },
+    "Moments" : {
+
+    },
+    "Name" : {
+
+    },
+    "New Event" : {
+
+    },
+    "No active project" : {
+
+    },
+    "No active task" : {
+
+    },
+    "No label list" : {
+
+    },
+    "No saved contact" : {
+
+    },
+    "Notification" : {
+
+    },
+    "Phone Number" : {
+
+    },
+    "phoneNumber" : {
+
+    },
+    "Prioirity" : {
+
+    },
+    "Project" : {
+
+    },
+    "Project title" : {
+
+    },
+    "Project title..." : {
+
+    },
+    "Projects" : {
+
+    },
+    "Repeat" : {
+
+    },
+    "save" : {
+
+    },
+    "Save" : {
+
+    },
+    "Select Superior" : {
+
+    },
+    "Setting" : {
+
+    },
+    "Settings" : {
+
+    },
+    "Start Date" : {
+
+    },
+    "Status" : {
+
+    },
+    "Sub task of " : {
+
+    },
+    "Sub tasks" : {
+
+    },
+    "Task" : {
+
+    },
+    "Task title" : {
+
+    },
+    "Task title..." : {
+
+    },
+    "Tasks" : {
+
+    },
+    "Todo" : {
+
+    },
+    "TODO: - illustration or text" : {
+
+    }
+  },
+  "version" : "1.0"
+}
