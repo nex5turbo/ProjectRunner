@@ -19,7 +19,7 @@ struct TopButtonChip<Content: View>: View {
         self.content = content()
     }
     private var imageColor: Color? = nil
-    
+    private var isSelected: Bool = false
     @State private var iconSize: CGFloat = 0
     var shouldFixWidth: Bool = true
     var body: some View {
@@ -35,7 +35,7 @@ struct TopButtonChip<Content: View>: View {
                             .font(.caption)
                     } else {
                         Image(systemName: imageName)
-                            .foregroundStyle(.black)
+                            .foregroundStyle(isSelected ? .white : .black)
                             .font(.caption)
                     }
                 } else {
@@ -44,7 +44,7 @@ struct TopButtonChip<Content: View>: View {
                 }
             }
             Text(title)
-                .foregroundStyle(.black)
+                .foregroundStyle(isSelected ? .white : .black)
                 .font(.caption)
                 .overlay {
                     GeometryReader { proxy in
@@ -54,41 +54,9 @@ struct TopButtonChip<Content: View>: View {
                     }
                 }
         }
-//        Label {
-//            Text(title)
-//                .foregroundStyle(.black)
-//                .font(.caption)
-//                .overlay {
-//                    GeometryReader { proxy in
-//                        Color.clear.task {
-//                            self.iconSize = proxy.size.height
-//                        }
-//                    }
-//                }
-//        } icon: {
-//            if imageName == "" {
-//               content
-//                    .frame(width: iconSize, height: iconSize)
-//            } else {
-//                if isSystem {
-//                    if let imageColor {
-//                        Image(systemName: imageName)
-//                            .foregroundStyle(imageColor)
-//                            .font(.caption)
-//                    } else {
-//                        Image(systemName: imageName)
-//                            .foregroundStyle(.black)
-//                            .font(.caption)
-//                    }
-//                } else {
-//                    Image(imageName)
-//                        .resizable()
-//                }
-//            }
-//        }
         .padding(.vertical, 8)
         .padding(.horizontal, 8)
-        .background(.white)
+        .background(isSelected ? Color(UIColor.systemBlue) : .white)
         .cornerRadius(8)
         .shadow(color: Color.black.opacity(0.1),radius: 1, y: 1)
         .overlay {
@@ -97,6 +65,13 @@ struct TopButtonChip<Content: View>: View {
         }
         .padding(.vertical, 8)
 
+    }
+    
+    func isSelected(_ value: Bool) -> Self {
+        var view = self
+        view.isSelected = value
+        
+        return view
     }
     
     func fixedWidth() -> Self {

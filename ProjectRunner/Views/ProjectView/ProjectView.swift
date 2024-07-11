@@ -7,31 +7,8 @@
 
 import SwiftUI
 
-enum ProjectSortType: String, CaseIterable {
-    case color
-    case status
-    case priority
-    case date
-    case label
-    
-    var title: String {
-        return switch self {
-        case .color:
-            "Color"
-        case .status:
-            "Status"
-        case .priority:
-            "Priority"
-        case .date:
-            "Due date"
-        case .label:
-            "Label"
-        }
-    }
-}
-
 struct ProjectView: View {
-    @AppStorage("projectSort") private var sortType: ProjectSortType = .priority
+    @AppStorage("projectSort") private var groupingType: GroupingType = .priority
     @Binding var appData: AppData
     @State private var isSortFilterPresented: Bool = false
     @AppStorage("timeline") private var shouldShowTimeline = false
@@ -48,8 +25,9 @@ struct ProjectView: View {
     }
     
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             if appData.projects.isEmpty {
+                navigationTopItems()
                 VStack {
                     Spacer()
                     Text("No active project")
@@ -58,7 +36,10 @@ struct ProjectView: View {
                     Spacer()
                 }
             } else {
-                switch sortType {
+                navigationTopItems()
+                switch groupingType {
+                case .plain:
+                    plainList()
                 case .color:
                     colorSortedList()
                 case .status:
@@ -74,9 +55,6 @@ struct ProjectView: View {
         }
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle("Project")
-        .safeAreaInset(edge: .top, content: {
-            navigationTopItems()
-        })
     }
     
     @ViewBuilder func navigationTopItems() -> some View {
@@ -92,27 +70,17 @@ struct ProjectView: View {
             }
             
             Menu {
-                ForEach(ProjectSortType.allCases, id: \.self) { type in
+                ForEach(GroupingType.allCases, id: \.self) { type in
                     Button {
-                        self.sortType = type
+                        self.groupingType = type
                     } label: {
                         Text(type.title)
                     }
                 }
             } label: {
-                TopButtonChip(title: "Filtering", imageName: "arrow.up.arrow.down", isSystem: true) {
+                TopButtonChip(title: groupingType.title, imageName: "arrow.up.arrow.down", isSystem: true) {
                 }
             }
-            
-//            Button {
-//                withAnimation(.spring) {
-//                    self.shouldShowTimeline = !self.shouldShowTimeline
-//                }
-//            } label: {
-//                TopButtonChip(title: "Timeline", imageName: self.shouldShowTimeline ? "checkmark.square" : "square", isSystem: true) {
-//                    
-//                }
-//            }
             
             Button {
                 withAnimation(.spring) {
@@ -200,12 +168,12 @@ extension ProjectView {
                                 Spacer()
                             }
                             .padding(.horizontal)
+                            .padding(.vertical, 8)
                             
                             projectList(list: list)
                         }
                     }
                 }
-                .padding(.top, 8)
             }
         } else {
             VStack {
@@ -217,6 +185,11 @@ extension ProjectView {
         }
     }
     
+    @ViewBuilder func plainList() -> some View {
+        ScrollView {
+            projectList(list: projectListWithDone)
+        }
+    }
     
     @ViewBuilder func projectList(list: [TProject]) -> some View {
         VStack(spacing: 0) {
@@ -225,8 +198,6 @@ extension ProjectView {
                     .navigatable()
             }
         }
-        .padding(.top, 8)
-        .padding(.bottom)
     }
     
     @ViewBuilder func colorSortedList() -> some View {
@@ -243,12 +214,12 @@ extension ProjectView {
                             Spacer()
                         }
                         .padding(.horizontal)
+                        .padding(.vertical, 8)
                         
                         projectList(list: list)
                     }
                 }
             }
-            .padding(.top, 8)
         }
     }
     
@@ -264,12 +235,12 @@ extension ProjectView {
                         }
                         .font(titleFont)
                         .padding(.horizontal)
+                        .padding(.vertical, 8)
                         
                         projectList(list: list)
                     }
                 }
             }
-            .padding(.top, 8)
         }
     }
     
@@ -285,12 +256,12 @@ extension ProjectView {
                         }
                         .font(titleFont)
                         .padding(.horizontal)
+                        .padding(.vertical, 8)
                         
                         projectList(list: list)
                     }
                 }
             }
-            .padding(.top, 8)
         }
     }
     
@@ -318,12 +289,12 @@ extension ProjectView {
                         }
                         .font(titleFont)
                         .padding(.horizontal)
+                        .padding(.vertical, 8)
                         
                         projectList(list: list)
                     }
                 }
             }
-            .padding(.top, 8)
         }
     }
 }

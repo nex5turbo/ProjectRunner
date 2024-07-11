@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-enum TaskSortType: String, CaseIterable {
+enum GroupingType: String, CaseIterable {
+    case plain
     case color
     case status
     case priority
@@ -16,6 +17,8 @@ enum TaskSortType: String, CaseIterable {
     
     var title: String {
         return switch self {
+        case .plain:
+            "Grouping"
         case .color:
             "Color"
         case .status:
@@ -31,12 +34,14 @@ enum TaskSortType: String, CaseIterable {
 }
 
 struct TaskView: View {
-    @AppStorage("taskSort") private var sortType: TaskSortType = .priority
+    @AppStorage("taskSort") private var groupingType: GroupingType = .priority
     @Binding var appData: AppData
     @AppStorage("timeline") private var shouldShowTimeline = false
     @AppStorage("showDone") private var shouldShowDone = false
     @AppStorage("selectedProjectId") private var selectedProjectId: String = "All Tasks"
     @State private var selectedProject: TProject? = nil
+    @State private var filterOptions: FilterOptions = .init()
+    @State private var isFilterSheetPresented: Bool = false
     
     let titleFont: Font = .headline
     
@@ -80,9 +85,45 @@ struct TaskView: View {
         }
     }
     
+    var filtered: [TTask] {
+        return taskListWithDone.filter { task in
+            var result: Bool = true
+            if !filterOptions.colors.isEmpty {
+                if filterOptions.colors.contains(task.markColor) {
+                    return true
+                } else {
+                    result = false
+                }
+            }
+            if !filterOptions.status.isEmpty {
+                if filterOptions.status.contains(task.status) {
+                    return true
+                } else {
+                    result = false
+                }
+            }
+            if !filterOptions.priorities.isEmpty {
+                if filterOptions.priorities.contains(task.priority) {
+                    return true
+                } else {
+                    result = false
+                }
+            }
+            if !filterOptions.labels.isEmpty {
+                if filterOptions.labels.contains(task.labels) {
+                    return true
+                } else {
+                    result = false
+                }
+            }
+            return result
+        }
+    }
+    
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             if appData.tasks.isEmpty {
+                navigationTopItems()
                 VStack {
                     Spacer()
                     Text("No active task")
@@ -91,7 +132,10 @@ struct TaskView: View {
                     Spacer()
                 }
             } else {
-                switch sortType {
+                navigationTopItems()
+                switch groupingType {
+                case .plain:
+                    plainList()
                 case .color:
                     colorSortedList()
                 case .status:
@@ -138,9 +182,6 @@ struct TaskView: View {
         .task {
             selectedProject = appData.projects.first(where: { $0.id == selectedProjectId })
         }
-        .safeAreaInset(edge: .top, content: {
-            navigationTopItems()
-        })
     }
     @ViewBuilder func navigationTopItems() -> some View {
         NavigationTopItems {
@@ -159,30 +200,32 @@ struct TaskView: View {
                 }
             }
             
+            Button {
+                self.isFilterSheetPresented.toggle()
+            } label: {
+                TopButtonChip(title: "Filtering", imageName: "line.3.horizontal.decrease", isSystem: true) {
+                    
+                }
+            }
+            .sheet(isPresented: $isFilterSheetPresented) {
+                FilterSheet(filterOptions: filterOptions, appData: $appData) { filterOptions in
+                    self.filterOptions = filterOptions
+                }
+            }
+            
             Menu {
-                ForEach(TaskSortType.allCases, id: \.self) { type in
+                ForEach(GroupingType.allCases, id: \.self) { type in
                     Button {
-                        self.sortType = type
+                        self.groupingType = type
                     } label: {
                         Text(type.title)
                     }
                 }
             } label: {
-                TopButtonChip(title: "Filtering", imageName: "arrow.up.arrow.down", isSystem: true) {
+                TopButtonChip(title: self.groupingType.title, imageName: "arrow.up.arrow.down", isSystem: true) {
                     
                 }
             }
-            
-//            Button {
-//                withAnimation(.spring) {
-//                    self.shouldShowTimeline = !self.shouldShowTimeline
-//                }
-//            } label: {
-//                TopButtonChip(title: "Timeline", imageName: self.shouldShowTimeline ? "checkmark.square" : "square", isSystem: true) {
-//                    
-//                }
-//            }
-//            
             
             Button {
                 withAnimation(.spring) {
@@ -270,13 +313,13 @@ extension TaskView {
                                 CountChip(count: list.count)
                                 Spacer()
                             }
+                            .padding(.vertical, 8)
                             .padding(.horizontal)
                             
                             taskList(list: list)
                         }
                     }
                 }
-                .padding(.top, 8)
             }
         } else {
             VStack {
@@ -288,6 +331,12 @@ extension TaskView {
         }
     }
     
+    @ViewBuilder func plainList() -> some View {
+        ScrollView {
+            taskList(list: filtered)
+        }
+    }
+    
     @ViewBuilder func taskList(list: [TTask]) -> some View {
         VStack(spacing: 0) {
             ForEach(list, id: \.self) { task in
@@ -295,7 +344,6 @@ extension TaskView {
                     .navigatable()
             }
         }
-        .padding(.top, 8)
         .padding(.bottom)
     }
     
@@ -312,13 +360,13 @@ extension TaskView {
                             CountChip(count: list.count)
                             Spacer()
                         }
+                        .padding(.vertical, 8)
                         .padding(.horizontal)
                         
                         taskList(list: list)
                     }
                 }
             }
-            .padding(.top, 8)
         }
     }
     
@@ -334,12 +382,12 @@ extension TaskView {
                         }
                         .font(titleFont)
                         .padding(.horizontal)
+                        .padding(.vertical, 8)
                         
                         taskList(list: list)
                     }
                 }
             }
-            .padding(.top, 8)
         }
     }
     
@@ -355,12 +403,12 @@ extension TaskView {
                         }
                         .font(titleFont)
                         .padding(.horizontal)
+                        .padding(.vertical, 8)
                         
                         taskList(list: list)
                     }
                 }
             }
-            .padding(.top, 8)
         }
     }
     
@@ -388,12 +436,12 @@ extension TaskView {
                         }
                         .font(titleFont)
                         .padding(.horizontal)
+                        .padding(.vertical, 8)
                         
                         taskList(list: list)
                     }
                 }
             }
-            .padding(.top, 8)
         }
     }
 }

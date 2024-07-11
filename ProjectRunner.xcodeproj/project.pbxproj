@@ -72,6 +72,7 @@
 		54D69E192C3D9B870048E5BD /* RewardAd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D69E132C3D9B870048E5BD /* RewardAd.swift */; };
 		54D69E1E2C3D9C530048E5BD /* SwiftyStoreKit in Frameworks */ = {isa = PBXBuildFile; productRef = 54D69E1D2C3D9C530048E5BD /* SwiftyStoreKit */; };
 		54D69E212C3E72360048E5BD /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D69E202C3E72360048E5BD /* DetailView.swift */; };
+		54D69E232C3EBD7A0048E5BD /* FilterSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D69E222C3EBD7A0048E5BD /* FilterSheet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -159,6 +160,7 @@
 		54D69E132C3D9B870048E5BD /* RewardAd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewardAd.swift; sourceTree = "<group>"; };
 		54D69E1B2C3D9BD00048E5BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		54D69E202C3E72360048E5BD /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		54D69E222C3EBD7A0048E5BD /* FilterSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSheet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -398,6 +400,7 @@
 				54D69DAF2C3D124C0048E5BD /* LabelSheet.swift */,
 				54D69DB62C3D124D0048E5BD /* ColorSheet.swift */,
 				54D69E052C3D29360048E5BD /* SubTasksSheet.swift */,
+				54D69E222C3EBD7A0048E5BD /* FilterSheet.swift */,
 			);
 			path = Sheets;
 			sourceTree = "<group>";
@@ -563,6 +566,7 @@
 			files = (
 				54D69DCF2C3D12580048E5BD /* ProjectAddView.swift in Sources */,
 				54D69DBB2C3D124D0048E5BD /* PriorityIcon.swift in Sources */,
+				54D69E232C3EBD7A0048E5BD /* FilterSheet.swift in Sources */,
 				54D69DD02C3D12580048E5BD /* ProjectDetailView.swift in Sources */,
 				54D69DED2C3D12810048E5BD /* Priority.swift in Sources */,
 				54D69DBD2C3D124D0048E5BD /* TopButtonChip.swift in Sources */,

@@ -56,6 +56,9 @@
     "Any idea or achivement at this time." : {
 
     },
+    "Apply" : {
+
+    },
     "Are you sure to delete?" : {
 
     },
@@ -125,6 +128,9 @@
     "familyName" : {
 
     },
+    "Filters" : {
+
+    },
     "Given Name" : {
 
     },
@@ -150,6 +156,9 @@
 
     },
     "Mark color" : {
+
+    },
+    "Mark colors" : {
 
     },
     "Members" : {
@@ -188,6 +197,9 @@
     "phoneNumber" : {
 
     },
+    "Prioirity" : {
+
+    },
     "Project" : {
 
     },
@@ -219,6 +231,9 @@
 
     },
     "Start Date" : {
+
+    },
+    "Status" : {
 
     },
     "Sub task of " : {
