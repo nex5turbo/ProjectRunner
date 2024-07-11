@@ -103,16 +103,18 @@ struct ProjectAddView: View {
                                     self.newProject.status = status
                                 } label: {
                                     Text(status.title)
+                                    Image(systemName: status.systemName)
                                 }
                             }
                         } label: {
                             TopButtonChip(
                                 title: newProject.status.title,
-                                imageName: "",
-                                isSystem: true
-                            ) {
-                                
-                            }
+                                imageName: newProject.status.systemName,
+                                isSystem: true) {
+                                    
+                                }
+                                .setImageColor(newProject.status.imageColor)
+                                .imageBold()
                         }
                         
                         Menu {

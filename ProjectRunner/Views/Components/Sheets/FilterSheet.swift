@@ -95,22 +95,26 @@ struct FilterSheet: View {
                     VStack(alignment: .leading) {
                         Text("Status")
                             .font(headerFont)
-                        HStack {
-                            ForEach(Status.allCases, id: \.self) { status in
-                                Button {
-                                    if self.filterOptions.status.contains(status) {
-                                        self.filterOptions.status.remove(status)
-                                    } else {
-                                        self.filterOptions.status.insert(status)
-                                    }
-                                } label: {
-                                    TopButtonChip(
-                                        title: status.title,
-                                        imageName: "",
-                                        isSystem: true) {
-                                            
+                        ScrollView(.horizontal) {
+                            HStack {
+                                ForEach(Status.allCases, id: \.self) { status in
+                                    Button {
+                                        if self.filterOptions.status.contains(status) {
+                                            self.filterOptions.status.remove(status)
+                                        } else {
+                                            self.filterOptions.status.insert(status)
                                         }
-                                        .isSelected(self.filterOptions.status.contains(status))
+                                    } label: {
+                                        TopButtonChip(
+                                            title: status.title,
+                                            imageName: status.systemName,
+                                            isSystem: true) {
+                                                
+                                            }
+                                            .isSelected(self.filterOptions.status.contains(status))
+                                            .setImageColor(status.imageColor)
+                                            .imageBold()
+                                    }
                                 }
                             }
                         }

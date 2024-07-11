@@ -20,6 +20,8 @@ struct TopButtonChip<Content: View>: View {
     }
     private var imageColor: Color? = nil
     private var isSelected: Bool = false
+    private var imageFont: Font = .caption
+    private var imageBolded: Bool = false
     @State private var iconSize: CGFloat = 0
     var shouldFixWidth: Bool = true
     var body: some View {
@@ -32,11 +34,13 @@ struct TopButtonChip<Content: View>: View {
                     if let imageColor {
                         Image(systemName: imageName)
                             .foregroundStyle(imageColor)
-                            .font(.caption)
+                            .font(imageFont)
+                            .bold(imageBolded)
                     } else {
                         Image(systemName: imageName)
                             .foregroundStyle(isSelected ? .white : .black)
-                            .font(.caption)
+                            .font(imageFont)
+                            .bold(imageBolded)
                     }
                 } else {
                     Image(imageName)
@@ -65,6 +69,20 @@ struct TopButtonChip<Content: View>: View {
         }
         .padding(.vertical, 8)
 
+    }
+    
+    func setImageFont(_ value: Font) -> Self {
+        var view = self
+        view.imageFont = value
+        
+         return view
+    }
+    
+    func imageBold() -> Self {
+        var view = self
+        view.imageBolded = true
+        
+        return view
     }
     
     func isSelected(_ value: Bool) -> Self {

@@ -120,17 +120,19 @@ struct TaskAddView: View {
                                     self.newTask.status = status
                                 } label: {
                                     Text(status.title)
+                                    Image(systemName: status.systemName)
                                 }
                                 
                             }
                         } label: {
                             TopButtonChip(
                                 title: newTask.status.title,
-                                imageName: "",
-                                isSystem: true
-                            ) {
-                                
-                            }
+                                imageName: newTask.status.systemName,
+                                isSystem: true) {
+                                    
+                                }
+                                .setImageColor(newTask.status.imageColor)
+                                .imageBold()
                         }
                         
                         Menu {

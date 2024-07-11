@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 enum Status: String, Codable, CaseIterable {
     
@@ -33,6 +34,37 @@ enum Status: String, Codable, CaseIterable {
             "Canceled"
         }
     }
+    
+    var systemName: String {
+        return switch self {
+        case .preparing:
+            "circle.dotted"
+        case .todo:
+            "circle"
+        case .inProgress:
+            "play.circle"
+        case .done:
+            "checkmark.circle.fill"
+        case .canceled:
+            "xmark.circle.fill"
+        }
+    }
+    
+    var imageColor: Color {
+        return switch self {
+        case .preparing:
+                .gray.opacity(0.5)
+        case .todo:
+                .black.opacity(0.8)
+        case .inProgress:
+                .yellow
+        case .done:
+                .pink
+        case .canceled:
+                .gray
+        }
+    }
+    
     var emoji: String {
         return switch self {
         case .preparing:

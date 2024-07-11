@@ -41,7 +41,7 @@ struct ScheduleItemView: View {
             }
             
             VStack(alignment: HorizontalAlignment.leading) {
-                HStack {
+                HStack(spacing: 6) {
                     Menu {
                         ForEach(Priority.allCases, id: \.self) { priority in
                             Button {
@@ -61,6 +61,25 @@ struct ScheduleItemView: View {
                     } label: {
                         PriorityIcon(priority: schedule.priority)
                             .frame(width: titleTextHeight, height: titleTextHeight)
+                    }
+                    Menu {
+                        ForEach(Status.allCases, id: \.self) { status in
+                            Button {
+                                do {
+                                    try appData.setStatus(schedule: schedule, to: status)
+                                } catch {
+                                    print(error.localizedDescription)
+                                }
+                            } label: {
+                                Text(status.title)
+                                Image(systemName: status.systemName)
+                            }
+                        }
+                    } label: {
+                        Image(systemName: schedule.status.systemName)
+                            .foregroundStyle(schedule.status.imageColor)
+                            .font(.callout)
+                            .bold()
                     }
                     if isNavigatable {
                         HStack(spacing: 4) {

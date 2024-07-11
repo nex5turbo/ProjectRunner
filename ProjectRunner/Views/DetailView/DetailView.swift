@@ -88,15 +88,18 @@ struct DetailView: View {
                                         }
                                     } label: {
                                         Text(status.title)
+                                        Image(systemName: status.systemName)
                                     }
                                 }
                             } label: {
                                 TopButtonChip(
                                     title: schedule.status.title,
-                                    imageName: "",
+                                    imageName: schedule.status.systemName,
                                     isSystem: true) {
                                         
                                     }
+                                    .setImageColor(schedule.status.imageColor)
+                                    .imageBold()
                             }
                             
                             LabelSheetButton(appData: $appData, schedule: schedule) { labels in
