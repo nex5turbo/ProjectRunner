@@ -3,9 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>GADApplicationIdentifier</key>
-	<string>ca-app-pub-6235545617614297~1142404003</string>
-	<key>GADIsAdManagerApp</key>
-	<true/>
+	<string>ca-app-pub-6235545617614297~5183671507</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 </dict>
