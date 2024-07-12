@@ -448,7 +448,7 @@ struct DetailView: View {
                     .padding()
                 }
             }
-//            GADBanner().frame(width: GADAdSizeBanner.size.width, height: GADAdSizeBanner.size.height)
+            GADBanner().frame(width: GADAdSizeBanner.size.width, height: GADAdSizeBanner.size.height)
         }
         .task {
             if let project {
