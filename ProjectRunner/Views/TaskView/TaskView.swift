@@ -116,6 +116,19 @@ struct TaskView: View {
                     result = false
                 }
             }
+            if filterOptions.searchText != "" {
+                if task.name.contains(filterOptions.searchText) || task.description.contains(filterOptions.searchText) ||
+                    !task.moments.filter({ moment in
+                        moment.comment.contains(filterOptions.searchText)
+                    }).isEmpty ||
+                    !task.appointments.filter({ event in
+                        event.comment.contains(filterOptions.searchText)
+                    }).isEmpty {
+                    return true
+                } else {
+                    result = false
+                }
+            }
             return result
         }
     }
@@ -133,6 +146,7 @@ struct TaskView: View {
                 }
             } else {
                 navigationTopItems()
+                    .searchable(text: $filterOptions.searchText)
                 switch groupingType {
                 case .plain:
                     plainList()
@@ -249,7 +263,7 @@ extension TaskView {
     var priorityTaskList: [String: [TTask]] {
         var test: [String: [TTask]] = [:]
         Priority.allCases.forEach { type in
-            test[type.title] = taskListWithDone.filter { $0.priority.title == type.title }
+            test[type.title] = filtered.filter { $0.priority.title == type.title }
         }
         return test
     }
@@ -257,7 +271,7 @@ extension TaskView {
     var colorTaskList: [String: [TTask]] {
         var returnValue: [String: [TTask]] = [:]
         MarkColor.allCases.forEach { color in
-            returnValue[color.title] = taskListWithDone.filter { $0.markColor.title == color.title }
+            returnValue[color.title] = filtered.filter { $0.markColor.title == color.title }
         }
         return returnValue
     }
@@ -268,7 +282,7 @@ extension TaskView {
             if status == .done && !shouldShowDone {
                 return
             }
-            returnValue[status.title] = taskListWithDone.filter { $0.status.title == status.title }
+            returnValue[status.title] = filtered.filter { $0.status.title == status.title }
         }
         return returnValue
     }
@@ -276,24 +290,24 @@ extension TaskView {
     var dateTaskList: [String: [TTask]] {
         var returnValue: [String: [TTask]] = [:]
         var dates: Set<String> = []
-        taskListWithDone.forEach {
+        filtered.forEach {
             if $0.hasDeadline {
                 dates.insert($0.dueDate.toString(false))
             }
         }
         dates.insert("No Due date")
         dates.forEach { date in
-            returnValue[date] = taskListWithDone.filter { $0.dueDate.toString(false) == date && $0.hasDeadline && $0.dueDate > Date.now }
+            returnValue[date] = filtered.filter { $0.dueDate.toString(false) == date && $0.hasDeadline && $0.dueDate > Date.now }
         }
-        returnValue["No Due date"] = taskListWithDone.filter { !$0.hasDeadline }
-        returnValue["Over due"] = taskListWithDone.filter { $0.hasDeadline && $0.dueDate < Date.now }
+        returnValue["No Due date"] = filtered.filter { !$0.hasDeadline }
+        returnValue["Over due"] = filtered.filter { $0.hasDeadline && $0.dueDate < Date.now }
         return returnValue
     }
     
     var labelTaskList: [String: [TTask]] {
         var returnValue: [String: [TTask]] = [:]
         appData.labels.forEach { label in
-            returnValue[label.content] = taskListWithDone.filter { task in
+            returnValue[label.content] = filtered.filter { task in
                 task.labels.contains { $0.content == label.content }
             }
         }
