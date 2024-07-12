@@ -11,6 +11,12 @@ struct DeleteButton: View {
     @Environment(\.dismiss) private var dismiss
     @State private var isDeleteConfirm: Bool = false
     let action: () -> Void
+    let secondAction: (() -> Void)?
+    
+    init( action: @escaping () -> Void, secondAction: (() -> Void)? = nil) {
+        self.action = action
+        self.secondAction = secondAction
+    }
     var body: some View {
         Button {
             self.isDeleteConfirm = true
@@ -26,6 +32,12 @@ struct DeleteButton: View {
             .cornerRadius(10)
         }
         .confirmationDialog("Are you sure to delete?", isPresented: $isDeleteConfirm) {
+            if let secondAction {
+                Button("Delete Sub Tasks too", role: .destructive) {
+                    secondAction()
+                    dismiss()
+                }
+            }
             Button("Delete", role: .destructive) {
                 action()
                 dismiss()

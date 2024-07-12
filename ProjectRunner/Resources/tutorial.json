@@ -1,0 +1,508 @@
+{
+  "tasks": [
+    {
+      "name": "Todo section",
+      "description": "Without selected project, you can set todo schedule.\n\nBut todo schedule can't have sub task.\n\nIf you want to assign sub task, assign superior task first!",
+      "taskIds": [],
+      "priority": "high",
+      "createdAt": 742459526.629461,
+      "markColor": "blue",
+      "startDate": 742402800,
+      "labels": [],
+      "status": "todo",
+      "moments": [],
+      "id": "77A63223-C44F-4E47-9B67-5A327A2CCF71",
+      "imagePaths": [],
+      "dueDate": 742489199,
+      "appointments": [],
+      "hasDeadline": false
+    },
+    {
+      "projectId": "FA86C984-5BAF-4361-BFBB-21DE6CE5EC50",
+      "moments": [],
+      "appointments": [],
+      "status": "inProgress",
+      "dueDate": 742489199,
+      "hasDeadline": false,
+      "markColor": "red",
+      "imagePaths": [],
+      "labels": [],
+      "createdAt": 742459695.639561,
+      "name": "Create a project",
+      "startDate": 742402800,
+      "id": "1034AC42-4F69-4946-AF25-82BAAC92613B",
+      "taskIds": [],
+      "description": "Thanks for using Project Runner and welcome!\n\nFirst of all, create a project that you are working on or planning to work on.\n\nProject could be Language studying, School team project, Weight losing or even Travel plan.\n\nAfter make project, don't forget to change status as Done!",
+      "priority": "urgent"
+    },
+    {
+      "markColor": "red",
+      "createdAt": 742460106.786302,
+      "moments": [],
+      "imagePaths": [],
+      "taskIds": [],
+      "labels": [
+        {
+          "id": "8C7267E2-D7AB-4F45-A625-D7B0AF2F77EF",
+          "content": "📚Study"
+        }
+      ],
+      "appointments": [],
+      "dueDate": 742489199,
+      "hasDeadline": false,
+      "startDate": 742402800,
+      "name": "Create task",
+      "description": "Good job! You've done with creating project!\n\nNext, create sub task of your own project.\nYou can create by New task button above.",
+      "priority": "urgent",
+      "id": "434BE3FE-B854-40DA-BEC4-A3E8AB224C8E",
+      "projectId": "FA86C984-5BAF-4361-BFBB-21DE6CE5EC50",
+      "status": "todo"
+    },
+    {
+      "moments": [],
+      "labels": [],
+      "name": "Modify schedule",
+      "hasDeadline": false,
+      "imagePaths": [],
+      "projectId": "FA86C984-5BAF-4361-BFBB-21DE6CE5EC50",
+      "createdAt": 742460384.301427,
+      "id": "F4D78437-9CD6-4EA3-A712-73496731B350",
+      "description": "Cool! Now you have project and task.\n\nBut what if you made typo or mistakenly selected wrong informations of your schedule?\n\nDon't worry. Just keep up my instructions.\n\n- Name, Description: Just tap the text area and type it again. Be sure tap back button after change your name or description! If not, changes will not be saved.\n\n- Others: In detail page of each schedule, there are several buttons below name section. You can select them again.",
+      "priority": "urgent",
+      "dueDate": 742489199,
+      "status": "todo",
+      "markColor": "red",
+      "appointments": [],
+      "startDate": 742402800,
+      "taskIds": []
+    },
+    {
+      "status": "preparing",
+      "name": "Sub task of task",
+      "appointments": [],
+      "moments": [],
+      "createdAt": 742460759.31304,
+      "projectId": "FA86C984-5BAF-4361-BFBB-21DE6CE5EC50",
+      "id": "29F65731-F57A-4359-A31D-F08939C99E1B",
+      "description": "See you on the other side! \n- See below sub tasks section",
+      "startDate": 742402800,
+      "imagePaths": [],
+      "hasDeadline": false,
+      "dueDate": 742489199,
+      "taskIds": [
+        "A6AB82FB-16B2-4D35-8442-E08C7AE60427"
+      ],
+      "labels": [
+        {
+          "id": "8C7267E2-D7AB-4F45-A625-D7B0AF2F77EF",
+          "content": "📚Study"
+        }
+      ],
+      "markColor": "red",
+      "priority": "high"
+    },
+    {
+      "startDate": 742402800,
+      "moments": [],
+      "imagePaths": [],
+      "description": "Great!\n\nThis is sub task of task. \nNot only project can have sub task but also task can.\n\nYou can also simply change superior(parent) task.\nLook at 'Sub task of (Blue Text)' section below and change this to",
+      "name": "I am sub task of task",
+      "priority": "high",
+      "createdAt": 742460845.332864,
+      "status": "preparing",
+      "appointments": [],
+      "id": "A6AB82FB-16B2-4D35-8442-E08C7AE60427",
+      "hasDeadline": false,
+      "dueDate": 742489199,
+      "projectId": "29F65731-F57A-4359-A31D-F08939C99E1B",
+      "labels": [
+        {
+          "id": "8C7267E2-D7AB-4F45-A625-D7B0AF2F77EF",
+          "content": "📚Study"
+        }
+      ],
+      "markColor": "red",
+      "taskIds": []
+    },
+    {
+      "labels": [],
+      "description": "Amazing!\n\nNow you know basic things how this app works!",
+      "createdAt": 742461216.554838,
+      "dueDate": 742489199,
+      "projectId": "FA86C984-5BAF-4361-BFBB-21DE6CE5EC50",
+      "taskIds": [],
+      "priority": "high",
+      "markColor": "red",
+      "startDate": 742402800,
+      "name": "Select me!",
+      "status": "preparing",
+      "moments": [],
+      "id": "BE70D951-CF7A-4900-8E9A-39209551EE66",
+      "imagePaths": [],
+      "hasDeadline": false,
+      "appointments": []
+    },
+    {
+      "taskIds": [],
+      "name": "Leave moments",
+      "appointments": [],
+      "imagePaths": [],
+      "moments": [
+        {
+          "comment": "You can leave infinite moments here.",
+          "createdAt": 742461607.75243,
+          "id": "6E468265-A1FE-4DFC-A074-7E15736C92D4",
+          "isDone": false
+        },
+        {
+          "isDone": false,
+          "id": "8AF38B18-98AA-41D7-8D1E-A398125373CD",
+          "createdAt": 742461723.251199,
+          "comment": "If the idea is not looking good or achievement has turned bad, you can remove with tapping x-button"
+        },
+        {
+          "id": "AC9491C2-FE08-4293-B9D2-BD0ECBD82D8F",
+          "comment": "Or double tap to make a strike through line on text.",
+          "isDone": true,
+          "createdAt": 742461744.482186
+        }
+      ],
+      "description": "Now we gonna know more detailed features.\n\nYou can leave moment(a.k.a comment) whenever you come up with some amazing idea or achieve something on you task.\n\nLook at the Moments section below.",
+      "projectId": "FA86C984-5BAF-4361-BFBB-21DE6CE5EC50",
+      "hasDeadline": false,
+      "startDate": 742402800,
+      "status": "preparing",
+      "dueDate": 742489199,
+      "id": "A524F074-DA16-4394-8C79-1808EF523421",
+      "priority": "medium",
+      "createdAt": 742461414.458984,
+      "markColor": "red",
+      "labels": []
+    },
+    {
+      "hasDeadline": false,
+      "id": "6DACEDFA-DCA3-43A5-B83E-AED68B4443C6",
+      "description": "You can make event on task.\n\nFor example, if you had to make a call with your team member, make a new event.\n\nSet time and description. And turn on notification if needed. \n\nYou can simply toggle notification by tapping bell button.",
+      "taskIds": [],
+      "createdAt": 742461745.95056,
+      "imagePaths": [],
+      "appointments": [
+        {
+          "isDone": false,
+          "shouldRepeat": false,
+          "hasNotification": false,
+          "createdAt": 742465390.218752,
+          "id": "82D4FA1E-B0FD-4229-944C-BE590487E6A6",
+          "members": [],
+          "notifyAt": 742465390.218751,
+          "comment": "Modify this event"
+        }
+      ],
+      "projectId": "FA86C984-5BAF-4361-BFBB-21DE6CE5EC50",
+      "labels": [],
+      "priority": "medium",
+      "dueDate": 742489199,
+      "moments": [],
+      "name": "Make event",
+      "status": "preparing",
+      "startDate": 742402800,
+      "markColor": "red"
+    },
+    {
+      "dueDate": 742489199,
+      "startDate": 742402800,
+      "labels": [],
+      "description": "Maybe You can see the button named Priority above. You can change grouping group with that button.",
+      "moments": [],
+      "markColor": "red",
+      "priority": "low",
+      "createdAt": 742462078.288218,
+      "taskIds": [],
+      "imagePaths": [],
+      "name": "Grouping",
+      "appointments": [],
+      "status": "preparing",
+      "hasDeadline": false,
+      "id": "90344BE6-18D7-4531-9610-B52DB1757225",
+      "projectId": "FA86C984-5BAF-4361-BFBB-21DE6CE5EC50"
+    },
+    {
+      "startDate": 742402800,
+      "projectId": "FA86C984-5BAF-4361-BFBB-21DE6CE5EC50",
+      "priority": "low",
+      "hasDeadline": false,
+      "moments": [],
+      "name": "Filtering and searching",
+      "markColor": "red",
+      "createdAt": 742462179.05581,
+      "taskIds": [],
+      "description": "You can also see search bar and filtering button above.\n\nSearch text filters if task is including that text.\nAnd tapping filtering button will present sheet that lets you choose components you want to present on list.",
+      "dueDate": 742489199,
+      "labels": [],
+      "appointments": [],
+      "imagePaths": [],
+      "id": "4EB1DEF2-551D-4B4E-8A81-E400CD1D67FC",
+      "status": "preparing"
+    },
+    {
+      "startDate": 742402800,
+      "imagePaths": [],
+      "appointments": [],
+      "id": "E0B703E3-F2BF-4310-B2A9-9C1B41F3FE13",
+      "status": "preparing",
+      "dueDate": 742489199,
+      "hasDeadline": false,
+      "labels": [],
+      "projectId": "FA86C984-5BAF-4361-BFBB-21DE6CE5EC50",
+      "createdAt": 742462391.966931,
+      "markColor": "red",
+      "priority": "high",
+      "description": "You can change status or priority outside of detail page.\n\nTwo buttons are at left side of name.\nLeft first one in for priority and another one is for status.\n\nTap them and change it to other one.",
+      "moments": [],
+      "taskIds": [],
+      "name": "Change status and priority"
+    },
+    {
+      "startDate": 742402800,
+      "description": "Hide done button above makes it able to hide done or canceled task.(Project also)",
+      "imagePaths": [],
+      "projectId": "FA86C984-5BAF-4361-BFBB-21DE6CE5EC50",
+      "id": "0B53B13A-C1E6-40BE-99A4-88EAB9B140E0",
+      "dueDate": 742489199,
+      "createdAt": 742462503.667091,
+      "appointments": [],
+      "hasDeadline": false,
+      "labels": [],
+      "name": "Hide done or canceled",
+      "taskIds": [],
+      "moments": [],
+      "priority": "low",
+      "status": "preparing",
+      "markColor": "red"
+    },
+    {
+      "startDate": 742402800,
+      "projectId": "FA86C984-5BAF-4361-BFBB-21DE6CE5EC50",
+      "id": "D082781A-6372-490F-98DD-E87F67838667",
+      "name": "Contacts and team member",
+      "status": "preparing",
+      "moments": [],
+      "appointments": [],
+      "labels": [],
+      "hasDeadline": false,
+      "createdAt": 742463073.6176,
+      "imagePaths": [],
+      "dueDate": 742489199,
+      "markColor": "red",
+      "taskIds": [],
+      "description": "You can create contact in this app.\n\nContact can have name, phone number, email address, instagram id, label, color.\n\nYou can contact with your member easily in project detail page.\n\nWe are working to make better feature of contact.",
+      "priority": "high"
+    },
+    {
+      "status": "preparing",
+      "appointments": [],
+      "name": "Select due date",
+      "priority": "high",
+      "imagePaths": [],
+      "taskIds": [],
+      "projectId": "FA86C984-5BAF-4361-BFBB-21DE6CE5EC50",
+      "id": "0AB28D92-9D0B-4C6C-B673-C012D71889F1",
+      "createdAt": 742463211.93412,
+      "hasDeadline": false,
+      "description": "You can set due date of project or task.\nIf you need deadline of task or project, set due date to notice yourself\n\n'It is most important thing ever!'\n\nAnd now we are working to make notification for due date! Thanks for waiting 🥰",
+      "moments": [],
+      "markColor": "red",
+      "startDate": 742402800,
+      "labels": [],
+      "dueDate": 742489199
+    },
+    {
+      "taskIds": [],
+      "id": "7F0F2C3C-1528-4D86-9CE9-147FEF1F69AC",
+      "priority": "none",
+      "imagePaths": [],
+      "moments": [],
+      "name": "Progress bar",
+      "labels": [],
+      "createdAt": 742463522.208762,
+      "appointments": [],
+      "status": "preparing",
+      "description": "You can see how task or project goes on.\nRight side of the name, there is progress bar done tasks count in total sub tasks count",
+      "dueDate": 742489199,
+      "projectId": "FA86C984-5BAF-4361-BFBB-21DE6CE5EC50",
+      "hasDeadline": false,
+      "markColor": "red",
+      "startDate": 742402800
+    },
+    {
+      "moments": [],
+      "appointments": [],
+      "startDate": 742402800,
+      "id": "C8AB1D87-D823-4E3E-8C42-DA9CB639E9F8",
+      "hasDeadline": false,
+      "description": "You can set Labels in your schedule.\nIn add page or detail page, there is labels button.\n\nTapping that button shows you a sheet.\n\nTop side of sheet, tapping Label text present keyboard ables you to create new label.\n\nBe sure to tap return button(not Done button) to create new label.",
+      "dueDate": 742489199,
+      "markColor": "red",
+      "projectId": "FA86C984-5BAF-4361-BFBB-21DE6CE5EC50",
+      "labels": [],
+      "status": "preparing",
+      "name": "Set Label",
+      "priority": "high",
+      "createdAt": 742463665.87681,
+      "imagePaths": [],
+      "taskIds": []
+    },
+    {
+      "markColor": "red",
+      "projectId": "FA86C984-5BAF-4361-BFBB-21DE6CE5EC50",
+      "appointments": [],
+      "imagePaths": [],
+      "moments": [],
+      "description": "We are working on making widget component.\nThanks for waiting!",
+      "startDate": 742402800,
+      "dueDate": 742489199,
+      "hasDeadline": false,
+      "labels": [],
+      "id": "4AD34AB5-757E-47E2-AFB8-C5EE545CE49B",
+      "name": "Widget",
+      "taskIds": [],
+      "priority": "none",
+      "status": "preparing",
+      "createdAt": 742463915.26185
+    },
+    {
+      "taskIds": [],
+      "dueDate": 742489199,
+      "markColor": "red",
+      "startDate": 742402800,
+      "appointments": [],
+      "description": "You can swipe right to present delete button in list.",
+      "moments": [],
+      "createdAt": 742464117.489881,
+      "hasDeadline": false,
+      "projectId": "FA86C984-5BAF-4361-BFBB-21DE6CE5EC50",
+      "labels": [],
+      "id": "FB9E40B4-1824-4354-AA88-2993908AC014",
+      "imagePaths": [],
+      "priority": "none",
+      "name": "Swipe action",
+      "status": "preparing"
+    },
+    {
+      "dueDate": 742489199,
+      "markColor": "red",
+      "description": "We are working on pinning schedules.\nThanks for waiting!",
+      "priority": "none",
+      "id": "7A94ABEE-6F9A-43FE-A529-7F9FE758C685",
+      "hasDeadline": false,
+      "labels": [],
+      "startDate": 742402800,
+      "imagePaths": [],
+      "name": "Pin schedule",
+      "moments": [],
+      "taskIds": [],
+      "appointments": [],
+      "projectId": "FA86C984-5BAF-4361-BFBB-21DE6CE5EC50",
+      "createdAt": 742464187.120224,
+      "status": "preparing"
+    }
+  ],
+  "clientLabels": [
+    {
+      "id": "6410B983-EFEB-4112-AD76-EA8833E8820F",
+      "content": "👨‍🏫teacher"
+    },
+    {
+      "content": "👩manager",
+      "id": "3332B55F-D883-4D37-ADF5-C1059CE2AEC2"
+    },
+    {
+      "id": "097A1420-1D99-46E9-BC8D-2F29A072FD2D",
+      "content": "🧑‍💻team member"
+    },
+    {
+      "id": "9A91BD76-C775-4FF3-816B-70B7071C94D3",
+      "content": "👨‍🦱Client"
+    }
+  ],
+  "projects": [
+    {
+      "markColor": "red",
+      "imagePaths": [],
+      "dueDate": 742489199,
+      "createdAt": 742459312.253775,
+      "status": "inProgress",
+      "startDate": 742402800,
+      "labels": [
+        {
+          "id": "8C7267E2-D7AB-4F45-A625-D7B0AF2F77EF",
+          "content": "📚Study"
+        }
+      ],
+      "moments": [],
+      "clientIds": [
+        "4D329761-34D0-4E4B-9F47-1A17BD277D40"
+      ],
+      "id": "FA86C984-5BAF-4361-BFBB-21DE6CE5EC50",
+      "name": "Welcome to Project Runner🙏",
+      "appointments": [],
+      "description": "By this tutorial, hope you get used to the way how to use Project Runner!",
+      "priority": "urgent",
+      "taskIds": [
+        "1034AC42-4F69-4946-AF25-82BAAC92613B",
+        "434BE3FE-B854-40DA-BEC4-A3E8AB224C8E",
+        "F4D78437-9CD6-4EA3-A712-73496731B350",
+        "29F65731-F57A-4359-A31D-F08939C99E1B",
+        "BE70D951-CF7A-4900-8E9A-39209551EE66",
+        "A524F074-DA16-4394-8C79-1808EF523421",
+        "6DACEDFA-DCA3-43A5-B83E-AED68B4443C6",
+        "90344BE6-18D7-4531-9610-B52DB1757225",
+        "4EB1DEF2-551D-4B4E-8A81-E400CD1D67FC",
+        "E0B703E3-F2BF-4310-B2A9-9C1B41F3FE13",
+        "0B53B13A-C1E6-40BE-99A4-88EAB9B140E0",
+        "D082781A-6372-490F-98DD-E87F67838667",
+        "0AB28D92-9D0B-4C6C-B673-C012D71889F1",
+        "7F0F2C3C-1528-4D86-9CE9-147FEF1F69AC",
+        "C8AB1D87-D823-4E3E-8C42-DA9CB639E9F8",
+        "4AD34AB5-757E-47E2-AFB8-C5EE545CE49B",
+        "FB9E40B4-1824-4354-AA88-2993908AC014",
+        "7A94ABEE-6F9A-43FE-A529-7F9FE758C685"
+      ],
+      "hasDeadline": false
+    }
+  ],
+  "labels": [
+    {
+      "id": "59B7DFAF-128F-47A0-AF20-31846EBD8B72",
+      "content": "💪Work out"
+    },
+    {
+      "content": "📚Study",
+      "id": "8C7267E2-D7AB-4F45-A625-D7B0AF2F77EF"
+    },
+    {
+      "id": "150D5B92-E688-4786-B746-2059DD113052",
+      "content": "🧑‍💻Development"
+    },
+    {
+      "id": "3571C899-9973-4196-A229-3A78EAF577CE",
+      "content": "🎨Design"
+    }
+  ],
+  "clients": [
+    {
+      "label": {
+        "id": "6410B983-EFEB-4112-AD76-EA8833E8820F",
+        "content": "👨‍🏫teacher"
+      },
+      "email": "nex5turbo@gmail.com",
+      "instagramId": "j_w_y_j",
+      "familyName": "Jang",
+      "markColor": "blue",
+      "id": "4D329761-34D0-4E4B-9F47-1A17BD277D40",
+      "givenName": "Wonyoung",
+      "phoneNumber": "+821051230584",
+      "createdAt": 742459458.692237
+    }
+  ]
+}

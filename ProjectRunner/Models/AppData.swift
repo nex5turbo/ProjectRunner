@@ -81,6 +81,27 @@ struct AppData: Codable, Hashable {
         
         return
     }
+    
+    mutating func loadTutorial() throws {
+        guard let url = Bundle.main.url(forResource: "tutorial", withExtension: "json") else {
+            return
+        }
+        let data = try Data(contentsOf: url)
+        let decoder = JSONDecoder()
+        let appData = try decoder.decode(AppData.self, from: data)
+        
+        self.projects.append(contentsOf: appData.projects)
+        self.tasks.append(contentsOf: appData.tasks)
+        if self.labels.isEmpty {
+            self.labels.append(contentsOf: appData.labels)
+        }
+        if self.clients.isEmpty {
+            self.clients.append(contentsOf: appData.clients)
+        }
+        if self.clientLabels.isEmpty {
+            self.clientLabels.append(contentsOf: appData.clientLabels)
+        }
+    }
 }
 
 extension AppData {
@@ -353,17 +374,17 @@ extension AppData {
 /// delete functions
 extension AppData {
     
-    mutating func delete(schedule: Schedulable) throws {
+    mutating func delete(schedule: Schedulable, shouldDeleteSubTasks: Bool = false) throws {
         if let task = schedule as? TTask {
-            try deleteTask(task: task)
+            try deleteTask(task: task, shouldDeleteSubTasks: shouldDeleteSubTasks)
         } else if let project = schedule as? TProject {
-            try deleteProject(project: project)
+            try deleteProject(project: project, shouldDeleteSubTasks: shouldDeleteSubTasks)
         } else {
             return
         }
     }
     
-    mutating func deleteTask(task: TTask) throws {
+    mutating func deleteTask(task: TTask, shouldDeleteSubTasks: Bool = false) throws {
         guard let index = tasks.firstIndex(where: { $0.id == task.id }) else {
             return
         }
@@ -373,11 +394,19 @@ extension AppData {
         if let taskIndex = tasks.firstIndex(where: { $0.id == task.superiorId }) {
             tasks[taskIndex].taskIds.removeAll(where: { $0 == task.id })
         }
-        tasks.enumerated().forEach { (index, _task) in
-            if _task.superiorId == task.id {
-                tasks[index].superiorId = nil
+        if shouldDeleteSubTasks {
+            let subTasks: [TTask] = self.tasks.filter { task.taskIds.contains($0.id) }
+            subTasks.forEach { subTask in
+                try? deleteTask(task: subTask, shouldDeleteSubTasks: true)
+            }
+        } else {
+            tasks.enumerated().forEach { (index, _task) in
+                if _task.superiorId == task.id {
+                    tasks[index].superiorId = nil
+                }
             }
         }
+        
         tasks.remove(at: index)
         do {
             try save()
@@ -386,13 +415,20 @@ extension AppData {
         }
     }
     
-    mutating func deleteProject(project: TProject) throws {
+    mutating func deleteProject(project: TProject, shouldDeleteSubTasks: Bool = false) throws {
         guard let index = projects.firstIndex(where: { $0.id == project.id }) else {
             return
         }
-        tasks.enumerated().forEach { (index, task) in
-            if task.superiorId == project.id {
-                tasks[index].superiorId = nil
+        if shouldDeleteSubTasks {
+            let subTasks: [TTask] = self.tasks.filter { project.taskIds.contains($0.id) }
+            subTasks.forEach { subTask in
+                try? deleteTask(task: subTask, shouldDeleteSubTasks: true)
+            }
+        } else {
+            tasks.enumerated().forEach { (index, task) in
+                if task.superiorId == project.id {
+                    tasks[index].superiorId = nil
+                }
             }
         }
         projects.remove(at: index)

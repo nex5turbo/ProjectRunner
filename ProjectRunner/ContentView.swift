@@ -68,6 +68,11 @@ struct ContentView: View {
                     self.appData = appData
                     print("Reason: ",error.localizedDescription)
                 }
+                do {
+                    try self.appData.loadTutorial()
+                } catch {
+                    print(error.localizedDescription)
+                }
                 self.isFirst = false
             } else {
                 do {

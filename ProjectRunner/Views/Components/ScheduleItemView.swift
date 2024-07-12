@@ -162,6 +162,13 @@ struct ScheduleItemView: View {
                         }
                         .foregroundStyle(schedule.markColor.textColor)
                         .confirmationDialog("", isPresented: $isDeleteConfirmPresented) {
+                            Button("Delete Sub Tasks too", role: .destructive) {
+                                do {
+                                    try appData.delete(schedule: self.schedule, shouldDeleteSubTasks: true)
+                                } catch {
+                                    print(error.localizedDescription)
+                                }
+                            }
                             Button("Delete", role: .destructive) {
                                 do {
                                     try appData.delete(schedule: self.schedule)
@@ -175,21 +182,6 @@ struct ScheduleItemView: View {
                         } message: {
                             Text("Are you sure to delete?")
                         }
-
-                        
-                        NavigationLink {
-                            DetailView(schedule: schedule, appData: $appData)
-//                            if let task = schedule as? TTask {
-//                                TaskAddView(task: task, appData: $appData)
-//                            } else if let project = schedule as? TProject {
-//                                ProjectAddView(project: project, appData: $appData)
-//                            } else {
-//                                Text("Error Occured")
-//                            }
-                        } label: {
-                            Image(systemName: "pencil")
-                        }
-                        .foregroundStyle(schedule.markColor.textColor)
                     }
                     .padding(.horizontal)
                     .overlay {

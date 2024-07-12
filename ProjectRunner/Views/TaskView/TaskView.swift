@@ -38,7 +38,7 @@ struct TaskView: View {
     @Binding var appData: AppData
     @AppStorage("timeline") private var shouldShowTimeline = false
     @AppStorage("showDone") private var shouldShowDone = false
-    @AppStorage("selectedProjectId") private var selectedProjectId: String = "All Tasks"
+    @AppStorage("selectedProjectId") private var selectedProjectId: String = "FA86C984-5BAF-4361-BFBB-21DE6CE5EC50"
     @State private var selectedProject: TProject? = nil
     @State private var filterOptions: FilterOptions = .init()
     @State private var isFilterSheetPresented: Bool = false
@@ -79,9 +79,9 @@ struct TaskView: View {
     
     var taskListWithDone: [TTask] {
         if !shouldShowDone {
-            return taskListWithProject.filter { $0.status != .done && $0.status != .canceled }
+            return taskListWithProject.filter { $0.status != .done && $0.status != .canceled }.sorted(by: { $0.createdAt < $1.createdAt })
         } else {
-            return taskListWithProject
+            return taskListWithProject.sorted(by: { $0.createdAt < $1.createdAt })
         }
     }
     

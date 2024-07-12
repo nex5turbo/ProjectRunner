@@ -438,11 +438,17 @@ struct DetailView: View {
                         } catch {
                             print(error.localizedDescription)
                         }
+                    } secondAction: {
+                        do {
+                            try appData.delete(schedule: schedule, shouldDeleteSubTasks: true)
+                        } catch {
+                            print(error.localizedDescription)
+                        }
                     }
                     .padding()
                 }
             }
-            GADBanner().frame(width: GADAdSizeBanner.size.width, height: GADAdSizeBanner.size.height)
+//            GADBanner().frame(width: GADAdSizeBanner.size.width, height: GADAdSizeBanner.size.height)
         }
         .task {
             if let project {
