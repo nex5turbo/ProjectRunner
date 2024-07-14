@@ -68,6 +68,9 @@
     "Cancel" : {
 
     },
+    "Clear" : {
+
+    },
     "Contact" : {
 
     },
@@ -200,6 +203,9 @@
     "phoneNumber" : {
 
     },
+    "Pinned" : {
+
+    },
     "Prioirity" : {
 
     },
@@ -261,6 +267,9 @@
 
     },
     "Todo" : {
+
+    },
+    "You can set maximum 3 pins" : {
 
     }
   },

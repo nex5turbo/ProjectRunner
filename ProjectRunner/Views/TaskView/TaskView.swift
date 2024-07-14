@@ -177,8 +177,31 @@ struct TaskView: View {
                     ZStack {
                         VStack(spacing: 0) {
                             if shouldShowPinned {
-                                ForEach(pinnedTasks, id :\.self) { task in
-                                    ScheduleItemView(schedule: task, appData: $appData)
+                                HStack {
+                                    Text("Pinned")
+                                        .font(titleFont)
+                                    CountChip(count: pinnedIds.count)
+                                    Spacer()
+                                    if !pinnedTasks.isEmpty {
+                                        Button {
+                                            self.pinnedIds = []
+                                        } label: {
+                                            Text("Clear")
+                                                .font(.footnote)
+                                                .foregroundStyle(.gray)
+                                        }
+                                    }
+                                }
+                                .padding(.vertical, 8)
+                                .padding(.horizontal)
+                                if pinnedTasks.isEmpty {
+                                    Text("You can set maximum 3 pins")
+                                        .font(.footnote.weight(.semibold))
+                                        .padding()
+                                } else {
+                                    ForEach(pinnedTasks, id :\.self) { task in
+                                        ScheduleItemView(schedule: task, appData: $appData)
+                                    }
                                 }
                             }
                             switch groupingType {
@@ -198,15 +221,49 @@ struct TaskView: View {
                         }
                         VStack(spacing: 0) {
                             if shouldShowPinned {
-                                ForEach(pinnedTasks, id :\.self) { task in
-                                    ScheduleItemView(schedule: task, appData: $appData)
+                                HStack {
+                                    Text("Pinned")
+                                        .font(titleFont)
+                                    CountChip(count: pinnedIds.count)
+                                    Spacer()
+                                }
+                                .padding(.vertical, 8)
+                                .padding(.horizontal)
+                                
+                                if pinnedTasks.isEmpty {
+                                    VStack(spacing: 0) {
+                                        HStack {
+                                            Text("You can set maximum 3 pins")
+                                                .font(.footnote.weight(.semibold))
+                                                
+                                        }.padding()
+                                        
+                                        Divider()
+                                    }
+                                    .shadow(color: .black.opacity(0.1), radius: 8, y: 8)
+                                } else {
+                                    VStack(spacing: 0) {
+                                        ForEach(pinnedTasks, id :\.self) { task in
+                                            ScheduleItemView(schedule: task, appData: $appData)
+                                        }
+                                    }
+                                    .shadow(color: .black.opacity(0.1), radius: 8, y: 8)
                                 }
                             }
-                            Button {
-                                self.shouldShowPinned.toggle()
-                            } label: {
-                                Image(systemName: shouldShowPinned ? "chevron.up" : "chevron.down")
+                            HStack {
+                                Spacer()
+                                Button {
+                                    self.shouldShowPinned.toggle()
+                                } label: {
+                                    Image(systemName: shouldShowPinned ? "chevron.up" : "chevron.down")
+                                        .padding(8)
+                                        .font(.footnote)
+                                        .background(.gray.opacity(0.6))
+                                        .foregroundStyle(.white)
+                                        .cornerRadius(8, corners: [.bottomLeft, .bottomRight])
+                                }
                             }
+                            .padding(.horizontal)
 
                             Spacer()
                         }
@@ -423,7 +480,17 @@ extension TaskView {
     
     @ViewBuilder func plainList() -> some View {
         ScrollView {
-            taskList(list: filtered)
+            VStack(spacing: 0) {
+                HStack {
+                    Text("All Tasks")
+                    CountChip(count: filtered.count)
+                    Spacer()
+                }
+                .font(titleFont)
+                .padding(.horizontal)
+                .padding(.vertical, 8)
+                taskList(list: filtered)
+            }
         }
     }
     

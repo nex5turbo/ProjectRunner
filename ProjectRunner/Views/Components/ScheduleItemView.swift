@@ -54,8 +54,11 @@ struct ScheduleItemView: View {
                 HStack {
                     HStack(spacing: 16) {
                         Button {
+                            withAnimation {
+                                self.selectedSchedules.removeAll(where: { $0.id == schedule.id })
+                            }
                         } label: {
-                            Image(systemName: "trash.fill")
+                            Image(systemName: "checkmark.circle.fill")
                         }
                         .foregroundStyle(schedule.markColor.textColor)
                     }
