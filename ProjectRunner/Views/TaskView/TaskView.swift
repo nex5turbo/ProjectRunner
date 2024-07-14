@@ -268,29 +268,7 @@ struct TaskView: View {
                             Spacer()
                         }
                     }
-                    
-                }
-            }
-            VStack {
-                Spacer()
-                if !selectedTasks.isEmpty {
-                    HStack {
-                        Spacer()
-                        Button {
-                            delete()
-                        } label: {
-                            Image(systemName: "trash.fill")
-                        }
-                        if selectedTasks.count < 4 {
-                            Button {
-                                pin()
-                            } label: {
-                                Image(systemName: "pin.fill")
-                            }
-                        }
-                    }
-                    .font(.title)
-                    .padding()
+                    .animation(.spring, value: shouldShowPinned)
                 }
             }
         }
@@ -333,6 +311,28 @@ struct TaskView: View {
     }
     @ViewBuilder func navigationTopItems() -> some View {
         NavigationTopItems {
+            if !selectedTasks.isEmpty {
+                HStack {
+                    Button {
+                        delete()
+                    } label: {
+                        TopButtonChip(title: "Delete \(selectedTasks.count) tasks", imageName: "trash.fill", isSystem: true) {
+                            
+                        }
+                        .setImageColor(.red)
+                    }
+                    if selectedTasks.count < 4 {
+                        Button {
+                            pin()
+                        } label: {
+                            TopButtonChip(title: "Pin \(selectedTasks.count) tasks", imageName: "pin.fill", isSystem: true) {
+                                
+                            }
+                            .setImageColor(.yellow)
+                        }
+                    }
+                }
+            }
             NavigationLink {
                 if let selectedProject {
                     TaskAddView(
@@ -385,6 +385,7 @@ struct TaskView: View {
                 }
             }
         }
+        .animation(.spring, value: selectedTasks.count)
     }
 }
 
