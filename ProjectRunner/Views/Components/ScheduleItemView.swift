@@ -164,14 +164,18 @@ struct ScheduleItemView: View {
                         Text(schedule.name)
                             .font(.footnote.weight(.semibold))
                             .foregroundStyle(.black)
-                            .overlay {
-                                GeometryReader { proxy in
-                                    Color.clear.task {
-                                        self.titleTextHeight = proxy.size.height
-                                    }
-                                }
-                            }
                             .lineLimit(1)
+                    }
+                    .overlay {
+                        GeometryReader { proxy in
+                            Color.clear
+                                .onAppear {
+                                    self.titleTextHeight = proxy.size.height
+                                }
+                                .onChange(of: proxy.size) {
+                                    self.titleTextHeight = proxy.size.height
+                                }
+                        }
                     }
                     if let task = schedule as? TTask,
                        let superiorId = task.superiorId
