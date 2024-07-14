@@ -186,7 +186,6 @@ struct TaskDetailView: View {
                             .padding(.top)
                             
                             ScheduleItemView(schedule: superior, appData: $appData)
-                                .navigatable()
                                 .padding(.bottom)
                         } else {
                             BlockDivider()
@@ -281,7 +280,6 @@ struct TaskDetailView: View {
                                 VStack(spacing: 0) {
                                     ForEach(notDoneTasks, id: \.self) { task in
                                         ScheduleItemView(schedule: task, appData: $appData)
-                                            .navigatable()
                                     }
                                 }
                             }

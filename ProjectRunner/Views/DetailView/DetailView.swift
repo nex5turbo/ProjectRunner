@@ -284,7 +284,6 @@ struct DetailView: View {
                             .padding(.top)
                             
                             ScheduleItemView(schedule: superior, appData: $appData)
-                                .navigatable()
                                 .padding(.bottom)
                         } else if var task {
                             BlockDivider()
@@ -381,7 +380,6 @@ struct DetailView: View {
                                 VStack(spacing: 0) {
                                     ForEach(notDoneTasks, id: \.self) { task in
                                         ScheduleItemView(schedule: task, appData: $appData)
-                                            .navigatable()
                                     }
                                 }
                             }
@@ -390,17 +388,6 @@ struct DetailView: View {
                         
                         BlockDivider()
                     }
-                    //                디자인 뽑히기 전까지 보류
-                    //                VStack(alignment: .leading) {
-                    //                    Text("Timeline")
-                    //                        .font(.headline)
-                    //                        .padding(.horizontal)
-                    //                        .padding(.top)
-                    //
-                    //                    AnimatedTimeline(schedule: project, appData: $appData)
-                    //                        .padding()
-                    //                }
-                    
                     if let project {
                         VStack(alignment: .leading) {
                             Text("\(project.clientIds.count) Members Included")

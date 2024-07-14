@@ -286,7 +286,6 @@ struct ProjectDetailView: View {
                             VStack(spacing: 0) {
                                 ForEach(notDoneTasks, id: \.self) { task in
                                     ScheduleItemView(schedule: task, appData: $appData)
-                                        .navigatable()
                                 }
                             }
                         }

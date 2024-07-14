@@ -42,6 +42,16 @@ struct TaskView: View {
     @State private var selectedProject: TProject? = nil
     @State private var filterOptions: FilterOptions = .init()
     @State private var isFilterSheetPresented: Bool = false
+    @State private var selectedTasks: [Schedulable] = []
+    @AppStorage("shouldShowPinned") private var shouldShowPinned: Bool = false
+    @State private var pinnedIds: [String] = [] {
+        didSet {
+            UserDefaults.standard.setValue(pinnedIds, forKey: "pinnedIds")
+        }
+    }
+    var pinnedTasks: [TTask] {
+        appData.tasks.filter { pinnedIds.contains($0.id) }
+    }
     
     let titleFont: Font = .headline
     
@@ -133,35 +143,102 @@ struct TaskView: View {
         }
     }
     
+    func pin() {
+        self.pinnedIds = selectedTasks.map { $0.id }
+        self.selectedTasks = []
+    }
+    
+    func delete() {
+        self.selectedTasks.forEach { task in
+            do {
+                try appData.delete(schedule: task, shouldDeleteSubTasks: true)
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        self.selectedTasks = []
+    }
+    
     var body: some View {
-        VStack(spacing: 0) {
-            if appData.tasks.isEmpty {
-                navigationTopItems()
-                VStack {
-                    Spacer()
-                    Text("No active task")
-                        .font(.headline)
-                        .bold()
-                    Spacer()
-                }
-            } else {
-                navigationTopItems()
-                    .searchable(text: $filterOptions.searchText)
-                switch groupingType {
-                case .plain:
-                    plainList()
-                case .color:
-                    colorSortedList()
-                case .status:
-                    statusSortedList()
-                case .priority:
-                    prioritySortedList()
-                case .date:
-                    dateSortedList()
-                case .label:
-                    labelSortedList()
+        ZStack {
+            VStack(spacing: 0) {
+                if appData.tasks.isEmpty {
+                    navigationTopItems()
+                    VStack {
+                        Spacer()
+                        Text("No active task")
+                            .font(.headline)
+                            .bold()
+                        Spacer()
+                    }
+                } else {
+                    navigationTopItems()
+                        .searchable(text: $filterOptions.searchText)
+                    ZStack {
+                        VStack(spacing: 0) {
+                            if shouldShowPinned {
+                                ForEach(pinnedTasks, id :\.self) { task in
+                                    ScheduleItemView(schedule: task, appData: $appData)
+                                }
+                            }
+                            switch groupingType {
+                            case .plain:
+                                plainList()
+                            case .color:
+                                colorSortedList()
+                            case .status:
+                                statusSortedList()
+                            case .priority:
+                                prioritySortedList()
+                            case .date:
+                                dateSortedList()
+                            case .label:
+                                labelSortedList()
+                            }
+                        }
+                        VStack(spacing: 0) {
+                            if shouldShowPinned {
+                                ForEach(pinnedTasks, id :\.self) { task in
+                                    ScheduleItemView(schedule: task, appData: $appData)
+                                }
+                            }
+                            Button {
+                                self.shouldShowPinned.toggle()
+                            } label: {
+                                Image(systemName: shouldShowPinned ? "chevron.up" : "chevron.down")
+                            }
+
+                            Spacer()
+                        }
+                    }
+                    
                 }
             }
+            VStack {
+                Spacer()
+                if !selectedTasks.isEmpty {
+                    HStack {
+                        Spacer()
+                        Button {
+                            delete()
+                        } label: {
+                            Image(systemName: "trash.fill")
+                        }
+                        if selectedTasks.count < 4 {
+                            Button {
+                                pin()
+                            } label: {
+                                Image(systemName: "pin.fill")
+                            }
+                        }
+                    }
+                    .font(.title)
+                    .padding()
+                }
+            }
+        }
+        .task {
+            self.pinnedIds = UserDefaults.standard.stringArray(forKey: "pinnedIds") ?? []
         }
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle(
@@ -339,7 +416,6 @@ extension TaskView {
             VStack {
                 Spacer()
                 Text("No label list")
-                Text("TODO: - illustration or text")
                 Spacer()
             }
         }
@@ -355,7 +431,7 @@ extension TaskView {
         VStack(spacing: 0) {
             ForEach(list, id: \.self) { task in
                 ScheduleItemView(schedule: task, appData: $appData)
-                    .navigatable()
+                    .isSelected(in: $selectedTasks)
             }
         }
         .padding(.bottom)

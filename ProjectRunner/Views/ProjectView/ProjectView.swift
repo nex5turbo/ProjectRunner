@@ -179,7 +179,6 @@ extension ProjectView {
             VStack {
                 Spacer()
                 Text("No label list")
-                Text("TODO: - illustration or text")
                 Spacer()
             }
         }
@@ -195,7 +194,6 @@ extension ProjectView {
         VStack(spacing: 0) {
             ForEach(list, id: \.self) { project in
                 ScheduleItemView(schedule: project, appData: $appData)
-                    .navigatable()
             }
         }
     }

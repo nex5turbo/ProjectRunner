@@ -29,7 +29,6 @@ extension Calendar {
         let minutes = interval / 60
         let hours = minutes / 60
         let days = hours / 24
-        print(minutes)
         if days <= 1.0 {
             if hours <= 1.0 {
                 if hours <= 0.0 {
