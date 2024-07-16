@@ -90,6 +90,38 @@ struct AppData: Codable, Hashable {
         return
     }
     
+    static func tutorial() throws -> Self {
+        let folder = FileManager.default.documentDirectory.appendingPathComponent("AppData.tm")
+        let iCloudFolder = FileManager.default.cloudDocumentDirectory?.appendingPathComponent("AppData.tm")
+        let decoder = JSONDecoder()
+        if let iCloudFolder {
+            if FileManager.default.fileExists(atPath: iCloudFolder.path) {
+                let data = try Data(contentsOf: iCloudFolder)
+                return try decoder.decode(Self.self, from: data)
+            }
+        }
+        if FileManager.default.fileExists(atPath: folder.path) {
+            let data = try Data(contentsOf: folder)
+            return try decoder.decode(Self.self, from: data)
+        }
+        
+        var newAppData = AppData()
+        try newAppData.loadTutorial()
+        return newAppData
+    }
+    
+    static func load() throws -> Self {
+        let folder = FileManager.default.documentDirectory.appendingPathComponent("AppData.tm")
+        let iCloudFolder = FileManager.default.cloudDocumentDirectory?.appendingPathComponent("AppData.tm")
+        let decoder = JSONDecoder()
+        if let iCloudFolder {
+            let data = try Data(contentsOf: iCloudFolder)
+            return try decoder.decode(AppData.self, from: data)
+        }
+        let data = try Data(contentsOf: folder)
+        return try decoder.decode(AppData.self, from: data)
+    }
+    
     mutating func loadTutorial() throws {
         guard let url = Bundle.main.url(forResource: "tutorial", withExtension: "json") else {
             return

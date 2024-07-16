@@ -10,50 +10,75 @@ import SwiftUI
 
 struct Provider: AppIntentTimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), configuration: ConfigurationAppIntent())
+        SimpleEntry(date: Date(), configuration: ConfigurationAppIntent(), appData: AppData(projects: [], tasks: []))
     }
 
     func snapshot(for configuration: ConfigurationAppIntent, in context: Context) async -> SimpleEntry {
-        SimpleEntry(date: Date(), configuration: configuration)
+        SimpleEntry(date: Date(), configuration: configuration, appData: AppData(projects: [], tasks: []))
     }
     
     func timeline(for configuration: ConfigurationAppIntent, in context: Context) async -> Timeline<SimpleEntry> {
-        var entries: [SimpleEntry] = []
+        let groupFolder = FileManager.default.sharedDirectory?.appendingPathComponent("AppData.tm")
+        if let groupFolder {
+            if let data = try? Data(contentsOf: groupFolder) {
+                let decoder = JSONDecoder()
+                if let json = try? decoder.decode(AppData.self, from: data) {
+                    var appData: AppData = json
 
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-        let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate, configuration: configuration)
-            entries.append(entry)
+                    var entries: [SimpleEntry] = []
+                    let entry = Entry(date: Date.now, configuration: configuration, appData: appData)
+                    entries.append(entry)
+
+                    return Timeline(entries: entries, policy: .atEnd)
+                }
+            }
         }
-
-        return Timeline(entries: entries, policy: .atEnd)
+        return Timeline(entries: [], policy: .never)
     }
 }
 
 struct SimpleEntry: TimelineEntry {
     let date: Date
     let configuration: ConfigurationAppIntent
+    let appData: AppData
 }
 
 struct ProjectRunnerWidgetEntryView : View {
     var entry: Provider.Entry
-
+    var preparingTasks: [TTask] {
+        entry.appData.tasks.filter { $0.status == .preparing }
+    }
+    var todoTasks: [TTask] {
+        entry.appData.tasks.filter { $0.status == .todo }
+    }
+    var inProgressTasks: [TTask] {
+        entry.appData.tasks.filter { $0.status == .inProgress }
+    }
+    var doneTasks: [TTask] {
+        entry.appData.tasks.filter { $0.status == .done }
+    }
+    var canceledTasks: [TTask] {
+        entry.appData.tasks.filter { $0.status == .canceled }
+    }
+    
     var body: some View {
-        VStack {
-            Text("Time:")
-            Text(entry.date, style: .time)
-
-            Text("Favorite Emoji:")
-            Text(entry.configuration.favoriteEmoji)
-        }
-        .task {
-            let groupFolder = FileManager.default.sharedDirectory?.appendingPathComponent("AppData.tm")
-            if let groupFolder {
-                print("asd")
+        HStack {
+            VStack(alignment:  .leading) {
+                Text("Process")
+                    .font(.headline)
+                Group {
+                    Text("Total tasks: \(entry.appData.tasks.count)")
+                    Text("Preparing: \(preparingTasks.count)")
+                    Text("Todo: \(todoTasks.count)")
+                    Text("In Progress: \(inProgressTasks.count)")
+                    Text("Done: \(doneTasks.count)")
+                    Text("Canceled: \(canceledTasks.count)")
+                }
+                .font(.footnote)
             }
+            Spacer()
         }
+        .background(.ultraThinMaterial)
     }
 }
 
@@ -85,6 +110,6 @@ extension ConfigurationAppIntent {
 #Preview(as: .systemSmall) {
     ProjectRunnerWidget()
 } timeline: {
-    SimpleEntry(date: .now, configuration: .smiley)
-    SimpleEntry(date: .now, configuration: .starEyes)
+    SimpleEntry(date: .now, configuration: .smiley, appData: AppData(projects: [], tasks: []))
+    SimpleEntry(date: .now, configuration: .starEyes, appData: AppData(projects: [], tasks: []))
 }

@@ -6,88 +6,91 @@
 //
 
 import SwiftUI
-
+import WidgetKit
 
 enum Tab : String, Hashable {
     case project, task, client, settings
 }
 
 struct ContentView: View {
-    
+    @Environment(\.scenePhase) private var scenePhase
     @AppStorage("isFirst") var isFirst = true
     @AppStorage("tab") var tab = Tab.project
     @State private var appData: AppData = AppData()
-
+    @State private var isError: Bool = false
+    
     var body: some View {
-        TabView(selection: $tab) {
-            NavigationStack {
-                ProjectView(
-                    appData: $appData
-                )
+        ZStack {
+            if isError {
+                Text("Error has occured")
+                    .font(.headline)
+                Button {
+                    self.loadAppData()
+                } label: {
+                    Text("Refresh")
+                        .font(.footnote)
+                }
+                
+            } else {
+                
+                TabView(selection: $tab) {
+                    NavigationStack {
+                        ProjectView(
+                            appData: $appData
+                        )
+                    }
+                    .tabItem { Label("Project", systemImage: "square.stack.3d.up.fill") }
+                    .tag(Tab.project)
+                    
+                    NavigationStack {
+                        TaskView(
+                            appData: $appData
+                        )
+                    }
+                    .tabItem { Label("Task", systemImage: "bookmark.fill") }
+                    .tag(Tab.task)
+                    
+                    NavigationStack {
+                        ClientView(
+                            appData: $appData
+                        )
+                    }
+                    .tabItem { Label("Contact", systemImage: "person.fill") }
+                    .tag(Tab.client)
+                    
+                    NavigationStack {
+                        SettingsView(appData: $appData)
+                    }
+                    .tabItem { Label("Setting", systemImage: "gearshape.fill") }
+                    .tag(Tab.settings)
+                }
             }
-            .tabItem { Label("Project", systemImage: "square.stack.3d.up.fill") }
-            .tag(Tab.project)
-            
-            NavigationStack {
-                TaskView(
-                    appData: $appData
-                )
-            }
-            .tabItem { Label("Task", systemImage: "bookmark.fill") }
-            .tag(Tab.task)
-            
-            NavigationStack {
-                ClientView(
-                    appData: $appData
-                )
-            }
-            .tabItem { Label("Contact", systemImage: "person.fill") }
-            .tag(Tab.client)
-            
-            NavigationStack {
-                SettingsView(appData: $appData)
-            }
-            .tabItem { Label("Setting", systemImage: "gearshape.fill") }
-            .tag(Tab.settings)
         }
         .preferredColorScheme(.light)
+        .onChange(of: scenePhase) {
+            if scenePhase == .background || scenePhase == .inactive {
+                WidgetCenter.shared.reloadAllTimelines()
+            }
+        }
         .task {
-            if isFirst {
-                do {
-                    let folder = try FileManager.default.url(for: FileManager.SearchPathDirectory.documentDirectory, in: FileManager.SearchPathDomainMask.userDomainMask, appropriateFor: nil, create: false).appendingPathComponent("AppData.tm")
-                    if FileManager.default.fileExists(atPath: folder.path) {
-                        let data = try Data(contentsOf: folder)
-                        let decoder = JSONDecoder()
-                        let appData = try decoder.decode(AppData.self, from: data)
-                        self.appData = appData
-                    } else {
-                        print("file not found")
-                    }
-                } catch {
-                    let appData = AppData()
-                    self.appData = appData
-                    print("Reason: ",error.localizedDescription)
-                }
-                do {
-                    try self.appData.loadTutorial()
-                } catch {
-                    print(error.localizedDescription)
-                }
-                self.isFirst = false
-            } else {
-                do {
-                    let folder = try FileManager.default.url(for: FileManager.SearchPathDirectory.documentDirectory, in: FileManager.SearchPathDomainMask.userDomainMask, appropriateFor: nil, create: false).appendingPathComponent("AppData.tm")
-                    if FileManager.default.fileExists(atPath: folder.path) {
-                        let data = try Data(contentsOf: folder)
-                        let decoder = JSONDecoder()
-                        let appData = try decoder.decode(AppData.self, from: data)
-                        self.appData = appData
-                    } else {
-                        print("file not found")
-                    }
-                } catch {
-                    print("Reason: ",error.localizedDescription)
-                }
+            loadAppData()
+        }
+    }
+    func loadAppData() {
+        if isFirst {
+            do {
+                self.appData = try AppData.tutorial()
+            } catch {
+                isError = true
+                print(error.localizedDescription)
+            }
+            self.isFirst = false
+        } else {
+            do {
+                self.appData = try AppData.load()
+            } catch {
+                print(error.localizedDescription)
+                self.isError = true
             }
         }
     }

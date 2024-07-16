@@ -17,6 +17,10 @@
 		5442E1F32C460FD0008E4C2B /* ProjectRunnerWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 5442E1DF2C460FCF008E4C2B /* ProjectRunnerWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		5442E20E2C4637AE008E4C2B /* FileManager+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5442E20D2C4637AE008E4C2B /* FileManager+Extensions.swift */; };
 		5442E20F2C463934008E4C2B /* FileManager+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5442E20D2C4637AE008E4C2B /* FileManager+Extensions.swift */; };
+		5442E2152C463A13008E4C2B /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5442E2142C463A13008E4C2B /* AppData.swift */; };
+		5442E2162C463A79008E4C2B /* MarkColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D69DE32C3D12810048E5BD /* MarkColor.swift */; };
+		5442E2172C463A79008E4C2B /* Priority.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D69DE42C3D12810048E5BD /* Priority.swift */; };
+		5442E2182C463A79008E4C2B /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D69DE22C3D12810048E5BD /* Status.swift */; };
 		54D69D6A2C3D11490048E5BD /* ProjectRunnerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D69D692C3D11490048E5BD /* ProjectRunnerApp.swift */; };
 		54D69D6C2C3D11490048E5BD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D69D6B2C3D11490048E5BD /* ContentView.swift */; };
 		54D69D6E2C3D114A0048E5BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 54D69D6D2C3D114A0048E5BD /* Assets.xcassets */; };
@@ -138,6 +142,7 @@
 		5442E20C2C463692008E4C2B /* ProjectRunner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ProjectRunner.entitlements; sourceTree = "<group>"; };
 		5442E20D2C4637AE008E4C2B /* FileManager+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extensions.swift"; sourceTree = "<group>"; };
 		5442E2102C4639AB008E4C2B /* ProjectRunnerWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ProjectRunnerWidgetExtension.entitlements; sourceTree = "<group>"; };
+		5442E2142C463A13008E4C2B /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
 		54D69D662C3D11490048E5BD /* ProjectRunner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectRunner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54D69D692C3D11490048E5BD /* ProjectRunnerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectRunnerApp.swift; sourceTree = "<group>"; };
 		54D69D6B2C3D11490048E5BD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -272,6 +277,7 @@
 		5442E2112C4639E1008E4C2B /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				5442E2142C463A13008E4C2B /* AppData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -700,9 +706,13 @@
 			files = (
 				5442E1E92C460FCF008E4C2B /* ProjectRunnerWidgetLiveActivity.swift in Sources */,
 				5442E1ED2C460FCF008E4C2B /* AppIntent.swift in Sources */,
+				5442E2162C463A79008E4C2B /* MarkColor.swift in Sources */,
+				5442E2172C463A79008E4C2B /* Priority.swift in Sources */,
+				5442E2182C463A79008E4C2B /* Status.swift in Sources */,
 				5442E20F2C463934008E4C2B /* FileManager+Extensions.swift in Sources */,
 				5442E1E72C460FCF008E4C2B /* ProjectRunnerWidgetBundle.swift in Sources */,
 				5442E1EB2C460FCF008E4C2B /* ProjectRunnerWidget.swift in Sources */,
+				5442E2152C463A13008E4C2B /* AppData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
