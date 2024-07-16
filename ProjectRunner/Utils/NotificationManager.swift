@@ -19,6 +19,32 @@ class NotificationManager {
         }
     }
     
+    func simpleNotification(notification: any Notifiable) {
+        let date = notification.notifyAt
+        let content = UNMutableNotificationContent()
+        content.title = "Event at Project Runner"
+        if let appointment = notification as? TAppointment {
+            if let firstMember = appointment.members.first {
+                if appointment.members.count > 1 {
+                    content.subtitle = "Members with " + firstMember.fullName + " +\(appointment.members.count - 1)"
+                } else {
+                    content.subtitle = "Member with " + firstMember.fullName
+                }
+            }
+        }
+        
+        content.body = notification.comment
+        content.sound = .default
+        
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second, .weekday], from: date)
+        
+        let dateComponents = DateComponents(year: components.year, month: components.month, day: components.day, hour: components.hour, minute: components.minute, second: 0)
+        let currentTrigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+        let request = UNNotificationRequest(identifier: notification.id, content: content, trigger: currentTrigger)
+        UNUserNotificationCenter.current().add(request)
+    }
+    
     func scheduleNotification(schedule: Schedulable, notification: any Notifiable) {
         let date = notification.notifyAt
         let content = UNMutableNotificationContent()

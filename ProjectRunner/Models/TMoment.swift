@@ -17,6 +17,10 @@ protocol Notifiable: Identifiable {
     var comment: String { get set }
     var notifyAt: Date { get set }
     var shouldRepeat: Bool { get set }
+    
+    func setNotification(with schedule: Schedulable)
+    func setNotification()
+    func disableNotification()
 }
 
 struct TMoment: Identifiable, Hashable, Codable {
@@ -83,5 +87,17 @@ struct TAppointment: Hashable, Codable, Notifiable {
         self.shouldRepeat = try container.decode(Bool.self, forKey: .shouldRepeat)
         self.createdAt = try container.decode(Date.self, forKey: .createdAt)
         self.members = try container.decode([TClient].self, forKey: .members)
+    }
+    
+    func setNotification() {
+        NotificationManager.instance.simpleNotification(notification: self)
+    }
+    
+    func disableNotification() {
+        NotificationManager.instance.cancelNotification(notification: self)
+    }
+    
+    func setNotification(with schedule: any Schedulable) {
+        NotificationManager.instance.scheduleNotification(schedule: schedule, notification: self)
     }
 }
