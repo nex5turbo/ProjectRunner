@@ -15,6 +15,8 @@
 		5442E1ED2C460FCF008E4C2B /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5442E1EC2C460FCF008E4C2B /* AppIntent.swift */; };
 		5442E1EF2C460FD0008E4C2B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5442E1EE2C460FD0008E4C2B /* Assets.xcassets */; };
 		5442E1F32C460FD0008E4C2B /* ProjectRunnerWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 5442E1DF2C460FCF008E4C2B /* ProjectRunnerWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		5442E20E2C4637AE008E4C2B /* FileManager+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5442E20D2C4637AE008E4C2B /* FileManager+Extensions.swift */; };
+		5442E20F2C463934008E4C2B /* FileManager+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5442E20D2C4637AE008E4C2B /* FileManager+Extensions.swift */; };
 		54D69D6A2C3D11490048E5BD /* ProjectRunnerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D69D692C3D11490048E5BD /* ProjectRunnerApp.swift */; };
 		54D69D6C2C3D11490048E5BD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D69D6B2C3D11490048E5BD /* ContentView.swift */; };
 		54D69D6E2C3D114A0048E5BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 54D69D6D2C3D114A0048E5BD /* Assets.xcassets */; };
@@ -133,6 +135,9 @@
 		5442E1EC2C460FCF008E4C2B /* AppIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntent.swift; sourceTree = "<group>"; };
 		5442E1EE2C460FD0008E4C2B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5442E1F02C460FD0008E4C2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5442E20C2C463692008E4C2B /* ProjectRunner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ProjectRunner.entitlements; sourceTree = "<group>"; };
+		5442E20D2C4637AE008E4C2B /* FileManager+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extensions.swift"; sourceTree = "<group>"; };
+		5442E2102C4639AB008E4C2B /* ProjectRunnerWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ProjectRunnerWidgetExtension.entitlements; sourceTree = "<group>"; };
 		54D69D662C3D11490048E5BD /* ProjectRunner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectRunner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54D69D692C3D11490048E5BD /* ProjectRunnerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectRunnerApp.swift; sourceTree = "<group>"; };
 		54D69D6B2C3D11490048E5BD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -253,6 +258,7 @@
 		5442E1E52C460FCF008E4C2B /* ProjectRunnerWidget */ = {
 			isa = PBXGroup;
 			children = (
+				5442E2112C4639E1008E4C2B /* Models */,
 				5442E1E62C460FCF008E4C2B /* ProjectRunnerWidgetBundle.swift */,
 				5442E1E82C460FCF008E4C2B /* ProjectRunnerWidgetLiveActivity.swift */,
 				5442E1EA2C460FCF008E4C2B /* ProjectRunnerWidget.swift */,
@@ -263,9 +269,17 @@
 			path = ProjectRunnerWidget;
 			sourceTree = "<group>";
 		};
+		5442E2112C4639E1008E4C2B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		54D69D5D2C3D11490048E5BD = {
 			isa = PBXGroup;
 			children = (
+				5442E2102C4639AB008E4C2B /* ProjectRunnerWidgetExtension.entitlements */,
 				54D69D682C3D11490048E5BD /* ProjectRunner */,
 				54D69D792C3D114A0048E5BD /* ProjectRunnerTests */,
 				54D69D832C3D114A0048E5BD /* ProjectRunnerUITests */,
@@ -289,6 +303,7 @@
 		54D69D682C3D11490048E5BD /* ProjectRunner */ = {
 			isa = PBXGroup;
 			children = (
+				5442E20C2C463692008E4C2B /* ProjectRunner.entitlements */,
 				54D69E282C4158200048E5BD /* Errors */,
 				54D69E1B2C3D9BD00048E5BD /* Info.plist */,
 				54D69D972C3D11BA0048E5BD /* Views */,
@@ -335,6 +350,7 @@
 			children = (
 				54D69DF12C3D12880048E5BD /* Date+Extensions.swift */,
 				54D69DF02C3D12880048E5BD /* String+Extensions.swift */,
+				5442E20D2C4637AE008E4C2B /* FileManager+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -684,6 +700,7 @@
 			files = (
 				5442E1E92C460FCF008E4C2B /* ProjectRunnerWidgetLiveActivity.swift in Sources */,
 				5442E1ED2C460FCF008E4C2B /* AppIntent.swift in Sources */,
+				5442E20F2C463934008E4C2B /* FileManager+Extensions.swift in Sources */,
 				5442E1E72C460FCF008E4C2B /* ProjectRunnerWidgetBundle.swift in Sources */,
 				5442E1EB2C460FCF008E4C2B /* ProjectRunnerWidget.swift in Sources */,
 			);
@@ -694,6 +711,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				54D69DCF2C3D12580048E5BD /* ProjectAddView.swift in Sources */,
+				5442E20E2C4637AE008E4C2B /* FileManager+Extensions.swift in Sources */,
 				54D69DBB2C3D124D0048E5BD /* PriorityIcon.swift in Sources */,
 				54D69E232C3EBD7A0048E5BD /* FilterSheet.swift in Sources */,
 				54D69DD02C3D12580048E5BD /* ProjectDetailView.swift in Sources */,
@@ -797,6 +815,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = ProjectRunnerWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 352B2432VD;
@@ -824,6 +843,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = ProjectRunnerWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 352B2432VD;
@@ -971,6 +991,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ProjectRunner/ProjectRunner.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"ProjectRunner/Preview Content\"";
@@ -1007,6 +1028,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ProjectRunner/ProjectRunner.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"ProjectRunner/Preview Content\"";

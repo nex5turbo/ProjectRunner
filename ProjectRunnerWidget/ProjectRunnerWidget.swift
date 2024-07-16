@@ -48,6 +48,12 @@ struct ProjectRunnerWidgetEntryView : View {
             Text("Favorite Emoji:")
             Text(entry.configuration.favoriteEmoji)
         }
+        .task {
+            let groupFolder = FileManager.default.sharedDirectory?.appendingPathComponent("AppData.tm")
+            if let groupFolder {
+                print("asd")
+            }
+        }
     }
 }
 

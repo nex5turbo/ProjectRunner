@@ -76,8 +76,16 @@ struct AppData: Codable, Hashable {
         encoder.outputFormatting = JSONEncoder.OutputFormatting.prettyPrinted
         
         let data = try encoder.encode(self)
-        let folder = try FileManager.default.url(for: FileManager.SearchPathDirectory.documentDirectory, in: FileManager.SearchPathDomainMask.userDomainMask, appropriateFor: nil, create: false).appendingPathComponent("AppData.tm")
+        let folder = FileManager.default.documentDirectory.appendingPathComponent("AppData.tm")
+        let iCloudFolder = FileManager.default.cloudDocumentDirectory?.appendingPathComponent("AppData.tm")
+        let groupFolder = FileManager.default.sharedDirectory?.appendingPathComponent("AppData.tm")
         try data.write(to: folder)
+        if let iCloudFolder {
+            try data.write(to: iCloudFolder)
+        }
+        if let groupFolder {
+            try data.write(to: groupFolder)
+        }
         
         return
     }
