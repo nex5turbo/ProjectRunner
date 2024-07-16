@@ -66,6 +66,14 @@ struct ContentView: View {
                 }
             }
         }
+        .refreshable {
+            do {
+                self.appData = try AppData.load()
+            } catch {
+                self.isError = true
+                print(error.localizedDescription)
+            }
+        }
         .preferredColorScheme(.light)
         .onChange(of: scenePhase) {
             if scenePhase == .background || scenePhase == .inactive {
@@ -80,6 +88,7 @@ struct ContentView: View {
         if isFirst {
             do {
                 self.appData = try AppData.tutorial()
+                self.isError = false
             } catch {
                 isError = true
                 print(error.localizedDescription)
@@ -88,6 +97,7 @@ struct ContentView: View {
         } else {
             do {
                 self.appData = try AppData.load()
+                self.isError = false
             } catch {
                 print(error.localizedDescription)
                 self.isError = true

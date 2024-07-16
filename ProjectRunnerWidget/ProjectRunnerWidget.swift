@@ -78,7 +78,7 @@ struct ProjectRunnerWidgetEntryView : View {
             }
             Spacer()
         }
-        .background(.ultraThinMaterial)
+        .containerBackground(.yellow.opacity(0.3), for: .widget)
     }
 }
 
