@@ -18,6 +18,7 @@ protocol Schedulable: Markable {
     var doneAt: Date? { get set }
     var status: Status { get set }
     var canceledAt: Date? { get set }
+    var createdAt: Date { get set }
     var priority: Priority { get set }
     var imagePaths: [String] { get set }
     var imageUrls: [URL] { get }
@@ -25,6 +26,26 @@ protocol Schedulable: Markable {
     var hasDeadline: Bool { get set }
     var labels: [TLabel] { get set }
     var taskIds: [String] { get set}
+    func isIn(date: Date) -> Bool
+    func isIn(dayItem: Day) -> Bool
+}
+
+extension Schedulable {
+    func isIn(dayItem: Day) -> Bool {
+        if !hasDeadline {
+            return true
+        }
+        guard let date = dayItem.toDate else {
+            return false
+        }
+        return isIn(date: date)
+    }
+    func isIn(date: Date) -> Bool {
+        if !hasDeadline {
+            return true
+        }
+        return (createdAt...dueDate).contains(date)
+    }
 }
 
 struct TProject: Identifiable, Hashable, Codable, Schedulable {

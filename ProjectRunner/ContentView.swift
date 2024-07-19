@@ -9,7 +9,7 @@ import SwiftUI
 import WidgetKit
 
 enum Tab : String, Hashable {
-    case project, task, client, settings
+    case project, task, calendar, client, settings
 }
 
 struct ContentView: View {
@@ -47,8 +47,14 @@ struct ContentView: View {
                             appData: $appData
                         )
                     }
-                    .tabItem { Label("Task", systemImage: "bookmark.fill") }
+                    .tabItem { Label("Task", systemImage: "list.bullet") }
                     .tag(Tab.task)
+                    
+                    NavigationStack {
+                        CalenderView(appData: $appData)
+                    }
+                    .tabItem { Label("Calendar", systemImage: "calendar") }
+                    .tag(Tab.calendar)
                     
                     NavigationStack {
                         ClientView(
