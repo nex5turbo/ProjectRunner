@@ -18,19 +18,22 @@ struct ContentView: View {
     @AppStorage("tab") var tab = Tab.project
     @State private var appData: AppData = AppData()
     @State private var isError: Bool = false
-    
+    init() {
+        UITabBar.appearance().backgroundColor = UIColor.white
+    }
     var body: some View {
         ZStack {
             if isError {
-                Text("Error has occured")
-                    .font(.headline)
-                Button {
-                    self.loadAppData()
-                } label: {
-                    Text("Refresh")
-                        .font(.footnote)
+                VStack {
+                    Text("Error has occured")
+                        .font(.headline)
+                    Button {
+                        self.loadAppData()
+                    } label: {
+                        Text("Refresh")
+                            .font(.footnote)
+                    }
                 }
-                
             } else {
                 
                 TabView(selection: $tab) {
@@ -94,6 +97,7 @@ struct ContentView: View {
         if isFirst {
             do {
                 self.appData = try AppData.tutorial()
+                try self.appData.save()
                 self.isError = false
             } catch {
                 isError = true

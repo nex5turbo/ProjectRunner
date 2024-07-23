@@ -7,11 +7,31 @@
 
 import SwiftUI
 
-struct CalenderView: View {
-    enum CalendarStyle: String, CaseIterable {
-        case diary
-        case task
+enum CalendarStyle: String, CaseIterable {
+    case diary
+    case task
+    
+    var tintColor: Color {
+        switch self {
+        case .diary:
+                .pink
+        case .task:
+                .blue
+        }
     }
+}
+
+enum Days: String, CaseIterable {
+    case SUN
+    case MON
+    case TUE
+    case WED
+    case THU
+    case FRI
+    case SAT
+}
+
+struct CalenderView: View {
     @Binding var appData: AppData
     var years: [Int] = Array(2010...2099)
     var months: [Month] {
@@ -24,11 +44,22 @@ struct CalenderView: View {
     @State private var isFetched: Bool = false
     
     @State private var calendarStyle: CalendarStyle = .diary
+    
+    var selectedDaysTasks: [TTask] {
+        return appData.tasks.filter {
+            if let date = selectedDay.toDate {
+                return $0.hasDeadline && $0.isIn(date: date)
+            } else {
+                return false
+            }
+        }
+    }
+    
     var height: CGFloat {
-        UIScreen.main.bounds.height * (3.0 / 5.0)
+        UIScreen.main.bounds.height * 0.4
     }
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 0) {
             HStack {
                 Text(selectedMonth.id)
                     .font(.title2.weight(.semibold))
@@ -38,21 +69,35 @@ struct CalenderView: View {
                         }
                     }
                 Spacer()
+#if DEBUG
                 Picker("", selection: $calendarStyle) {
                     ForEach(CalendarStyle.allCases, id: \.self) { style in
                         Text(style.rawValue)
                     }
                 }
-                .pickerStyle(.segmented)
+                .pickerStyle(SegmentedPickerStyle())
                 .fixedSize()
+#endif
             }
             .padding()
+            
+            HStack {
+                ForEach(Days.allCases, id: \.self) { day in
+                    Text(day.rawValue)
+                        .font(.caption2.weight(.semibold))
+                        .foregroundStyle(.gray)
+                        .frame(maxWidth: .infinity)
+                }
+            }
+            .padding(.horizontal)
+            .padding(.vertical, 4)
             
             TabView(selection: $selectedMonth) {
                 ForEach(months) { month in
                     CalendarMonth(
                         appData: $appData,
                         selectedDay: $selectedDay,
+                        calendarStyle: $calendarStyle,
                         month: month
                     )
                     .tag(month)
@@ -60,9 +105,37 @@ struct CalenderView: View {
             }
             .tabViewStyle(.page(indexDisplayMode: .never))
             .frame(height: height)
+            Divider()
+            ZStack(alignment: .bottomTrailing) {
+                ScrollView {
+                    VStack(spacing: 0) {
+                        ForEach(selectedDaysTasks) { task in
+                            ScheduleItemView(schedule: task, appData: $appData)
+                        }
+                    }
+                }
+                NavigationLink {
+                    if let date = selectedDay.toDate {
+                        TaskAddView(dueDate: date, appData: $appData)
+                    } else {
+                        TaskAddView(appData: $appData)
+                    }
+                } label: {
+                    let size: CGFloat = 40
+                    Circle().fill(.blue)
+                        .frame(width: size, height: size)
+                        .overlay {
+                            Image(systemName: "plus")
+                                .font(.title2)
+                                .foregroundStyle(.white)
+                        }
+                }
+                .padding()
+            }
+            .frame(maxWidth: .infinity)
+            .background(Color(uiColor: UIColor.secondarySystemGroupedBackground))
+            .safeAreaPadding(.bottom)
             
-            Spacer()
-            // 여기에 다이어리 혹은 task를 어떻게 표현할 것인가?
         }
         .task {
             guard !isFetched else {
@@ -87,6 +160,7 @@ struct CalendarMonth: View {
     let calendarManager = CalendarManager()
     @Binding var appData: AppData
     @Binding var selectedDay: Day
+    @Binding var calendarStyle: CalendarStyle
     let month: Month
     let columns: [GridItem] = [
         .init(.flexible(), spacing: 0),
@@ -141,7 +215,7 @@ struct CalendarMonth: View {
         }
     }
     var height: CGFloat {
-        UIScreen.main.bounds.height * (3.0 / 5.0)
+        UIScreen.main.bounds.height * 0.4
     }
     var cellHeight: CGFloat {
         height / CGFloat(weeks ?? 6)
@@ -152,29 +226,21 @@ struct CalendarMonth: View {
         LazyVGrid(columns: columns, spacing: 0) {
             // last month day with gray color
             ForEach(lastMonthDayItems, id: \.self) { item in
-                VStack(spacing: 4) {
-                    HStack {
-                        dayText(day: item, isLastMonth: true)
-                        Spacer()
-                    }
-                    
-                    Spacer()
-                }
-                .frame(height: cellHeight)
-                .frame(maxWidth: .infinity)
-                .onTapGesture {
-                    selectedDay = item
-                }
+                Color.clear
+                    .frame(height: cellHeight)
+                    .frame(maxWidth: .infinity)
             }
             
             // current month day with black and red color
             ForEach(dayItems, id: \.self) { item in
                 VStack(spacing: 4) {
-                    HStack {
-                        dayText(day: item, isLastMonth: false)
-                        Spacer()
-                    }
+                    dayText(day: item, isLastMonth: false)
                     
+                    let hasTask = appData.tasks.contains { $0.hasDeadline && $0.isIn(dayItem: item) }
+                    if hasTask {
+                        Circle().fill(calendarStyle.tintColor.opacity(0.5))
+                            .frame(width: 6, height: 6)
+                    }
                     Spacer()
                 }
                 .frame(height: cellHeight)
@@ -236,7 +302,7 @@ struct Month: Identifiable, Hashable {
     }
 }
 
-struct Day: Identifiable, Hashable {
+struct Day: Identifiable, Hashable, Codable {
     var id: String { "\(year)/\(month)\(value)" }
     var year: Int
     var month: Int
@@ -261,6 +327,13 @@ struct Day: Identifiable, Hashable {
         let month = calendarManager.currentDateComponents.month!
         let day = calendarManager.currentDateComponents.day!
         return year == self.year && month == self.month && day == self.value
+    }
+    
+    func isSame(with day: Date) -> Bool {
+        let comps = Calendar.current.dateComponents([.year, .month, .day], from: Date.now)
+        return year == comps.year! &&
+        month == comps.month! &&
+        value == comps.day!
     }
 }
 

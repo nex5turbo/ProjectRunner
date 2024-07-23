@@ -22,6 +22,7 @@
 		5442E2172C463A79008E4C2B /* Priority.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D69DE42C3D12810048E5BD /* Priority.swift */; };
 		5442E2182C463A79008E4C2B /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D69DE22C3D12810048E5BD /* Status.swift */; };
 		5442E21B2C465AAE008E4C2B /* CalenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5442E21A2C465AAE008E4C2B /* CalenderView.swift */; };
+		5442E2802C4A633F008E4C2B /* TDiary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5442E27F2C4A633F008E4C2B /* TDiary.swift */; };
 		54D69D6A2C3D11490048E5BD /* ProjectRunnerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D69D692C3D11490048E5BD /* ProjectRunnerApp.swift */; };
 		54D69D6C2C3D11490048E5BD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D69D6B2C3D11490048E5BD /* ContentView.swift */; };
 		54D69D6E2C3D114A0048E5BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 54D69D6D2C3D114A0048E5BD /* Assets.xcassets */; };
@@ -145,6 +146,7 @@
 		5442E2102C4639AB008E4C2B /* ProjectRunnerWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ProjectRunnerWidgetExtension.entitlements; sourceTree = "<group>"; };
 		5442E2142C463A13008E4C2B /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
 		5442E21A2C465AAE008E4C2B /* CalenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderView.swift; sourceTree = "<group>"; };
+		5442E27F2C4A633F008E4C2B /* TDiary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDiary.swift; sourceTree = "<group>"; };
 		54D69D662C3D11490048E5BD /* ProjectRunner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectRunner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54D69D692C3D11490048E5BD /* ProjectRunnerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectRunnerApp.swift; sourceTree = "<group>"; };
 		54D69D6B2C3D11490048E5BD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -375,6 +377,7 @@
 				54D69DE52C3D12810048E5BD /* TMoment.swift */,
 				54D69DE62C3D12810048E5BD /* TProject.swift */,
 				54D69DDE2C3D12810048E5BD /* TTask.swift */,
+				5442E27F2C4A633F008E4C2B /* TDiary.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -724,6 +727,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				54D69DCF2C3D12580048E5BD /* ProjectAddView.swift in Sources */,
+				5442E2802C4A633F008E4C2B /* TDiary.swift in Sources */,
 				5442E20E2C4637AE008E4C2B /* FileManager+Extensions.swift in Sources */,
 				54D69DBB2C3D124D0048E5BD /* PriorityIcon.swift in Sources */,
 				54D69E232C3EBD7A0048E5BD /* FilterSheet.swift in Sources */,

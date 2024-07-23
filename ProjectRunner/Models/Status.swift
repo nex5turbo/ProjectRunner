@@ -55,11 +55,11 @@ enum Status: String, Codable, CaseIterable {
         case .preparing:
                 .gray.opacity(0.5)
         case .todo:
-                .black.opacity(0.8)
+                .gray.opacity(0.7)
         case .inProgress:
                 .yellow
         case .done:
-                .pink
+            Color(uiColor: UIColor.systemBlue)
         case .canceled:
                 .gray
         }

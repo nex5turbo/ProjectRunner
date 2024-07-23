@@ -37,6 +37,16 @@ struct TaskAddView: View {
         self.onSaved = onSaved
     }
     
+    init(dueDate: Date, appData: Binding<AppData>) {
+        self._appData = appData
+        self.isEditing = false
+        var newTask = TTask.emptyTask()
+        newTask.hasDeadline = true
+        newTask.dueDate = dueDate
+        self._newTask = State(initialValue: newTask)
+        self.onSaved = { _ in }
+    }
+    
     let isEditing: Bool
     private var navTitle: String {
         isEditing ? "Edit Task" : "New Task"
