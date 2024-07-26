@@ -7,6 +7,9 @@
     "* Duplicated name" : {
 
     },
+    "/" : {
+
+    },
     "%@" : {
 
     },
@@ -206,6 +209,9 @@
     "Notification" : {
 
     },
+    "Payment will be made automatically after the trial ends." : {
+
+    },
     "Phone Number" : {
 
     },
@@ -216,6 +222,9 @@
 
     },
     "Prioirity" : {
+
+    },
+    "Privacy Policy" : {
 
     },
     "Project" : {
@@ -233,13 +242,22 @@
     "Refresh" : {
 
     },
+    "Remove all\nAds" : {
+
+    },
     "Repeat" : {
+
+    },
+    "RESOTRE" : {
 
     },
     "save" : {
 
     },
     "Save" : {
+
+    },
+    "Save to\niCloud" : {
 
     },
     "Select Superior" : {
@@ -254,7 +272,16 @@
     "Settings" : {
 
     },
+    "Share with your deivices" : {
+
+    },
+    "Something wrong. Hit RESTORE button or reboot this app please!" : {
+
+    },
     "Start Date" : {
+
+    },
+    "Start with a free one week trial, then auto-renews for %@ / year." : {
 
     },
     "Status" : {
@@ -264,6 +291,9 @@
 
     },
     "Sub tasks" : {
+
+    },
+    "Subscribe" : {
 
     },
     "Task" : {
@@ -278,10 +308,25 @@
     "Tasks" : {
 
     },
+    "Terms of use" : {
+
+    },
     "test" : {
 
     },
+    "Thanks for purchasing!" : {
+
+    },
     "Todo" : {
+
+    },
+    "Transaction failed. Try again." : {
+
+    },
+    "Unlock all features" : {
+
+    },
+    "Unlock all features!" : {
 
     },
     "You can set maximum 3 pins" : {

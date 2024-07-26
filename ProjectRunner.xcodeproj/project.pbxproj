@@ -24,6 +24,11 @@
 		5442E21B2C465AAE008E4C2B /* CalenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5442E21A2C465AAE008E4C2B /* CalenderView.swift */; };
 		5442E2802C4A633F008E4C2B /* TDiary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5442E27F2C4A633F008E4C2B /* TDiary.swift */; };
 		54C1D7D02C51014200BD3683 /* DiaryAddSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C1D7CF2C51014200BD3683 /* DiaryAddSheet.swift */; };
+		54C1D7D22C536DD500BD3683 /* SubscriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C1D7D12C536DD500BD3683 /* SubscriptionView.swift */; };
+		54C1D7D42C53706E00BD3683 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C1D7D32C53706E00BD3683 /* RoundedButton.swift */; };
+		54C1D7D62C53708900BD3683 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C1D7D52C53708900BD3683 /* LottieView.swift */; };
+		54C1D7D92C5370BF00BD3683 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 54C1D7D82C5370BF00BD3683 /* Lottie */; };
+		54C1D7DC2C53726300BD3683 /* subscription.json in Resources */ = {isa = PBXBuildFile; fileRef = 54C1D7DA2C53726300BD3683 /* subscription.json */; };
 		54D69D6A2C3D11490048E5BD /* ProjectRunnerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D69D692C3D11490048E5BD /* ProjectRunnerApp.swift */; };
 		54D69D6C2C3D11490048E5BD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D69D6B2C3D11490048E5BD /* ContentView.swift */; };
 		54D69D6E2C3D114A0048E5BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 54D69D6D2C3D114A0048E5BD /* Assets.xcassets */; };
@@ -149,6 +154,10 @@
 		5442E21A2C465AAE008E4C2B /* CalenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderView.swift; sourceTree = "<group>"; };
 		5442E27F2C4A633F008E4C2B /* TDiary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDiary.swift; sourceTree = "<group>"; };
 		54C1D7CF2C51014200BD3683 /* DiaryAddSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryAddSheet.swift; sourceTree = "<group>"; };
+		54C1D7D12C536DD500BD3683 /* SubscriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionView.swift; sourceTree = "<group>"; };
+		54C1D7D32C53706E00BD3683 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
+		54C1D7D52C53708900BD3683 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
+		54C1D7DA2C53726300BD3683 /* subscription.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = subscription.json; sourceTree = "<group>"; };
 		54D69D662C3D11490048E5BD /* ProjectRunner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectRunner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54D69D692C3D11490048E5BD /* ProjectRunnerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectRunnerApp.swift; sourceTree = "<group>"; };
 		54D69D6B2C3D11490048E5BD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -237,6 +246,7 @@
 			files = (
 				54D69E0D2C3D9B580048E5BD /* GoogleMobileAds in Frameworks */,
 				54D69E1E2C3D9C530048E5BD /* SwiftyStoreKit in Frameworks */,
+				54C1D7D92C5370BF00BD3683 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,6 +296,14 @@
 				5442E2142C463A13008E4C2B /* AppData.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		54C1D7DB2C53726300BD3683 /* Lottie */ = {
+			isa = PBXGroup;
+			children = (
+				54C1D7DA2C53726300BD3683 /* subscription.json */,
+			);
+			path = Lottie;
 			sourceTree = "<group>";
 		};
 		54D69D5D2C3D11490048E5BD = {
@@ -387,6 +405,7 @@
 		54D69D952C3D11AA0048E5BD /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				54C1D7DB2C53726300BD3683 /* Lottie */,
 				54D69E262C41271A0048E5BD /* tutorial.json */,
 			);
 			path = Resources;
@@ -413,6 +432,7 @@
 				54D69D9A2C3D12030048E5BD /* Components */,
 				54D69D992C3D11FC0048E5BD /* ClientView */,
 				54D69D982C3D11F10048E5BD /* CalendarView */,
+				54C1D7D12C536DD500BD3683 /* SubscriptionView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -457,6 +477,8 @@
 				54D69DA72C3D124C0048E5BD /* TaskProgressBar.swift */,
 				54D69DAB2C3D124C0048E5BD /* TopButtonChip.swift */,
 				54D69E092C3D6AC90048E5BD /* CircleName.swift */,
+				54C1D7D32C53706E00BD3683 /* RoundedButton.swift */,
+				54C1D7D52C53708900BD3683 /* LottieView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -579,6 +601,7 @@
 			packageProductDependencies = (
 				54D69E0C2C3D9B580048E5BD /* GoogleMobileAds */,
 				54D69E1D2C3D9C530048E5BD /* SwiftyStoreKit */,
+				54C1D7D82C5370BF00BD3683 /* Lottie */,
 			);
 			productName = ProjectRunner;
 			productReference = 54D69D662C3D11490048E5BD /* ProjectRunner.app */;
@@ -659,6 +682,7 @@
 			packageReferences = (
 				54D69E0B2C3D9B580048E5BD /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 				54D69E1C2C3D9C530048E5BD /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */,
+				54C1D7D72C5370BF00BD3683 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = 54D69D672C3D11490048E5BD /* Products */;
 			projectDirPath = "";
@@ -687,6 +711,7 @@
 			files = (
 				54D69E272C41271A0048E5BD /* tutorial.json in Resources */,
 				54D69D712C3D114A0048E5BD /* Preview Assets.xcassets in Resources */,
+				54C1D7DC2C53726300BD3683 /* subscription.json in Resources */,
 				54D69D6E2C3D114A0048E5BD /* Assets.xcassets in Resources */,
 				54D69DF52C3D162B0048E5BD /* Localizable.xcstrings in Resources */,
 				54D69E142C3D9B870048E5BD /* Purchase.plist in Resources */,
@@ -777,6 +802,8 @@
 				54D69DA22C3D12390048E5BD /* ClientDetailView.swift in Sources */,
 				54C1D7D02C51014200BD3683 /* DiaryAddSheet.swift in Sources */,
 				54D69DC42C3D124D0048E5BD /* MomentView.swift in Sources */,
+				54C1D7D62C53708900BD3683 /* LottieView.swift in Sources */,
+				54C1D7D22C536DD500BD3683 /* SubscriptionView.swift in Sources */,
 				54D69DC52C3D124D0048E5BD /* SelectSuperiorSheet.swift in Sources */,
 				54D69E172C3D9B870048E5BD /* InterstitialAd.swift in Sources */,
 				54D69DEA2C3D12810048E5BD /* TLabel.swift in Sources */,
@@ -788,6 +815,7 @@
 				54D69D6A2C3D11490048E5BD /* ProjectRunnerApp.swift in Sources */,
 				54D69E082C3D2BBD0048E5BD /* SubTaskSheetButton.swift in Sources */,
 				54D69E022C3D1D0B0048E5BD /* AddMemberSheetButton.swift in Sources */,
+				54C1D7D42C53706E00BD3683 /* RoundedButton.swift in Sources */,
 				54D69DEB2C3D12810048E5BD /* Status.swift in Sources */,
 				54D69DE92C3D12810048E5BD /* AppData.swift in Sources */,
 				54D69DC82C3D124D0048E5BD /* ColorSheet.swift in Sources */,
@@ -1209,6 +1237,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		54C1D7D72C5370BF00BD3683 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.5.0;
+			};
+		};
 		54D69E0B2C3D9B580048E5BD /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
@@ -1228,6 +1264,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		54C1D7D82C5370BF00BD3683 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 54C1D7D72C5370BF00BD3683 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
 		54D69E0C2C3D9B580048E5BD /* GoogleMobileAds */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 54D69E0B2C3D9B580048E5BD /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;

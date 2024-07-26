@@ -16,6 +16,8 @@ struct ContentView: View {
     @Environment(\.scenePhase) private var scenePhase
     @AppStorage("isFirst") var isFirst = true
     @AppStorage("tab") var tab = Tab.project
+    
+    @ObservedObject var purchaseManager: PurchaseManager = PurchaseManager.shared
     @State private var appData: AppData = AppData()
     @State private var isError: Bool = false
     init() {
@@ -74,6 +76,9 @@ struct ContentView: View {
                     .tag(Tab.settings)
                 }
             }
+        }
+        .fullScreenCover(isPresented: $purchaseManager.subscriptionViewPresent) {
+            SubscriptionView()
         }
         .refreshable {
             do {

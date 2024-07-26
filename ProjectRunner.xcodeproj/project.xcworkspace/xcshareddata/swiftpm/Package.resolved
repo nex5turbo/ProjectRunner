@@ -1,6 +1,15 @@
 {
-  "originHash" : "a148aa204fd054d60f303cb8586ff8e9202d36c00cce02313e9755eb8cb07fbc",
+  "originHash" : "71190de0531866a714f535206d5d875c3297b6ea5e5367a1f4e6e2457a13adb2",
   "pins" : [
+    {
+      "identity" : "lottie-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/airbnb/lottie-ios",
+      "state" : {
+        "revision" : "fe4c6fe3a0aa66cdeb51d549623c82ca9704b9a5",
+        "version" : "4.5.0"
+      }
+    },
     {
       "identity" : "swift-package-manager-google-mobile-ads",
       "kind" : "remoteSourceControl",

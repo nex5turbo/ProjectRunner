@@ -29,7 +29,11 @@ struct SettingsView: View {
                 }
             }
             #endif
-            
+            Section("Subscribe") {
+                Button("Unlock all features") {
+                    PurchaseManager.shared.subscriptionViewPresent.toggle()
+                }
+            }
             Button("Set Tutorial") {
                 do {
                     try appData.loadTutorial()
