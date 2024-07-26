@@ -11,7 +11,7 @@ struct SettingsView: View {
     @Binding var appData: AppData
     var body: some View {
         List {
-            #if DEBUG
+#if DEBUG
             Section("Data") {
                 Button("Export Data") {
                     let encoder = JSONEncoder()
@@ -28,12 +28,14 @@ struct SettingsView: View {
                     
                 }
             }
-            #endif
+            
             Section("Subscribe") {
                 Button("Unlock all features") {
                     PurchaseManager.shared.subscriptionViewPresent.toggle()
                 }
             }
+#endif
+            
             Button("Set Tutorial") {
                 do {
                     try appData.loadTutorial()
