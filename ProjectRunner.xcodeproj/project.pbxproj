@@ -23,6 +23,7 @@
 		5442E2182C463A79008E4C2B /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D69DE22C3D12810048E5BD /* Status.swift */; };
 		5442E21B2C465AAE008E4C2B /* CalenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5442E21A2C465AAE008E4C2B /* CalenderView.swift */; };
 		5442E2802C4A633F008E4C2B /* TDiary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5442E27F2C4A633F008E4C2B /* TDiary.swift */; };
+		54C1D7D02C51014200BD3683 /* DiaryAddSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C1D7CF2C51014200BD3683 /* DiaryAddSheet.swift */; };
 		54D69D6A2C3D11490048E5BD /* ProjectRunnerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D69D692C3D11490048E5BD /* ProjectRunnerApp.swift */; };
 		54D69D6C2C3D11490048E5BD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D69D6B2C3D11490048E5BD /* ContentView.swift */; };
 		54D69D6E2C3D114A0048E5BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 54D69D6D2C3D114A0048E5BD /* Assets.xcassets */; };
@@ -147,6 +148,7 @@
 		5442E2142C463A13008E4C2B /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
 		5442E21A2C465AAE008E4C2B /* CalenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderView.swift; sourceTree = "<group>"; };
 		5442E27F2C4A633F008E4C2B /* TDiary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDiary.swift; sourceTree = "<group>"; };
+		54C1D7CF2C51014200BD3683 /* DiaryAddSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryAddSheet.swift; sourceTree = "<group>"; };
 		54D69D662C3D11490048E5BD /* ProjectRunner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectRunner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54D69D692C3D11490048E5BD /* ProjectRunnerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectRunnerApp.swift; sourceTree = "<group>"; };
 		54D69D6B2C3D11490048E5BD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -419,6 +421,7 @@
 			isa = PBXGroup;
 			children = (
 				5442E21A2C465AAE008E4C2B /* CalenderView.swift */,
+				54C1D7CF2C51014200BD3683 /* DiaryAddSheet.swift */,
 			);
 			path = CalendarView;
 			sourceTree = "<group>";
@@ -772,6 +775,7 @@
 				54D69DE72C3D12810048E5BD /* TTask.swift in Sources */,
 				54D69DC92C3D124D0048E5BD /* PremiumButton.swift in Sources */,
 				54D69DA22C3D12390048E5BD /* ClientDetailView.swift in Sources */,
+				54C1D7D02C51014200BD3683 /* DiaryAddSheet.swift in Sources */,
 				54D69DC42C3D124D0048E5BD /* MomentView.swift in Sources */,
 				54D69DC52C3D124D0048E5BD /* SelectSuperiorSheet.swift in Sources */,
 				54D69E172C3D9B870048E5BD /* InterstitialAd.swift in Sources */,

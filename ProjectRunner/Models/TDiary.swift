@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct TDiary: Codable, Identifiable {
+struct TDiary: Codable, Identifiable, Hashable {
     var id: String = UUID().uuidString
     var createdAt: Date
     var createdDay: Day

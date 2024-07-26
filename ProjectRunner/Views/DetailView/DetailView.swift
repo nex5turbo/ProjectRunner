@@ -435,7 +435,9 @@ struct DetailView: View {
                     .padding()
                 }
             }
+#if !DEBUG
             GADBanner().frame(width: GADAdSizeBanner.size.width, height: GADAdSizeBanner.size.height)
+#endif
         }
         .task {
             if let project {
@@ -455,7 +457,7 @@ struct DetailView: View {
         .navigationTitle("")
         .navigationBarTitleDisplayMode(.inline)
     }
-
+    
 }
 
 #Preview {

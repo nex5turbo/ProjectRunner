@@ -44,6 +44,7 @@ struct CalenderView: View {
     @State private var isFetched: Bool = false
     
     @State private var calendarStyle: CalendarStyle = .diary
+    @State private var isDiarySheetPresented: Bool = false
     
     var selectedDaysTasks: [TTask] {
         return appData.tasks.filter {
@@ -107,30 +108,91 @@ struct CalenderView: View {
             .frame(height: height)
             Divider()
             ZStack(alignment: .bottomTrailing) {
-                ScrollView {
-                    VStack(spacing: 0) {
-                        ForEach(selectedDaysTasks) { task in
-                            ScheduleItemView(schedule: task, appData: $appData)
+                switch calendarStyle {
+                case .diary:
+                    VStack(alignment: .leading) {
+                        HStack {
+                            Spacer()
+                        }
+                        .frame(height: 1)
+                        Text(selectedDay.toDate?.toString() ?? "Date Error")
+                            .font(.title2)
+                            .padding(.bottom)
+                        if let diary = appData.getDiary(day: selectedDay) {
+                            Text(diary.content)
+                        } else {
+                            Text("How was your day?")
+                                .foregroundStyle(.gray)
+                                .onTapGesture {
+                                    self.isDiarySheetPresented.toggle()
+                                }
+                        }
+                        Spacer()
+                    }
+                    .padding()
+                case .task:
+                    ScrollView {
+                        VStack(spacing: 0) {
+                            ForEach(selectedDaysTasks) { task in
+                                ScheduleItemView(schedule: task, appData: $appData)
+                            }
                         }
                     }
                 }
-                NavigationLink {
-                    if let date = selectedDay.toDate {
-                        TaskAddView(dueDate: date, appData: $appData)
-                    } else {
-                        TaskAddView(appData: $appData)
-                    }
-                } label: {
-                    let size: CGFloat = 40
-                    Circle().fill(.blue)
-                        .frame(width: size, height: size)
-                        .overlay {
-                            Image(systemName: "plus")
-                                .font(.title2)
-                                .foregroundStyle(.white)
+                
+                switch calendarStyle {
+                case .diary:
+                    Button {
+                        if let diary = appData.getDiary(day: selectedDay) {
+                            do {
+                                try appData.deleteDiary(diary: diary)
+                            } catch {
+                                print(error.localizedDescription)
+                            }
+                        } else {
+                            self.isDiarySheetPresented.toggle()
                         }
+                    } label: {
+                        let size: CGFloat = 40
+                        let iconName: String = {
+                            if appData.getDiary(day: selectedDay) != nil {
+                                return "trash.fill"
+                            } else {
+                                return "plus"
+                            }
+                        }()
+                        Circle().fill(calendarStyle.tintColor)
+                            .frame(width: size, height: size)
+                            .overlay {
+                                Image(systemName: iconName)
+                                    .font(.title2)
+                                    .foregroundStyle(.white)
+                            }
+                    }
+                    .padding()
+                    .sheet(isPresented: $isDiarySheetPresented) {
+                        DiaryAddSheet(day: selectedDay, appData: $appData)
+                    }
+                case .task:
+                    NavigationLink {
+                        if let date = selectedDay.toDate {
+                            TaskAddView(dueDate: date, appData: $appData)
+                        } else {
+                            TaskAddView(appData: $appData)
+                        }
+                    } label: {
+                        let size: CGFloat = 40
+                        Circle().fill(calendarStyle.tintColor)
+                            .frame(width: size, height: size)
+                            .overlay {
+                                Image(systemName: "plus")
+                                    .font(.title2)
+                                    .foregroundStyle(.white)
+                            }
+                    }
+                    .padding()
                 }
-                .padding()
+                
             }
             .frame(maxWidth: .infinity)
             .background(Color(uiColor: UIColor.secondarySystemGroupedBackground))
@@ -236,8 +298,22 @@ struct CalendarMonth: View {
                 VStack(spacing: 4) {
                     dayText(day: item, isLastMonth: false)
                     
-                    let hasTask = appData.tasks.contains { $0.hasDeadline && $0.isIn(dayItem: item) }
-                    if hasTask {
+                    let has: Bool = {
+                        switch calendarStyle {
+                        case .diary:
+                            if let itemDate = item.toDate {
+                                return appData.diaries.contains { $0.createdDay.isSame(with: itemDate) }
+                                
+                            } else {
+                                return false
+                            }
+                            
+                        case .task:
+                            return appData.tasks.contains { $0.hasDeadline && $0.isIn(dayItem: item) }
+                            
+                        }
+                    }()
+                    if has {
                         Circle().fill(calendarStyle.tintColor.opacity(0.5))
                             .frame(width: 6, height: 6)
                     }
@@ -329,8 +405,8 @@ struct Day: Identifiable, Hashable, Codable {
         return year == self.year && month == self.month && day == self.value
     }
     
-    func isSame(with day: Date) -> Bool {
-        let comps = Calendar.current.dateComponents([.year, .month, .day], from: Date.now)
+    func isSame(with date: Date) -> Bool {
+        let comps = Calendar.current.dateComponents([.year, .month, .day], from: date)
         return year == comps.year! &&
         month == comps.month! &&
         value == comps.day!

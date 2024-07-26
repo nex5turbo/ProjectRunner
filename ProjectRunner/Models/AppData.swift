@@ -13,6 +13,7 @@ struct AppData: Codable, Hashable {
     var clients: [TClient]
     var labels: [TLabel]
     var clientLabels: [TLabel]
+    var diaries: [TDiary]
     
     var sortedTasks: [TTask] {
         self.tasks.sorted { $0.createdAt > $1.createdAt }
@@ -28,12 +29,14 @@ struct AppData: Codable, Hashable {
         case clients
         case labels
         case clientLabels
+        case diaries
     }
     
     init() {
         self.tasks = []
         self.projects = []
         self.clients = []
+        self.diaries = []
         self.labels = [
             .init("💪Work out"),
             .init("📚Study"),
@@ -66,6 +69,7 @@ struct AppData: Codable, Hashable {
         self.tasks = try container.decode([TTask].self, forKey: .tasks)
         self.projects = try container.decode([TProject].self, forKey: .projects)
         self.clients = try container.decode([TClient].self, forKey: .clients)
+        self.diaries = (try? container.decode([TDiary].self, forKey: .diaries)) ?? []
         
         self.clientLabels = (try? container.decode([TLabel].self, forKey: .clientLabels)) ?? defaultClientLabels
         self.labels = (try? container.decode([TLabel].self, forKey: .labels)) ?? defaultLabels
@@ -163,6 +167,23 @@ extension AppData {
             return superior
         }
         return nil
+    }
+}
+
+/// diary functions
+extension AppData {
+    mutating func addDiary(diary: TDiary) throws {
+        diaries.append(diary)
+        try save()
+    }
+    
+    mutating func deleteDiary(diary: TDiary) throws {
+        diaries.removeAll(where: { $0 == diary })
+        try save()
+    }
+    
+    func getDiary(day: Day) -> TDiary? {
+        return diaries.first(where: { $0.createdDay == day })
     }
 }
 
