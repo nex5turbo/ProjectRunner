@@ -1,0 +1,337 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "" : {
+
+    },
+    "* Duplicated name" : {
+
+    },
+    "/" : {
+
+    },
+    "%@" : {
+
+    },
+    "%lld" : {
+
+    },
+    "%lld / %lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld / %2$lld"
+          }
+        }
+      }
+    },
+    "%lld Members Included" : {
+
+    },
+    "+ New Event" : {
+
+    },
+    "1" : {
+
+    },
+    "2" : {
+
+    },
+    "3" : {
+
+    },
+    "4" : {
+
+    },
+    "5" : {
+
+    },
+    "Add description..." : {
+
+    },
+    "All Tasks" : {
+
+    },
+    "Allow notification permission to set notification." : {
+
+    },
+    "Any idea or achivement at this time." : {
+
+    },
+    "Apply" : {
+
+    },
+    "Are you sure to delete?" : {
+
+    },
+    "Calendar" : {
+
+    },
+    "Call" : {
+
+    },
+    "Cancel" : {
+
+    },
+    "Clear" : {
+
+    },
+    "Contact" : {
+
+    },
+    "Contacts" : {
+
+    },
+    "content" : {
+
+    },
+    "Created by Wonyoung Jang" : {
+
+    },
+    "Creators" : {
+
+    },
+    "Data" : {
+
+    },
+    "Delete" : {
+
+    },
+    "Delete Sub Tasks too" : {
+
+    },
+    "Designed by Anfaloumrani" : {
+
+    },
+    "Done" : {
+
+    },
+    "Due Date" : {
+
+    },
+    "Due date must be later than start date!" : {
+
+    },
+    "E-mail" : {
+
+    },
+    "Edit" : {
+
+    },
+    "email" : {
+
+    },
+    "Error has occured" : {
+
+    },
+    "Event at" : {
+
+    },
+    "Event description..." : {
+
+    },
+    "Events" : {
+
+    },
+    "Export Data" : {
+
+    },
+    "Family Name" : {
+
+    },
+    "familyName" : {
+
+    },
+    "Filters" : {
+
+    },
+    "Given Name" : {
+
+    },
+    "givenName" : {
+
+    },
+    "How was your day?" : {
+
+    },
+    "instagram" : {
+
+    },
+    "Instagram" : {
+
+    },
+    "Instagram Id" : {
+
+    },
+    "Label" : {
+
+    },
+    "Load Data" : {
+
+    },
+    "Mail" : {
+
+    },
+    "Mark color" : {
+
+    },
+    "Mark colors" : {
+
+    },
+    "Members" : {
+
+    },
+    "Message" : {
+
+    },
+    "Moments" : {
+
+    },
+    "Name" : {
+
+    },
+    "New Event" : {
+
+    },
+    "No active project" : {
+
+    },
+    "No active task" : {
+
+    },
+    "No label list" : {
+
+    },
+    "No saved contact" : {
+
+    },
+    "Notification" : {
+
+    },
+    "Payment will be made automatically after the trial ends." : {
+
+    },
+    "Phone Number" : {
+
+    },
+    "phoneNumber" : {
+
+    },
+    "Pinned" : {
+
+    },
+    "Prioirity" : {
+
+    },
+    "Privacy Policy" : {
+
+    },
+    "Project" : {
+
+    },
+    "Project title" : {
+
+    },
+    "Project title..." : {
+
+    },
+    "Projects" : {
+
+    },
+    "Refresh" : {
+
+    },
+    "Remove all\nAds" : {
+
+    },
+    "Repeat" : {
+
+    },
+    "RESOTRE" : {
+
+    },
+    "save" : {
+
+    },
+    "Save" : {
+
+    },
+    "Save to\niCloud" : {
+
+    },
+    "Select Superior" : {
+
+    },
+    "Set Tutorial" : {
+
+    },
+    "Setting" : {
+
+    },
+    "Settings" : {
+
+    },
+    "Share with your deivices" : {
+
+    },
+    "Something wrong. Hit RESTORE button or reboot this app please!" : {
+
+    },
+    "Start Date" : {
+
+    },
+    "Start with a free one week trial, then auto-renews for %@ / year." : {
+
+    },
+    "Status" : {
+
+    },
+    "Sub task of " : {
+
+    },
+    "Sub tasks" : {
+
+    },
+    "Subscribe" : {
+
+    },
+    "Task" : {
+
+    },
+    "Task title" : {
+
+    },
+    "Task title..." : {
+
+    },
+    "Tasks" : {
+
+    },
+    "Terms of use" : {
+
+    },
+    "test" : {
+
+    },
+    "Thanks for purchasing!" : {
+
+    },
+    "Todo" : {
+
+    },
+    "Transaction failed. Try again." : {
+
+    },
+    "Unlock all features" : {
+
+    },
+    "Unlock all features!" : {
+
+    },
+    "You can set maximum 3 pins" : {
+
+    }
+  },
+  "version" : "1.0"
+}
