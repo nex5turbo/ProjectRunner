@@ -8,8 +8,8 @@
 import SwiftUI
 
 enum CalendarStyle: String, CaseIterable {
-    case diary
     case task
+    case diary
     
     var tintColor: Color {
         switch self {
@@ -43,7 +43,7 @@ struct CalenderView: View {
     @State private var selectedDay: Day = Day(year: 2010, month: 1, value: 1)
     @State private var isFetched: Bool = false
     
-    @State private var calendarStyle: CalendarStyle = .diary
+    @State private var calendarStyle: CalendarStyle = .task
     @State private var isDiarySheetPresented: Bool = false
     
     var selectedDaysTasks: [TTask] {

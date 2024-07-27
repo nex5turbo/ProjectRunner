@@ -92,6 +92,9 @@
     "Creators" : {
 
     },
+    "Data" : {
+
+    },
     "Delete" : {
 
     },
@@ -131,6 +134,9 @@
     "Events" : {
 
     },
+    "Export Data" : {
+
+    },
     "Family Name" : {
 
     },
@@ -159,6 +165,9 @@
 
     },
     "Label" : {
+
+    },
+    "Load Data" : {
 
     },
     "Mail" : {
@@ -284,6 +293,9 @@
     "Sub tasks" : {
 
     },
+    "Subscribe" : {
+
+    },
     "Task" : {
 
     },
@@ -309,6 +321,9 @@
 
     },
     "Transaction failed. Try again." : {
+
+    },
+    "Unlock all features" : {
 
     },
     "Unlock all features!" : {
