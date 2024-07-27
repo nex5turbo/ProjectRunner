@@ -1,0 +1,477 @@
+{
+  "projects": [
+    {
+      "createdAt": 742459312.253775,
+      "appointments": [],
+      "markColor": "red",
+      "id": "FA86C984-5BAF-4361-BFBB-21DE6CE5EC50",
+      "clientIds": [
+        "4D329761-34D0-4E4B-9F47-1A17BD277D40"
+      ],
+      "imagePaths": [],
+      "taskIds": [
+        "1034AC42-4F69-4946-AF25-82BAAC92613B",
+        "434BE3FE-B854-40DA-BEC4-A3E8AB224C8E",
+        "F4D78437-9CD6-4EA3-A712-73496731B350",
+        "29F65731-F57A-4359-A31D-F08939C99E1B",
+        "BE70D951-CF7A-4900-8E9A-39209551EE66",
+        "A524F074-DA16-4394-8C79-1808EF523421",
+        "6DACEDFA-DCA3-43A5-B83E-AED68B4443C6",
+        "90344BE6-18D7-4531-9610-B52DB1757225",
+        "4EB1DEF2-551D-4B4E-8A81-E400CD1D67FC",
+        "E0B703E3-F2BF-4310-B2A9-9C1B41F3FE13",
+        "0B53B13A-C1E6-40BE-99A4-88EAB9B140E0",
+        "D082781A-6372-490F-98DD-E87F67838667",
+        "0AB28D92-9D0B-4C6C-B673-C012D71889F1",
+        "7F0F2C3C-1528-4D86-9CE9-147FEF1F69AC",
+        "C8AB1D87-D823-4E3E-8C42-DA9CB639E9F8",
+        "FB9E40B4-1824-4354-AA88-2993908AC014",
+        "6368027D-132F-4A8A-B4D2-466DF05DA489"
+      ],
+      "description": "By this tutorial, hope you get used to the way how to use Project Runner!\n\nYou can contact me by email or iMessage or instagram!\nPlease scroll down and see contact button below!",
+      "priority": "urgent",
+      "moments": [],
+      "name": "Welcome to Project Runner🙏",
+      "status": "inProgress",
+      "startDate": 742402800,
+      "dueDate": 742489199,
+      "labels": [
+        {
+          "content": "📚Study",
+          "id": "8C7267E2-D7AB-4F45-A625-D7B0AF2F77EF"
+        }
+      ],
+      "hasDeadline": false
+    }
+  ],
+  "clients": [
+    {
+      "label": {
+        "id": "6410B983-EFEB-4112-AD76-EA8833E8820F",
+        "content": "👨‍🏫teacher"
+      },
+      "markColor": "blue",
+      "instagramId": "j_w_y_j",
+      "createdAt": 742459458.692237,
+      "email": "nex5turbo@gmail.com",
+      "phoneNumber": "+821051230584",
+      "givenName": "Wonyoung",
+      "familyName": "Jang",
+      "id": "4D329761-34D0-4E4B-9F47-1A17BD277D40"
+    }
+  ],
+  "clientLabels": [
+    {
+      "id": "6410B983-EFEB-4112-AD76-EA8833E8820F",
+      "content": "👨‍🏫teacher"
+    },
+    {
+      "id": "3332B55F-D883-4D37-ADF5-C1059CE2AEC2",
+      "content": "👩manager"
+    },
+    {
+      "id": "097A1420-1D99-46E9-BC8D-2F29A072FD2D",
+      "content": "🧑‍💻team member"
+    },
+    {
+      "content": "👨‍🦱Client",
+      "id": "9A91BD76-C775-4FF3-816B-70B7071C94D3"
+    }
+  ],
+  "labels": [
+    {
+      "content": "💪Work out",
+      "id": "59B7DFAF-128F-47A0-AF20-31846EBD8B72"
+    },
+    {
+      "content": "📚Study",
+      "id": "8C7267E2-D7AB-4F45-A625-D7B0AF2F77EF"
+    },
+    {
+      "id": "150D5B92-E688-4786-B746-2059DD113052",
+      "content": "🧑‍💻Development"
+    },
+    {
+      "id": "3571C899-9973-4196-A229-3A78EAF577CE",
+      "content": "🎨Design"
+    }
+  ],
+  "tasks": [
+    {
+      "projectId": "FA86C984-5BAF-4361-BFBB-21DE6CE5EC50",
+      "dueDate": 742489199,
+      "taskIds": [],
+      "hasDeadline": false,
+      "description": "Thanks for using Project Runner and welcome!\n\nFirst of all, create a project that you are working on or planning to work on.\n\nProject could be Language studying, School team project, Weight losing or even Travel plan.\n\nAfter make project, don't forget to change status as Done!",
+      "status": "inProgress",
+      "createdAt": 742459695.639561,
+      "name": "Create a project",
+      "markColor": "red",
+      "id": "1034AC42-4F69-4946-AF25-82BAAC92613B",
+      "appointments": [],
+      "imagePaths": [],
+      "labels": [],
+      "moments": [],
+      "startDate": 742402800,
+      "priority": "urgent"
+    },
+    {
+      "moments": [],
+      "status": "todo",
+      "description": "Good job! You've done with creating project!\n\nNext, create sub task of your own project.\nYou can create by New task button above.",
+      "appointments": [],
+      "priority": "urgent",
+      "name": "Create task",
+      "labels": [
+        {
+          "content": "📚Study",
+          "id": "8C7267E2-D7AB-4F45-A625-D7B0AF2F77EF"
+        }
+      ],
+      "hasDeadline": false,
+      "taskIds": [],
+      "startDate": 742402800,
+      "createdAt": 742460106.786302,
+      "id": "434BE3FE-B854-40DA-BEC4-A3E8AB224C8E",
+      "projectId": "FA86C984-5BAF-4361-BFBB-21DE6CE5EC50",
+      "markColor": "red",
+      "imagePaths": [],
+      "dueDate": 742489199
+    },
+    {
+      "projectId": "FA86C984-5BAF-4361-BFBB-21DE6CE5EC50",
+      "taskIds": [],
+      "hasDeadline": false,
+      "priority": "urgent",
+      "imagePaths": [],
+      "labels": [],
+      "moments": [],
+      "dueDate": 742489199,
+      "name": "Modify schedule",
+      "createdAt": 742460384.301427,
+      "id": "F4D78437-9CD6-4EA3-A712-73496731B350",
+      "startDate": 742402800,
+      "appointments": [],
+      "markColor": "red",
+      "description": "Cool! Now you have project and task.\n\nBut what if you made typo or mistakenly selected wrong informations of your schedule?\n\nDon't worry. Just keep up my instructions.\n\n- Name, Description: Just tap the text area and type it again. Be sure tap back button after change your name or description! If not, changes will not be saved.\n\n- Others: In detail page of each schedule, there are several buttons below name section. You can select them again.",
+      "status": "todo"
+    },
+    {
+      "markColor": "red",
+      "id": "29F65731-F57A-4359-A31D-F08939C99E1B",
+      "status": "preparing",
+      "labels": [
+        {
+          "content": "📚Study",
+          "id": "8C7267E2-D7AB-4F45-A625-D7B0AF2F77EF"
+        }
+      ],
+      "taskIds": [
+        "A6AB82FB-16B2-4D35-8442-E08C7AE60427"
+      ],
+      "name": "Sub task of task",
+      "moments": [],
+      "description": "See you on the other side! \n- See below sub tasks section",
+      "imagePaths": [],
+      "dueDate": 742489199,
+      "projectId": "FA86C984-5BAF-4361-BFBB-21DE6CE5EC50",
+      "hasDeadline": false,
+      "appointments": [],
+      "priority": "high",
+      "startDate": 742402800,
+      "createdAt": 742460759.31304
+    },
+    {
+      "labels": [
+        {
+          "id": "8C7267E2-D7AB-4F45-A625-D7B0AF2F77EF",
+          "content": "📚Study"
+        }
+      ],
+      "moments": [],
+      "hasDeadline": false,
+      "startDate": 742402800,
+      "imagePaths": [],
+      "dueDate": 742489199,
+      "name": "I am sub task of task",
+      "createdAt": 742460845.332864,
+      "description": "Great!\n\nThis is sub task of task. \nNot only project can have sub task but also task can.\n\nYou can also simply change superior(parent) task.\nLook at 'Sub task of (Blue Text)' section below and change this to",
+      "markColor": "red",
+      "taskIds": [],
+      "projectId": "29F65731-F57A-4359-A31D-F08939C99E1B",
+      "status": "preparing",
+      "priority": "high",
+      "appointments": [],
+      "id": "A6AB82FB-16B2-4D35-8442-E08C7AE60427"
+    },
+    {
+      "imagePaths": [],
+      "status": "preparing",
+      "id": "BE70D951-CF7A-4900-8E9A-39209551EE66",
+      "startDate": 742402800,
+      "labels": [],
+      "taskIds": [],
+      "dueDate": 742489199,
+      "createdAt": 742461216.554838,
+      "appointments": [],
+      "projectId": "FA86C984-5BAF-4361-BFBB-21DE6CE5EC50",
+      "markColor": "red",
+      "description": "Amazing!\n\nNow you know basic things how this app works!",
+      "name": "Select me!",
+      "priority": "high",
+      "moments": [],
+      "hasDeadline": false
+    },
+    {
+      "startDate": 742402800,
+      "createdAt": 742461414.458984,
+      "appointments": [],
+      "hasDeadline": false,
+      "taskIds": [],
+      "projectId": "FA86C984-5BAF-4361-BFBB-21DE6CE5EC50",
+      "status": "preparing",
+      "name": "Leave moments",
+      "description": "Now we gonna know more detailed features.\n\nYou can leave moment(a.k.a comment) whenever you come up with some amazing idea or achieve something on you task.\n\nLook at the Moments section below.",
+      "markColor": "red",
+      "imagePaths": [],
+      "dueDate": 742489199,
+      "moments": [
+        {
+          "createdAt": 742461607.75243,
+          "id": "6E468265-A1FE-4DFC-A074-7E15736C92D4",
+          "comment": "You can leave infinite moments here.",
+          "isDone": false
+        },
+        {
+          "isDone": false,
+          "comment": "If the idea is not looking good or achievement has turned bad, you can remove with tapping x-button",
+          "createdAt": 742461723.251199,
+          "id": "8AF38B18-98AA-41D7-8D1E-A398125373CD"
+        },
+        {
+          "comment": "Or double tap to make a strike through line on text.",
+          "isDone": true,
+          "createdAt": 742461744.482186,
+          "id": "AC9491C2-FE08-4293-B9D2-BD0ECBD82D8F"
+        }
+      ],
+      "labels": [],
+      "priority": "medium",
+      "id": "A524F074-DA16-4394-8C79-1808EF523421"
+    },
+    {
+      "startDate": 742402800,
+      "appointments": [
+        {
+          "hasNotification": false,
+          "members": [],
+          "comment": "Modify this event",
+          "isDone": false,
+          "shouldRepeat": false,
+          "createdAt": 742465390.218752,
+          "id": "82D4FA1E-B0FD-4229-944C-BE590487E6A6",
+          "notifyAt": 742465390.218751
+        }
+      ],
+      "status": "preparing",
+      "priority": "medium",
+      "createdAt": 742461745.95056,
+      "labels": [],
+      "hasDeadline": false,
+      "id": "6DACEDFA-DCA3-43A5-B83E-AED68B4443C6",
+      "dueDate": 742489199,
+      "markColor": "red",
+      "name": "Make event",
+      "description": "You can make event on task.\n\nFor example, if you had to make a call with your team member, make a new event.\n\nSet time and description. And turn on notification if needed. \n\nYou can simply toggle notification by tapping bell button.",
+      "imagePaths": [],
+      "taskIds": [],
+      "projectId": "FA86C984-5BAF-4361-BFBB-21DE6CE5EC50",
+      "moments": []
+    },
+    {
+      "name": "Grouping",
+      "id": "90344BE6-18D7-4531-9610-B52DB1757225",
+      "dueDate": 742489199,
+      "markColor": "red",
+      "labels": [],
+      "description": "Maybe You can see the button named Priority above. You can change grouping group with that button.",
+      "moments": [],
+      "projectId": "FA86C984-5BAF-4361-BFBB-21DE6CE5EC50",
+      "startDate": 742402800,
+      "imagePaths": [],
+      "priority": "low",
+      "hasDeadline": false,
+      "appointments": [],
+      "status": "preparing",
+      "createdAt": 742462078.288218,
+      "taskIds": []
+    },
+    {
+      "taskIds": [],
+      "startDate": 742402800,
+      "moments": [],
+      "description": "You can also see search bar and filtering button above.\n\nSearch text filters if task is including that text.\nAnd tapping filtering button will present sheet that lets you choose components you want to present on list.",
+      "status": "preparing",
+      "appointments": [],
+      "dueDate": 742489199,
+      "id": "4EB1DEF2-551D-4B4E-8A81-E400CD1D67FC",
+      "markColor": "red",
+      "labels": [],
+      "createdAt": 742462179.05581,
+      "projectId": "FA86C984-5BAF-4361-BFBB-21DE6CE5EC50",
+      "imagePaths": [],
+      "priority": "low",
+      "name": "Filtering and searching",
+      "hasDeadline": false
+    },
+    {
+      "projectId": "FA86C984-5BAF-4361-BFBB-21DE6CE5EC50",
+      "priority": "high",
+      "imagePaths": [],
+      "startDate": 742402800,
+      "dueDate": 742489199,
+      "appointments": [],
+      "moments": [],
+      "hasDeadline": false,
+      "labels": [],
+      "name": "Change status and priority",
+      "markColor": "red",
+      "createdAt": 742462391.966931,
+      "status": "preparing",
+      "description": "You can change status or priority outside of detail page.\n\nTwo buttons are at left side of name.\nLeft first one in for priority and another one is for status.\n\nTap them and change it to other one.",
+      "id": "E0B703E3-F2BF-4310-B2A9-9C1B41F3FE13",
+      "taskIds": []
+    },
+    {
+      "taskIds": [],
+      "dueDate": 742489199,
+      "appointments": [],
+      "status": "preparing",
+      "imagePaths": [],
+      "moments": [],
+      "startDate": 742402800,
+      "hasDeadline": false,
+      "name": "Hide done or canceled",
+      "createdAt": 742462503.667091,
+      "labels": [],
+      "projectId": "FA86C984-5BAF-4361-BFBB-21DE6CE5EC50",
+      "id": "0B53B13A-C1E6-40BE-99A4-88EAB9B140E0",
+      "description": "Hide done button above makes it able to hide done or canceled task.(Project also)",
+      "markColor": "red",
+      "priority": "low"
+    },
+    {
+      "name": "Contacts and team member",
+      "moments": [],
+      "priority": "high",
+      "hasDeadline": false,
+      "startDate": 742402800,
+      "imagePaths": [],
+      "description": "You can create contact in this app.\n\nContact can have name, phone number, email address, instagram id, label, color.\n\nYou can contact with your member easily in project detail page.",
+      "appointments": [],
+      "id": "D082781A-6372-490F-98DD-E87F67838667",
+      "createdAt": 742463073.6176,
+      "labels": [],
+      "status": "preparing",
+      "markColor": "red",
+      "taskIds": [],
+      "dueDate": 742489199,
+      "projectId": "FA86C984-5BAF-4361-BFBB-21DE6CE5EC50"
+    },
+    {
+      "taskIds": [],
+      "hasDeadline": false,
+      "projectId": "FA86C984-5BAF-4361-BFBB-21DE6CE5EC50",
+      "startDate": 742402800,
+      "appointments": [],
+      "markColor": "red",
+      "description": "You can set due date of project or task.\nIf you need deadline of task or project, set due date to notice yourself\n\n'It is most important thing ever!'",
+      "dueDate": 742489199,
+      "id": "0AB28D92-9D0B-4C6C-B673-C012D71889F1",
+      "imagePaths": [],
+      "moments": [],
+      "labels": [],
+      "createdAt": 742463211.93412,
+      "name": "Select due date",
+      "status": "preparing",
+      "priority": "high"
+    },
+    {
+      "description": "You can see how task or project goes on.\nRight side of the name, there is progress bar done tasks count in total sub tasks count",
+      "dueDate": 742489199,
+      "moments": [],
+      "startDate": 742402800,
+      "taskIds": [],
+      "appointments": [],
+      "id": "7F0F2C3C-1528-4D86-9CE9-147FEF1F69AC",
+      "hasDeadline": false,
+      "name": "Progress bar",
+      "imagePaths": [],
+      "projectId": "FA86C984-5BAF-4361-BFBB-21DE6CE5EC50",
+      "markColor": "red",
+      "labels": [],
+      "status": "preparing",
+      "priority": "none",
+      "createdAt": 742463522.208762
+    },
+    {
+      "moments": [],
+      "startDate": 742402800,
+      "createdAt": 742463665.87681,
+      "markColor": "red",
+      "id": "C8AB1D87-D823-4E3E-8C42-DA9CB639E9F8",
+      "hasDeadline": false,
+      "status": "preparing",
+      "appointments": [],
+      "description": "You can set Labels in your schedule.\nIn add page or detail page, there is labels button.\n\nTapping that button shows you a sheet.\n\nTop side of sheet, tapping Label text present keyboard ables you to create new label.\n\nBe sure to tap return button(not Done button) to create new label.",
+      "projectId": "FA86C984-5BAF-4361-BFBB-21DE6CE5EC50",
+      "name": "Set Label",
+      "labels": [
+        {
+          "id": "8C7267E2-D7AB-4F45-A625-D7B0AF2F77EF",
+          "content": "📚Study"
+        }
+      ],
+      "priority": "high",
+      "imagePaths": [],
+      "dueDate": 742489199,
+      "taskIds": []
+    },
+    {
+      "imagePaths": [],
+      "moments": [],
+      "id": "FB9E40B4-1824-4354-AA88-2993908AC014",
+      "hasDeadline": false,
+      "priority": "none",
+      "taskIds": [],
+      "dueDate": 742489199,
+      "labels": [],
+      "createdAt": 742464117.489881,
+      "status": "preparing",
+      "startDate": 742402800,
+      "appointments": [],
+      "description": "You can swipe right to select task.\nAfter you select specific task, there will be ‘delete’ and ‘pin’ buttons appeared.\n\nIf selected tasks are less than 4 you can pin those tasks on top.\nOr you can delete tasks no matter how many tasks you selected.",
+      "name": "Swipe action",
+      "markColor": "red",
+      "projectId": "FA86C984-5BAF-4361-BFBB-21DE6CE5EC50"
+    },
+    {
+      "name": "Over due task",
+      "appointments": [],
+      "dueDate": 742748399,
+      "createdAt": 742693609.356947,
+      "startDate": 742662000,
+      "taskIds": [],
+      "description": "If you missed deadline, there would be Due date over text bottom right side.\nMake sure to finish your task if it is important!",
+      "moments": [],
+      "status": "preparing",
+      "markColor": "red",
+      "imagePaths": [],
+      "hasDeadline": true,
+      "labels": [],
+      "projectId": "FA86C984-5BAF-4361-BFBB-21DE6CE5EC50",
+      "priority": "none",
+      "id": "6368027D-132F-4A8A-B4D2-466DF05DA489"
+    }
+  ]
+}
