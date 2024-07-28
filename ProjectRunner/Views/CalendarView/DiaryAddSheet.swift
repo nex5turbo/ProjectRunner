@@ -14,6 +14,9 @@ struct DiaryAddSheet: View {
     @State private var height: CGFloat = 1
     @State private var content: String = ""
 
+    var canSave: Bool {
+        return content != ""
+    }
     init(day: Day, appData: Binding<AppData>) {
         self.day = day
         self._appData = appData
@@ -29,7 +32,7 @@ struct DiaryAddSheet: View {
                     .font(.title3)
                     .foregroundStyle(.black)
                     .tint(.blue)
-                Button {
+                PremiumButton(reachedLimit: appData.diaries.count >= 10, reason: .createMoreDiaries) {
                     guard let date = day.toDate else {
                         return
                     }
@@ -44,11 +47,12 @@ struct DiaryAddSheet: View {
                     Image(systemName: "chevron.right")
                         .foregroundStyle(.white)
                         .padding(8)
-                        .background(.blue.opacity(0.4))
+                        .background(.blue.opacity(canSave ? 0.8 : 0.4))
                         .clipShape(Circle())
                         .clipped()
                 }
                 .padding(8)
+                .disabled(!canSave)
             }
             
             .background(

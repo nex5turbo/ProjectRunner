@@ -214,7 +214,7 @@ struct ProjectAddView: View {
         .navigationTitle(navTitle)
         .toolbar {
             ToolbarItem {
-                Button("Save") {
+                PremiumButton(reachedLimit: appData.projects.count >= 3, reason: .createMoreProjects) {
                     self.newProject.startDate = self.newProject.startDate.startOfDayDate()
                     self.newProject.dueDate = self.newProject.dueDate.endOfDayDate()
                     do {
@@ -224,6 +224,8 @@ struct ProjectAddView: View {
                     }
                     
                     dismiss()
+                } label: {
+                    Text("Save")
                 }
                 .disabled(!canSave)
             }

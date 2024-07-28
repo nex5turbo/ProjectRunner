@@ -75,6 +75,14 @@ struct AppData: Codable, Hashable {
         self.labels = (try? container.decode([TLabel].self, forKey: .labels)) ?? defaultLabels
     }
     
+    func hasReachedLimit(projectId: String?) -> Bool {
+        if let projectId {
+            return tasks.filter { $0.superiorId == projectId }.count >= 10
+        } else {
+            return tasks.filter { $0.superiorId == nil }.count >= 10
+        }
+    }
+    
     func save() throws {
         let encoder = JSONEncoder()
         encoder.outputFormatting = JSONEncoder.OutputFormatting.prettyPrinted

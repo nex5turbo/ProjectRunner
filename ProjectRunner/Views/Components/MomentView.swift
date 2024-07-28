@@ -47,15 +47,17 @@ struct MomentView: View {
                 HStack {
                     VStack(alignment: .leading) {
                         Text(moment.comment)
-                            .overlay {
-                                if moment.isDone {
-                                    Color.black.frame(height: 1)
-                                        .frame(maxWidth: .infinity)
-                                }
+                            .strikethrough(moment.isDone)
+                            .foregroundStyle(moment.isDone ? .gray : .black)
+                        HStack {
+                            Text(moment.createdAt.toString(true))
+                                .foregroundStyle(.gray)
+                            if moment.isDone {
+                                Text("DONE")
+                                    .foregroundStyle(.blue)
                             }
-                        Text(moment.createdAt.toString(true))
-                            .font(.footnote)
-                            .foregroundStyle(.gray)
+                        }
+                        .font(.footnote.weight(.semibold))
                     }
                     Spacer(minLength: 0)
                     VStack {

@@ -57,7 +57,7 @@ struct TaskAddView: View {
         return appData.tasks.contains { $0.name == newTask.name && $0.id != newTask.id }
     }
     private var isDateAvailable: Bool {
-        newTask.startDate <= newTask.dueDate
+        newTask.startDate.startOfDayDate() <= newTask.dueDate.endOfDayDate()
     }
     private var canSave: Bool {
         newTask.name != "" &&
@@ -208,6 +208,7 @@ struct TaskAddView: View {
                     if !isDateAvailable {
                         Text("Due date must be later than start date!")
                             .foregroundStyle(.red)
+                            .padding(.horizontal)
                     }
                 }
             }
@@ -215,7 +216,9 @@ struct TaskAddView: View {
         .navigationTitle(navTitle)
         .toolbar {
             ToolbarItem {
-                Button("Save") {
+                PremiumButton(
+                    reachedLimit: appData.hasReachedLimit(projectId: newTask.superiorId), 
+                    reason: .createMoreTasks(appData.projects.first(where: { $0.id == newTask.superiorId })?.name ?? "Todo")) {
                     self.newTask.startDate = self.newTask.startDate.startOfDayDate()
                     self.newTask.dueDate = self.newTask.dueDate.endOfDayDate()
                     do {
@@ -225,6 +228,8 @@ struct TaskAddView: View {
                     } catch {
                         print(error.localizedDescription)
                     }
+                } label: {
+                    Text("Save")
                 }
                 .disabled(!canSave)
             }
