@@ -60,7 +60,7 @@ struct TopButtonChip<Content: View>: View {
         }
         .padding(.vertical, 8)
         .padding(.horizontal, 8)
-        .background(isSelected ? Color(UIColor.systemBlue) : .white)
+        .background(isSelected ? Color(UIColor.systemBlue).opacity(0.5) : .white)
         .cornerRadius(8)
         .shadow(color: Color.black.opacity(0.1),radius: 1, y: 1)
         .overlay {

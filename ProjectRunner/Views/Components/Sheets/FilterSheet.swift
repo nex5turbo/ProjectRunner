@@ -67,6 +67,7 @@ struct FilterSheet: View {
                     VStack(alignment: .leading) {
                         Text("Mark colors")
                             .font(headerFont)
+                            .padding(.horizontal)
                         ScrollView(.horizontal) {
                             HStack(spacing: 12) {
                                 ForEach(MarkColor.allCases, id: \.self) { markColor in
@@ -90,11 +91,13 @@ struct FilterSheet: View {
                                 }
                             }
                             .padding(4)
+                            .padding(.horizontal)
                         }
                     }
                     VStack(alignment: .leading) {
                         Text("Status")
                             .font(headerFont)
+                            .padding(.horizontal)
                         ScrollView(.horizontal) {
                             HStack {
                                 ForEach(Status.allCases, id: \.self) { status in
@@ -117,11 +120,13 @@ struct FilterSheet: View {
                                     }
                                 }
                             }
+                            .padding(.horizontal)
                         }
                     }
                     VStack(alignment: .leading) {
                         Text("Prioirity")
                             .font(headerFont)
+                            .padding(.horizontal)
                         ScrollView(.horizontal) {
                             HStack {
                                 ForEach(Priority.allCases, id: \.self) { priority in
@@ -142,11 +147,13 @@ struct FilterSheet: View {
                                     }
                                 }
                             }
+                            .padding(.horizontal)
                         }
                     }
                     VStack(alignment: .leading) {
                         Text("Label")
                             .font(headerFont)
+                            .padding(.horizontal)
                         ScrollView(.horizontal) {
                             HStack {
                                 ForEach(appData.labels, id: \.self) { label in
@@ -166,6 +173,7 @@ struct FilterSheet: View {
                                     }
                                 }
                             }
+                            .padding(.horizontal)
                         }
                     }
 //                    VStack(alignment: .leading) {
@@ -183,7 +191,6 @@ struct FilterSheet: View {
 //                        }
 //                    }
                 }
-                .padding(.horizontal)
             }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
