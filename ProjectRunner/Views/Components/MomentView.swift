@@ -46,7 +46,7 @@ struct MomentView: View {
             ForEach(schedule.moments, id: \.self) { moment in
                 HStack {
                     VStack(alignment: .leading) {
-                        Text(moment.comment)
+                        LinkableText(moment.comment)
                             .strikethrough(moment.isDone)
                             .foregroundStyle(moment.isDone ? .gray : .black)
                         HStack {
