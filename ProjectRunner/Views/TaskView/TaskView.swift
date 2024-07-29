@@ -345,6 +345,29 @@ struct TaskView: View {
                             }
                         }
                     }
+                    
+                    Menu {
+                        ForEach(Status.allCases, id: \.self) { status in
+                            Button {
+                                do {
+                                    for task in selectedTasks {
+                                        try appData.setStatus(schedule: task, to: status)
+                                    }
+                                    self.selectedTasks = []
+                                } catch {
+                                    print(error.localizedDescription)
+                                }
+                            } label: {
+                                Text(status.title)
+                                Image(systemName: status.systemName)
+                            }
+                        }
+                    } label: {
+                        TopButtonChip(title: "Change status", imageName: "circle.dashed", isSystem: true) {
+                            
+                        }
+                        .setImageColor(.teal)
+                    }
                 }
             }
             NavigationLink {
