@@ -47,6 +47,9 @@
     "5" : {
 
     },
+    "About" : {
+
+    },
     "Add description..." : {
 
     },
@@ -100,9 +103,6 @@
 
     },
     "Created by Wonyoung Jang" : {
-
-    },
-    "Creators" : {
 
     },
     "Data" : {
@@ -258,6 +258,9 @@
     "Projects" : {
 
     },
+    "Rate" : {
+
+    },
     "Refresh" : {
 
     },
@@ -336,10 +339,19 @@
     "Transaction failed. Try again." : {
 
     },
+    "Tutorial" : {
+
+    },
     "Unlock all features" : {
 
     },
     "Unlock all features!" : {
+
+    },
+    "Version" : {
+
+    },
+    "View App Permissions" : {
 
     },
     "You can set maximum 3 pins" : {
