@@ -78,29 +78,28 @@ struct ScheduleItemView: View {
             }
         }
         .animation(.spring, value: dragOffset == 0.0)
-        .highPriorityGesture(DragGesture()
-            .onChanged({ value in
-                guard isSwipeEnabled else {
-                    return
-                }
-                self.dragOffset = value.translation.width
-            })
-            .onEnded { value in
-                guard isSwipeEnabled else {
-                    return
-                }
-                if value.predictedEndTranslation.width >= self.sideButtonWidth {
-                    if !self.isSelected {
-                        self.selectedSchedules.append(schedule)
-                    }
-                } else {
-                    if self.isSelected {
-                        self.selectedSchedules.removeAll(where: { $0.id == schedule.id })
-                    }
-                }
-                self.dragOffset = 0
+        .dragGesture(onUpdate: { value in
+            guard isSwipeEnabled else {
+                return
             }
-        )
+            self.dragOffset = value.translation.width
+        }, onEnded: { value in
+            guard isSwipeEnabled else {
+                return
+            }
+            if value.predictedEndTranslation.width >= self.sideButtonWidth {
+                if !self.isSelected {
+                    self.selectedSchedules.append(schedule)
+                }
+            } else {
+                if self.isSelected {
+                    self.selectedSchedules.removeAll(where: { $0.id == schedule.id })
+                }
+            }
+            self.dragOffset = 0
+        }, onCancel: {
+            self.dragOffset = 0
+        })
     }
     
     @ViewBuilder private func arrow() -> some View {

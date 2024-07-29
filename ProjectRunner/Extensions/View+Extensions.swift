@@ -14,7 +14,7 @@ struct DragGestureViewModifier: ViewModifier {
 
     var onStart: (() -> Void)?
     var onUpdate: ((DragGesture.Value) -> Void)?
-    var onEnd: (() -> Void)?
+    var onEnd: ((DragGesture.Value) -> Void)?
     var onCancel: (() -> Void)?
 
     func body(content: Content) -> some View {
@@ -49,7 +49,7 @@ struct DragGestureViewModifier: ViewModifier {
 
     func onDragEnded(_ value: DragGesture.Value) {
         gestureState = .ended
-        onEnd?()
+        onEnd?(value)
     }
 
     enum GestureStatus: Equatable {
@@ -65,14 +65,14 @@ extension View {
     public func dragGesture(
         onStart: (() -> Void)? = nil,
         onUpdate: ((DragGesture.Value) -> Void)? = nil,
-        onEnded: (() -> Void)? = nil,
+        onEnded: ((DragGesture.Value) -> Void)? = nil,
         onCancel: (() -> Void)? = nil
     ) -> some View {
         let view = DragGestureViewModifier(
-            onStart: {},
-            onUpdate: { _ in },
-            onEnd: {},
-            onCancel: {}
+            onStart: onStart,
+            onUpdate: onUpdate,
+            onEnd: onEnded,
+            onCancel: onCancel
         )
         
         return self.modifier(view)
