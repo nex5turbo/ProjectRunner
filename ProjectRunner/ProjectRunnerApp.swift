@@ -17,6 +17,18 @@ struct ProjectRunnerApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .task {
+                    PurchaseManager.shared.verifySubscription { result in
+                        switch result {
+                        case .purchased(let expiryDate, let items):
+                            PurchaseManager.shared.setUserPremium(as: true)
+                        case .expired(let expiryDate, let items):
+                            PurchaseManager.shared.setUserPremium(as: false)
+                        case .notPurchased:
+                            PurchaseManager.shared.setUserPremium(as: false)
+                        }
+                    }
+                }
                 .onChange(of: scenePhase) {
                     if scenePhase == .active {
                         #if !DEBUG
