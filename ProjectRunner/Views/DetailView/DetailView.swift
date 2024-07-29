@@ -224,11 +224,12 @@ struct DetailView: View {
                     }
                     
                     VStack(alignment: .leading) {
-                        ZStack {
-                            Text(schedule.description)
+                        ZStack(alignment: .topLeading) {
+                            Text(schedule.description == "" ? "Add description..." : schedule.description)
                                 .padding([.leading, .trailing], 5)
                                 .padding([.top, .bottom], 8)
-                                .opacity(0)
+                                .foregroundStyle(.gray)
+                                .opacity(schedule.description == "" ? 1 : 0)
                             
                             TextEditor(text: $schedule.description)
                                 .onDisappear {
@@ -254,6 +255,13 @@ struct DetailView: View {
                                         }
                                     }
                                 }
+                            if schedule.description == "" {
+                                Text("Add description...")
+                                    .padding([.leading, .trailing], 5)
+                                    .padding([.top, .bottom], 8)
+                                    .foregroundStyle(.gray)
+                                    .allowsHitTesting(false)
+                            }
                         }
                     }
                     .padding(.horizontal)
