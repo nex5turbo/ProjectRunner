@@ -62,8 +62,21 @@
     "Apply" : {
 
     },
+    "Are you sure to delete %lld tasks?" : {
+
+    },
     "Are you sure to delete?" : {
 
+    },
+    "Are you sure to remove %lld pinned tasks and pin %lld new tasks?" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Are you sure to remove %1$lld pinned tasks and pin %2$lld new tasks?"
+          }
+        }
+      }
     },
     "Calendar" : {
 
@@ -219,6 +232,9 @@
 
     },
     "phoneNumber" : {
+
+    },
+    "Pin" : {
 
     },
     "Pinned" : {

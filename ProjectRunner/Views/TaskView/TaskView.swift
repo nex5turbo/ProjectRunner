@@ -303,26 +303,46 @@ struct TaskView: View {
             selectedProject = appData.projects.first(where: { $0.id == selectedProjectId })
         }
     }
+    
+    @State private var deleteConfirm: Bool = false
+    @State private var pinConfirm: Bool = false
+    
     @ViewBuilder func navigationTopItems() -> some View {
         NavigationTopItems {
             if !selectedTasks.isEmpty {
                 HStack {
                     Button {
-                        delete()
+                        deleteConfirm.toggle()
                     } label: {
                         TopButtonChip(title: "Delete \(selectedTasks.count) tasks", imageName: "trash.fill", isSystem: true) {
                             
                         }
                         .setImageColor(.red)
                     }
+                    .alert("Are you sure to delete \(selectedTasks.count) tasks?", isPresented: $deleteConfirm) {
+                        Button("Cancel", role: .cancel) {
+                            
+                        }
+                        Button("Delete", role: .destructive) {
+                            delete()
+                        }
+                    }
                     if selectedTasks.count < 4 {
                         Button {
-                            pin()
+                            pinConfirm.toggle()
                         } label: {
                             TopButtonChip(title: "Pin \(selectedTasks.count) tasks", imageName: "pin.fill", isSystem: true) {
                                 
                             }
                             .setImageColor(.yellow)
+                        }
+                        .alert("Are you sure to remove \(pinnedIds.count) pinned tasks and pin \(selectedTasks.count) new tasks?", isPresented: $pinConfirm) {
+                            Button("Cancel", role: .cancel) {
+                                
+                            }
+                            Button("Pin") {
+                                pin()
+                            }
                         }
                     }
                 }
