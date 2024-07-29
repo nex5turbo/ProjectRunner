@@ -127,13 +127,7 @@ struct TaskView: View {
                 }
             }
             if filterOptions.searchText != "" {
-                if task.name.contains(filterOptions.searchText) || task.description.contains(filterOptions.searchText) ||
-                    !task.moments.filter({ moment in
-                        moment.comment.contains(filterOptions.searchText)
-                    }).isEmpty ||
-                    !task.appointments.filter({ event in
-                        event.comment.contains(filterOptions.searchText)
-                    }).isEmpty {
+                if task.contains(string: filterOptions.searchText) {
                     return true
                 } else {
                     result = false

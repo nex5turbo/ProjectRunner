@@ -28,9 +28,26 @@ protocol Schedulable: Markable {
     var taskIds: [String] { get set}
     func isIn(date: Date) -> Bool
     func isIn(dayItem: Day) -> Bool
+    func contains(string: String) -> Bool
 }
 
 extension Schedulable {
+    func contains(string: String) -> Bool {
+        if string == "" {
+            return true
+        }
+        if self.name.contains(string) || self.description.contains(string) ||
+            !self.moments.filter({ moment in
+                moment.comment.contains(string)
+            }).isEmpty ||
+            !self.appointments.filter({ event in
+                event.comment.contains(string)
+            }).isEmpty {
+            return true
+        } else {
+            return false
+        }
+    }
     func isIn(dayItem: Day) -> Bool {
         if !hasDeadline {
             return true

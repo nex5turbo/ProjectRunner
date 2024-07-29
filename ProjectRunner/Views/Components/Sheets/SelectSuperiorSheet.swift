@@ -12,57 +12,64 @@ struct SelectSuperiorSheet: View {
     let task: TTask
     @Binding var appData: AppData
     let onSelect: (Schedulable) -> Void
+    @State var searchText: String = ""
 
     var body: some View {
-        List {
-            let filteredProjects = appData.projects.filter { $0.status != .done && $0.status != .canceled }
-            Section {
-                ForEach(filteredProjects, id: \.self) { project in
-                    let isSelectedOne = project.id == task.superiorId
-                    Text(project.name)
-                        .foregroundStyle(isSelectedOne ? .blue : .black)
-                        .onTapGesture {
-                            guard !isSelectedOne else {
-                                return
-                            }
-                            onSelect(project)
-                            dismiss()
-                        }
-                }
-            } header: {
-                HStack {
-                    Text("Projects")
-                        .foregroundStyle(.black)
-                    Text("\(filteredProjects.count)")
-                        .foregroundStyle(.gray)
-                }
-                .font(.title3)
-            }
-            
-            let filteredTasks = getFilteredTasks(currentTask: task, tasks: appData.tasks.filter { $0.status != .done && $0.status != .canceled && $0.superiorId != nil })
-            Section {
-                ForEach(filteredTasks, id: \.self) { stask in
-                    if task.id != stask.id {
-                        let isSelectedOne = stask.id == task.superiorId
-                        Text(stask.name)
+        VStack(spacing: 0) {
+            TextField("", text: $searchText, prompt: Text("search"))
+                .textFieldStyle(.roundedBorder)
+                .padding()
+            Divider()
+            List {
+                let filteredProjects = appData.projects.filter { $0.status != .done && $0.status != .canceled && $0.contains(string: searchText) }
+                Section {
+                    ForEach(filteredProjects, id: \.self) { project in
+                        let isSelectedOne = project.id == task.superiorId
+                        Text(project.name)
                             .foregroundStyle(isSelectedOne ? .blue : .black)
                             .onTapGesture {
                                 guard !isSelectedOne else {
                                     return
                                 }
-                                onSelect(stask)
+                                onSelect(project)
                                 dismiss()
                             }
                     }
+                } header: {
+                    HStack {
+                        Text("Projects")
+                            .foregroundStyle(.black)
+                        Text("\(filteredProjects.count)")
+                            .foregroundStyle(.gray)
+                    }
+                    .font(.title3)
                 }
-            } header: {
-                HStack {
-                    Text("Tasks")
-                        .foregroundStyle(.black)
-                    Text("\(filteredTasks.count)")
-                        .foregroundStyle(.gray)
+                
+                let filteredTasks = getFilteredTasks(currentTask: task, tasks: appData.tasks.filter { $0.contains(string: searchText) && $0.status != .done && $0.status != .canceled && $0.superiorId != nil && ($0.hasDeadline ? $0.dueDate > Date.now : true)})
+                Section {
+                    ForEach(filteredTasks, id: \.self) { stask in
+                        if task.id != stask.id {
+                            let isSelectedOne = stask.id == task.superiorId
+                            Text(stask.name)
+                                .foregroundStyle(isSelectedOne ? .blue : .black)
+                                .onTapGesture {
+                                    guard !isSelectedOne else {
+                                        return
+                                    }
+                                    onSelect(stask)
+                                    dismiss()
+                                }
+                        }
+                    }
+                } header: {
+                    HStack {
+                        Text("Tasks")
+                            .foregroundStyle(.black)
+                        Text("\(filteredTasks.count)")
+                            .foregroundStyle(.gray)
+                    }
+                    .font(.title3)
                 }
-                .font(.title3)
             }
         }
     }
