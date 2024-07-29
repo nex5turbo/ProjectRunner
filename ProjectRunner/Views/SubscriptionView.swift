@@ -62,28 +62,18 @@ during the active period.
             
             LottieView(jsonName: "subscription", loopMode: .loop)
                 .frame(width: 300, height: 300)
-            let iconSize: CGFloat = 60
-            HStack {
-                VStack(alignment: .center) {
-                    Image("cloudSync")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: iconSize, height: iconSize)
-                    Text("Save to\niCloud")
-                }
-                .frame(maxWidth: .infinity)
 
-                VStack(alignment: .center) {
-                    Image("removeAd")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: iconSize, height: iconSize)
-                    Text("Remove all\nAds")
+            ScrollView(.horizontal) {
+                HStack(spacing: 16) {
+                    benefitSection(imageName: "square.stack.3d.up.fill", caption: "Unlimited\nProjects")
+                    benefitSection(imageName: "list.bullet", caption: "Unlimited\nTasks")
+                    benefitSection(imageName: "square.and.pencil", caption: "Unlimited\nDiaries")
+                    benefitSection(imageName: "checkmark.icloud.fill", caption: "Save to\niCloud")
+                    benefitSection(imageName: "nosign", caption: "Remove\nAll Ads")
                 }
-                .frame(maxWidth: .infinity)
+                .padding()
             }
-            .bold()
-            .padding()
+            .scrollIndicators(.never)
             
             if let annualPrice = purchaseManager.getAnnualPrice() {
                 Text("Start with a free one week trial, then auto-renews for \(annualPrice) / year.")
@@ -128,7 +118,7 @@ during the active period.
             HStack {
                 Button {
                     
-                    if let url = URL(string: "https://www.termsfeed.com/live/96691af6-290e-40d5-b970-c5a572727bde"), UIApplication.shared.canOpenURL(url) {
+                    if let url = URL(string: "https://sites.google.com/view/project-runner-privacy/홈"), UIApplication.shared.canOpenURL(url) {
                         UIApplication.shared.open(url, options: [:], completionHandler: nil)
                     }
                 } label: {
@@ -137,7 +127,7 @@ during the active period.
                 Text("/")
                 Button {
                     
-                    if let url = URL(string: "https://sites.google.com/view/almoji-terms/홈"), UIApplication.shared.canOpenURL(url) {
+                    if let url = URL(string: "https://sites.google.com/view/project-runner-terms/홈"), UIApplication.shared.canOpenURL(url) {
                         UIApplication.shared.open(url, options: [:], completionHandler: nil)
                     }
                 } label: {
@@ -172,30 +162,17 @@ during the active period.
             }
         }
     }
-    
-    @ViewBuilder func iCloudTab() -> some View {
-        VStack {
-            Text("Share with your deivices")
-            HStack {
-                Image("iPadCloud")
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 120, height: 120)
-                Image("iPhoneCloud")
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 120, height: 120)
-                
-            }
+    @ViewBuilder func benefitSection(imageName: String, caption: String) -> some View {
+        let iconSize: CGFloat = 60
+        VStack(alignment: .center) {
+            Image(systemName: imageName)
+                .font(.title)
+                .frame(width: iconSize, height: iconSize)
+            Text(caption)
+                .font(.footnote)
+                .multilineTextAlignment(.center)
         }
-    }
-    
-    @ViewBuilder func removeAdTab() -> some View {
-        
-    }
-    
-    @ViewBuilder func fontTab() -> some View {
-        
+        .frame(width: iconSize)
     }
 }
 
