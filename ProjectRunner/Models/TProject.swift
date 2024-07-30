@@ -13,11 +13,9 @@ protocol Schedulable: Markable {
     var name: String { get set}
     var moments: [TMoment] { get set }
     var appointments: [TAppointment] { get set }
-    var startDate: Date { get set }
     var dueDate: Date { get set }
     var doneAt: Date? { get set }
     var status: Status { get set }
-    var canceledAt: Date? { get set }
     var createdAt: Date { get set }
     var priority: Priority { get set }
     var imagePaths: [String] { get set }
@@ -68,7 +66,6 @@ extension Schedulable {
 struct TProject: Identifiable, Hashable, Codable, Schedulable {
     var id: String = UUID().uuidString
     var name: String
-    var startDate: Date
     var dueDate: Date
     var taskIds: [String]
     var clientIds: [String] = []
@@ -79,7 +76,6 @@ struct TProject: Identifiable, Hashable, Codable, Schedulable {
     var appointments: [TAppointment] = []
     var markColor: MarkColor = .noColor
     var doneAt: Date?
-    var canceledAt: Date?
     var priority: Priority = .none
     var imagePaths: [String] = []
     var labels: [TLabel] = []
@@ -103,7 +99,6 @@ struct TProject: Identifiable, Hashable, Codable, Schedulable {
     
     init(name: String, startDate: Date, dueDate: Date, taskIds: [String], createdAt: Date, description: String) {
         self.name = name
-        self.startDate = startDate
         self.dueDate = dueDate
         self.taskIds = taskIds
         self.createdAt = createdAt
@@ -113,7 +108,6 @@ struct TProject: Identifiable, Hashable, Codable, Schedulable {
     enum CodingKeys: CodingKey {
         case id
         case name
-        case startDate
         case dueDate
         case taskIds
         case clientIds
@@ -123,7 +117,6 @@ struct TProject: Identifiable, Hashable, Codable, Schedulable {
         case moments
         case appointments
         case doneAt
-        case canceledAt
         case priority
         case imagePaths
         case hasDeadline
@@ -136,8 +129,6 @@ struct TProject: Identifiable, Hashable, Codable, Schedulable {
         self.id = try container.decode(String.self, forKey: .id)
         
         self.name = try container.decode(String.self, forKey: .name)
-        
-        self.startDate = try container.decode(Date.self, forKey: .startDate)
         
         self.dueDate = try container.decode(Date.self, forKey: .dueDate)
         
@@ -156,8 +147,6 @@ struct TProject: Identifiable, Hashable, Codable, Schedulable {
         self.appointments = (try? container.decode([TAppointment].self, forKey: .appointments)) ?? []
         
         self.doneAt = try container.decodeIfPresent(Date.self, forKey: .doneAt)
-        
-        self.canceledAt = try container.decodeIfPresent(Date.self, forKey: .canceledAt)
         
         self.priority = (try? container.decode(Priority.self, forKey: .priority)) ?? Priority.none
         

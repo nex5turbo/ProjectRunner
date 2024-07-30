@@ -547,22 +547,6 @@ extension AppData {
         try save()
     }
     
-    mutating func changeStartDate(schedule: Schedulable, to startDate: Date) throws {
-        if let task = schedule as? TTask {
-            guard let index = tasks.firstIndex(where: { $0.id == task.id }) else {
-                return
-            }
-            tasks[index].startDate = startDate
-        } else if let project = schedule as? TProject {
-            guard let index = projects.firstIndex(where: { $0.id == project.id }) else {
-                return
-            }
-            projects[index].startDate = startDate
-        }
-        
-        try save()
-    }
-    
     mutating func changeDueDate(schedule: Schedulable, _ hasDueDate: Bool, to dueDate: Date) throws {
         if let task = schedule as? TTask {
             guard let index = tasks.firstIndex(where: { $0.id == task.id }) else {

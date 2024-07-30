@@ -28,7 +28,7 @@ struct ProjectAddView: View {
     }
     @State private var newProject: TProject
     private var isDateAvailable: Bool {
-        newProject.startDate <= newProject.dueDate
+        newProject.createdAt <= newProject.dueDate.endOfDayDate()
     }
     private var isDuplicated: Bool {
         return appData.projects.contains { $0.name == newProject.name && $0.id != newProject.id }
@@ -197,8 +197,6 @@ struct ProjectAddView: View {
                 }
                 .padding(.horizontal)
                 
-                DatePicker("Start Date", selection: $newProject.startDate, displayedComponents: .date)
-                    .padding()
                 if newProject.hasDeadline {
                     DatePicker("Due Date", selection: $newProject.dueDate, displayedComponents: .date)
                         .foregroundStyle(isDateAvailable ? .black : .red)
@@ -215,7 +213,6 @@ struct ProjectAddView: View {
         .toolbar {
             ToolbarItem {
                 PremiumButton(reachedLimit: appData.projects.count >= 3, reason: .createMoreProjects) {
-                    self.newProject.startDate = self.newProject.startDate.startOfDayDate()
                     self.newProject.dueDate = self.newProject.dueDate.endOfDayDate()
                     do {
                         try self.appData.addProject(project: newProject)

@@ -11,7 +11,6 @@ struct TTask: Identifiable, Hashable, Codable, Schedulable {
     var id: String = UUID().uuidString
     var name: String
     var superiorId: String?
-    var startDate: Date
     var dueDate: Date
     var status: Status = .todo
     var createdAt: Date
@@ -20,7 +19,6 @@ struct TTask: Identifiable, Hashable, Codable, Schedulable {
     var markColor: MarkColor = .noColor
     var moments: [TMoment] = []
     var appointments: [TAppointment] = []
-    var canceledAt: Date?
     var priority: Priority = .none
     var hasDeadline: Bool = false
     var imagePaths: [String] = []
@@ -45,7 +43,6 @@ struct TTask: Identifiable, Hashable, Codable, Schedulable {
 
     init(name: String, startDate: Date, dueDate: Date, createdAt: Date, description: String) {
         self.name = name
-        self.startDate = startDate
         self.dueDate = dueDate
         self.createdAt = createdAt
         self.description = description
@@ -55,7 +52,6 @@ struct TTask: Identifiable, Hashable, Codable, Schedulable {
     enum CodingKeys: String, CodingKey {
         case id
         case name
-        case startDate
         case dueDate
         case superiorId = "projectId"
         case status
@@ -64,7 +60,6 @@ struct TTask: Identifiable, Hashable, Codable, Schedulable {
         case moments
         case appointments
         case doneAt
-        case canceledAt
         case priority
         case imagePaths
         case hasDeadline
@@ -82,8 +77,6 @@ struct TTask: Identifiable, Hashable, Codable, Schedulable {
         
         self.superiorId = try container.decodeIfPresent(String.self, forKey: .superiorId)
         
-        self.startDate = try container.decode(Date.self, forKey: .startDate)
-        
         self.dueDate = try container.decode(Date.self, forKey: .dueDate)
         
         self.status = try container.decodeIfPresent(Status.self, forKey: .status) ?? Status.todo
@@ -97,8 +90,6 @@ struct TTask: Identifiable, Hashable, Codable, Schedulable {
         self.moments = (try? container.decode([TMoment].self, forKey: .moments)) ?? []
         
         self.appointments = (try? container.decode([TAppointment].self, forKey: .appointments)) ?? []
-        
-        self.canceledAt = try container.decodeIfPresent(Date.self, forKey: .canceledAt)
         
         self.priority = (try? container.decode(Priority.self, forKey: .priority)) ?? Priority.none
         

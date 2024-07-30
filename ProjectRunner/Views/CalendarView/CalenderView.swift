@@ -235,7 +235,7 @@ struct CalendarMonth: View {
     ]
     
     var dueDatedTasks: [TTask] {
-        appData.tasks.filter { $0.hasDeadline }.sorted { $0.startDate < $1.startDate }
+        appData.tasks.filter { $0.hasDeadline }.sorted { $0.createdAt < $1.createdAt }
     }
     
     var days: Int? {

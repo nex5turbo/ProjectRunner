@@ -57,7 +57,7 @@ struct TaskAddView: View {
         return appData.tasks.contains { $0.name == newTask.name && $0.id != newTask.id }
     }
     private var isDateAvailable: Bool {
-        newTask.startDate.startOfDayDate() <= newTask.dueDate.endOfDayDate()
+        newTask.createdAt <= newTask.dueDate.endOfDayDate()
     }
     private var canSave: Bool {
         newTask.name != "" &&
@@ -196,9 +196,7 @@ struct TaskAddView: View {
                     sectionText("Set due date")
                 }
                 .padding()
-                
-                DatePicker("Start Date", selection: $newTask.startDate, displayedComponents: .date)
-                    .padding()
+
                 if newTask.hasDeadline {
                     DatePicker("Due Date", selection: $newTask.dueDate, displayedComponents: .date)
                         .foregroundStyle(isDateAvailable ? .black : .red)
@@ -219,7 +217,6 @@ struct TaskAddView: View {
                 PremiumButton(
                     reachedLimit: appData.hasReachedLimit(projectId: newTask.superiorId), 
                     reason: .createMoreTasks(appData.projects.first(where: { $0.id == newTask.superiorId })?.name ?? "Todo")) {
-                    self.newTask.startDate = self.newTask.startDate.startOfDayDate()
                     self.newTask.dueDate = self.newTask.dueDate.endOfDayDate()
                     do {
                         try self.appData.addTask(task: newTask)
