@@ -13,11 +13,13 @@ struct AdditionalInformationView: View {
     let currentDate = Date.now
     var body: some View {
         HStack(spacing: 4) {
+            let hasAppointment = !schedule.appointments.isEmpty
             Image("appointment")
                 .renderingMode(.template)
                 .resizable()
                 .scaledToFit()
                 .frame(width: iconSize, height: iconSize)
+                .foregroundStyle(hasAppointment ? .yellow : .gray)
             
             Text("\(schedule.appointments.count)")
                 .font(.caption2)
@@ -34,12 +36,14 @@ struct AdditionalInformationView: View {
                 }
             
             Color.clear.frame(width: 1, height: 1)
-            
+            let hasMoment = !schedule.moments.isEmpty
             Image("moment")
                 .renderingMode(.template)
                 .resizable()
                 .scaledToFit()
                 .frame(width: iconSize, height: iconSize)
+                .foregroundStyle(hasMoment ? .blue : .gray)
+            
             Text("\(schedule.moments.count)")
                 .font(.caption2)
             Spacer()
