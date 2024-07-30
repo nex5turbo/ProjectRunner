@@ -269,7 +269,7 @@ struct DetailView: View {
                     
                     
                     Group {
-                        if var task, let superior = appData.getSuperior(of: task) {
+                        if let task, let superior = appData.getSuperior(of: task) {
                             BlockDivider()
                             
                             HStack(spacing: 0) {
@@ -278,8 +278,9 @@ struct DetailView: View {
                                 SelectSuperiorSheetButton(appData: $appData, task: task) { superior in
                                     do {
                                         try appData.changeSuperior(task: task, to: superior)
-                                        task.superiorId = superior.id
-                                        self.schedule = task
+                                        var newTask = task
+                                        newTask.superiorId = superior.id
+                                        self.schedule = newTask
                                     } catch {
                                         print(error.localizedDescription)
                                     }

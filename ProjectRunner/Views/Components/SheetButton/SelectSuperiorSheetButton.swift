@@ -28,6 +28,7 @@ struct SelectSuperiorSheetButton<Content: View>: View {
         }
         .sheet(isPresented: $isSheetPresented) {
             SelectSuperiorSheet(task: task, appData: $appData) { superior in
+                self.task.superiorId = superior.id
                 onSelect(superior)
             }
             .presentationDetents([.medium, .large])
