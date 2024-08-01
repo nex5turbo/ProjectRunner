@@ -29,6 +29,9 @@
     "%lld Members Included" : {
 
     },
+    "+ Add files" : {
+
+    },
     "+ New Event" : {
 
     },
@@ -159,6 +162,12 @@
     "familyName" : {
 
     },
+    "File Picker" : {
+
+    },
+    "Files" : {
+
+    },
     "Filters" : {
 
     },
@@ -169,6 +178,12 @@
 
     },
     "How was your day?" : {
+
+    },
+    "Image Picker" : {
+
+    },
+    "Images" : {
 
     },
     "instagram" : {

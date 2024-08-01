@@ -10,6 +10,9 @@ import SwiftUI
 struct TaskAddView: View {
     @Environment(\.dismiss) private var dismiss
     @Binding var appData: AppData
+    @State private var isFileConfirmPresented: Bool = false
+    @State private var isImagePickerPresented: Bool = false
+    @State private var isFilePickerPresented: Bool = false
     
     let onSaved: (TTask) -> Void
     
@@ -209,6 +212,33 @@ struct TaskAddView: View {
                             .padding(.horizontal)
                     }
                 }
+                #if DEBUG
+                HStack {
+                    sectionText("Contents")
+                    
+                    Spacer()
+                    
+                    Button("+ Add files") {
+                        self.isFileConfirmPresented.toggle()
+                    }
+                    .confirmationDialog("", isPresented: $isFileConfirmPresented) {
+                        Button("Files") {
+                            self.isImagePickerPresented.toggle()
+                        }
+                        
+                        Button("Images") {
+                            self.isFilePickerPresented.toggle()
+                        }
+                    }
+                    .sheet(isPresented: $isImagePickerPresented) {
+                        Text("Image Picker")
+                    }
+                    .sheet(isPresented: $isFilePickerPresented) {
+                        Text("File Picker")
+                    }
+                }
+                .padding(.horizontal)
+                #endif
             }
         }
         .navigationTitle(navTitle)
