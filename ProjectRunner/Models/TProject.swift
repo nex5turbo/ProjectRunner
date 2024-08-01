@@ -18,8 +18,8 @@ protocol Schedulable: Markable {
     var status: Status { get set }
     var createdAt: Date { get set }
     var priority: Priority { get set }
-    var imagePaths: [String] { get set }
-    var imageUrls: [URL] { get }
+    var filePaths: [String] { get set }
+    var fileUrls: [URL] { get }
     var markColor: MarkColor { get set }
     var hasDeadline: Bool { get set }
     var labels: [TLabel] { get set }
@@ -77,11 +77,11 @@ struct TProject: Identifiable, Hashable, Codable, Schedulable {
     var markColor: MarkColor = .noColor
     var doneAt: Date?
     var priority: Priority = .none
-    var imagePaths: [String] = []
+    var filePaths: [String] = []
     var labels: [TLabel] = []
     var hasDeadline: Bool = false
-    var imageUrls: [URL] {
-        return imagePaths.compactMap { path in
+    var fileUrls: [URL] {
+        return filePaths.compactMap { path in
             return URL(string: path)
         }
     }
@@ -118,7 +118,7 @@ struct TProject: Identifiable, Hashable, Codable, Schedulable {
         case appointments
         case doneAt
         case priority
-        case imagePaths
+        case filePaths
         case hasDeadline
         case markColor
         case labels
@@ -150,7 +150,7 @@ struct TProject: Identifiable, Hashable, Codable, Schedulable {
         
         self.priority = (try? container.decode(Priority.self, forKey: .priority)) ?? Priority.none
         
-        self.imagePaths = (try? container.decode([String].self, forKey: .imagePaths)) ?? []
+        self.filePaths = (try? container.decode([String].self, forKey: .filePaths)) ?? []
         
         self.hasDeadline = (try? container.decode(Bool.self, forKey: .hasDeadline)) ?? true
         
