@@ -1,6 +1,6 @@
 //
 //  SwiftUIView.swift
-//  
+//
 //
 //  Created by 워뇨옹 on 7/5/24.
 //
@@ -14,34 +14,17 @@ struct AdditionalInformationView: View {
     var body: some View {
         HStack(spacing: 4) {
             let hasAppointment = !schedule.appointments.isEmpty
-            Image("appointment")
-                .renderingMode(.template)
-                .resizable()
-                .scaledToFit()
-                .frame(width: iconSize, height: iconSize)
+            Image(systemName: hasAppointment ? "clock.badge.exclamationmark.fill" : "clock")
+                .font(.caption2)
                 .foregroundStyle(hasAppointment ? .yellow : .gray)
             
             Text("\(schedule.appointments.count)")
                 .font(.caption2)
-                .overlay {
-                    GeometryReader { proxy in
-                        Color.clear
-                            .task {
-                                self.iconSize = proxy.size.height
-                            }
-                            .onChange(of: proxy.size, perform: { _ in
-                                self.iconSize = proxy.size.height
-                            })
-                    }
-                }
             
             Color.clear.frame(width: 1, height: 1)
             let hasMoment = !schedule.moments.isEmpty
-            Image("moment")
-                .renderingMode(.template)
-                .resizable()
-                .scaledToFit()
-                .frame(width: iconSize, height: iconSize)
+            Image(systemName: hasMoment ? "ellipsis.bubble.fill" : "ellipsis.bubble")
+                .font(.caption2)
                 .foregroundStyle(hasMoment ? .blue : .gray)
             
             Text("\(schedule.moments.count)")
