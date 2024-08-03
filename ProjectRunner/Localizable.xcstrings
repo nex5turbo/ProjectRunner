@@ -29,7 +29,7 @@
     "%lld Members Included" : {
 
     },
-    "+ Add files" : {
+    "+" : {
 
     },
     "+ New Event" : {
@@ -162,9 +162,6 @@
     "familyName" : {
 
     },
-    "File Picker" : {
-
-    },
     "Files" : {
 
     },
@@ -178,9 +175,6 @@
 
     },
     "How was your day?" : {
-
-    },
-    "Image Picker" : {
 
     },
     "Images" : {
@@ -274,6 +268,9 @@
 
     },
     "Rate" : {
+
+    },
+    "References" : {
 
     },
     "Refresh" : {

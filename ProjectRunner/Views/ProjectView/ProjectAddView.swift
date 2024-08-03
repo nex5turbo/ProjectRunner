@@ -212,31 +212,56 @@ struct ProjectAddView: View {
                 }
                 
 #if DEBUG
+                
                 HStack {
-                    sectionText("Contents")
+                    sectionText("References")
                     
                     Spacer()
                     
-                    Button("+ Add files") {
+                    PremiumButton(reachedLimit: true, reason: "Subscribe and attach files to your schedules!", action: {
                         self.isFileConfirmPresented.toggle()
-                    }
+                    }, label: {
+                        HStack {
+                            Text("+")
+                                .padding(8)
+                                .foregroundStyle(.gray)
+                                .background(.gray.opacity(0.2))
+                                .clipShape(Circle())
+                                .clipped()
+                        }
+                        .font(.headline)
+                    })
                     .confirmationDialog("", isPresented: $isFileConfirmPresented) {
                         Button("Files") {
-                            self.isImagePickerPresented.toggle()
+                            self.isFilePickerPresented.toggle()
                         }
                         
                         Button("Images") {
-                            self.isFilePickerPresented.toggle()
+                            self.isImagePickerPresented.toggle()
+                        }
+                    }
+                    .sheet(isPresented: $isFilePickerPresented) {
+                        FilePicker { files in
+                            newProject.files.append(contentsOf: files)
                         }
                     }
                     .sheet(isPresented: $isImagePickerPresented) {
-                        Text("Image Picker")
-                    }
-                    .sheet(isPresented: $isFilePickerPresented) {
-                        Text("File Picker")
+                        ImagePicker { files in
+                            newProject.files.append(contentsOf: files)
+                        }
                     }
                 }
                 .padding(.horizontal)
+                
+                FileList(fileAttachable: newProject) { file in
+                    do {
+                        try file.delete()
+                        newProject.files.removeAll(where: { $0 == file })
+                    } catch {
+                        print(error.localizedDescription)
+                    }
+                }
+                
 #endif
             }
         }

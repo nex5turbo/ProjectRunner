@@ -23,11 +23,12 @@ protocol Notifiable: Identifiable {
     func disableNotification()
 }
 
-struct TMoment: Identifiable, Hashable, Codable {
+struct TMoment: Identifiable, Hashable, Codable, FileAttachable {
     var id: String = UUID().uuidString
     var comment: String
     var isDone: Bool = false
     var createdAt: Date
+    var files: [TFile] = []
     
     init() {
         self.comment = ""
@@ -39,6 +40,7 @@ struct TMoment: Identifiable, Hashable, Codable {
         case comment
         case isDone
         case createdAt
+        case files
     }
     
     init(from decoder: any Decoder) throws {
@@ -47,6 +49,7 @@ struct TMoment: Identifiable, Hashable, Codable {
         self.comment = try container.decode(String.self, forKey: .comment)
         self.isDone = (try? container.decode(Bool.self, forKey: .isDone)) ?? false
         self.createdAt = try container.decode(Date.self, forKey: .createdAt)
+        self.files = (try? container.decode([TFile].self, forKey: .files)) ?? []
     }
 }
 

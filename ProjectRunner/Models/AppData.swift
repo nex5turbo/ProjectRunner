@@ -122,11 +122,16 @@ struct AppData: Codable, Hashable {
         let iCloudFolder = FileManager.default.cloudDocumentDirectory?.appendingPathComponent("AppData.tm")
         let decoder = JSONDecoder()
         if let iCloudFolder {
-            let data = try Data(contentsOf: iCloudFolder)
+            if FileManager.default.fileExists(atPath: iCloudFolder.path) {
+                let data = try Data(contentsOf: iCloudFolder)
+                return try decoder.decode(AppData.self, from: data)
+            }
+        }
+        if FileManager.default.fileExists(atPath: folder.path) {
+            let data = try Data(contentsOf: folder)
             return try decoder.decode(AppData.self, from: data)
         }
-        let data = try Data(contentsOf: folder)
-        return try decoder.decode(AppData.self, from: data)
+        return AppData()
     }
     
     mutating func loadTutorial() throws {

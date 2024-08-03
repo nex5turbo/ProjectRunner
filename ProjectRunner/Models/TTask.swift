@@ -21,15 +21,9 @@ struct TTask: Identifiable, Hashable, Codable, Schedulable {
     var appointments: [TAppointment] = []
     var priority: Priority = .none
     var hasDeadline: Bool = false
-    var filePaths: [String] = []
+    var files: [TFile] = []
     var labels: [TLabel] = []
     var taskIds: [String] = []
-    
-    var fileUrls: [URL] {
-        return filePaths.compactMap { path in
-            return URL(string: path)
-        }
-    }
     
     static func emptyTask() -> TTask {
         return TTask(
@@ -61,7 +55,7 @@ struct TTask: Identifiable, Hashable, Codable, Schedulable {
         case appointments
         case doneAt
         case priority
-        case filePaths
+        case files
         case hasDeadline
         case markColor
         case labels
@@ -95,7 +89,7 @@ struct TTask: Identifiable, Hashable, Codable, Schedulable {
         
         self.hasDeadline = (try? container.decode(Bool.self, forKey: .hasDeadline)) ?? true
         
-        self.filePaths = (try? container.decode([String].self, forKey: .filePaths)) ?? []
+        self.files = (try? container.decode([TFile].self, forKey: .files)) ?? []
         
         self.markColor = (try? container.decode(MarkColor.self, forKey: .markColor)) ?? MarkColor.noColor
         

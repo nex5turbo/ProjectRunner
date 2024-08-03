@@ -100,6 +100,12 @@
 		54D69E232C3EBD7A0048E5BD /* FilterSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D69E222C3EBD7A0048E5BD /* FilterSheet.swift */; };
 		54D69E272C41271A0048E5BD /* tutorial.json in Resources */ = {isa = PBXBuildFile; fileRef = 54D69E262C41271A0048E5BD /* tutorial.json */; };
 		54D69E2A2C41582B0048E5BD /* DeleteErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D69E292C41582B0048E5BD /* DeleteErrors.swift */; };
+		54FF729C2C5BC911004DC1F5 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FF729B2C5BC911004DC1F5 /* ImagePicker.swift */; };
+		54FF729F2C5BCE51004DC1F5 /* YPImagePicker in Frameworks */ = {isa = PBXBuildFile; productRef = 54FF729E2C5BCE51004DC1F5 /* YPImagePicker */; };
+		54FF72A32C5CCFA2004DC1F5 /* TFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FF72A22C5CCFA2004DC1F5 /* TFile.swift */; };
+		54FF72A52C5D20E3004DC1F5 /* FileAttachable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FF72A42C5D20E3004DC1F5 /* FileAttachable.swift */; };
+		54FF72A92C5D24F5004DC1F5 /* FilePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FF72A82C5D24F5004DC1F5 /* FilePicker.swift */; };
+		54FF72AB2C5D37CF004DC1F5 /* FileList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FF72AA2C5D37CF004DC1F5 /* FileList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -234,6 +240,11 @@
 		54D69E222C3EBD7A0048E5BD /* FilterSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSheet.swift; sourceTree = "<group>"; };
 		54D69E262C41271A0048E5BD /* tutorial.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tutorial.json; sourceTree = "<group>"; };
 		54D69E292C41582B0048E5BD /* DeleteErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteErrors.swift; sourceTree = "<group>"; };
+		54FF729B2C5BC911004DC1F5 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		54FF72A22C5CCFA2004DC1F5 /* TFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TFile.swift; sourceTree = "<group>"; };
+		54FF72A42C5D20E3004DC1F5 /* FileAttachable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileAttachable.swift; sourceTree = "<group>"; };
+		54FF72A82C5D24F5004DC1F5 /* FilePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePicker.swift; sourceTree = "<group>"; };
+		54FF72AA2C5D37CF004DC1F5 /* FileList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -253,6 +264,7 @@
 				54D69E0D2C3D9B580048E5BD /* GoogleMobileAds in Frameworks */,
 				54D69E1E2C3D9C530048E5BD /* SwiftyStoreKit in Frameworks */,
 				54C1D7D92C5370BF00BD3683 /* Lottie in Frameworks */,
+				54FF729F2C5BCE51004DC1F5 /* YPImagePicker in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,6 +426,8 @@
 				54D69DE62C3D12810048E5BD /* TProject.swift */,
 				54D69DDE2C3D12810048E5BD /* TTask.swift */,
 				5442E27F2C4A633F008E4C2B /* TDiary.swift */,
+				54FF72A22C5CCFA2004DC1F5 /* TFile.swift */,
+				54FF72A42C5D20E3004DC1F5 /* FileAttachable.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -549,6 +563,9 @@
 				54D69DB62C3D124D0048E5BD /* ColorSheet.swift */,
 				54D69E052C3D29360048E5BD /* SubTasksSheet.swift */,
 				54D69E222C3EBD7A0048E5BD /* FilterSheet.swift */,
+				54FF729B2C5BC911004DC1F5 /* ImagePicker.swift */,
+				54FF72A82C5D24F5004DC1F5 /* FilePicker.swift */,
+				54FF72AA2C5D37CF004DC1F5 /* FileList.swift */,
 			);
 			path = Sheets;
 			sourceTree = "<group>";
@@ -619,6 +636,7 @@
 				54D69E0C2C3D9B580048E5BD /* GoogleMobileAds */,
 				54D69E1D2C3D9C530048E5BD /* SwiftyStoreKit */,
 				54C1D7D82C5370BF00BD3683 /* Lottie */,
+				54FF729E2C5BCE51004DC1F5 /* YPImagePicker */,
 			);
 			productName = ProjectRunner;
 			productReference = 54D69D662C3D11490048E5BD /* ProjectRunner.app */;
@@ -700,6 +718,7 @@
 				54D69E0B2C3D9B580048E5BD /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 				54D69E1C2C3D9C530048E5BD /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */,
 				54C1D7D72C5370BF00BD3683 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				54FF729D2C5BCE50004DC1F5 /* XCRemoteSwiftPackageReference "YPImagePicker" */,
 			);
 			productRefGroup = 54D69D672C3D11490048E5BD /* Products */;
 			projectDirPath = "";
@@ -774,6 +793,7 @@
 			files = (
 				54D69DCF2C3D12580048E5BD /* ProjectAddView.swift in Sources */,
 				5442E2802C4A633F008E4C2B /* TDiary.swift in Sources */,
+				54FF72A92C5D24F5004DC1F5 /* FilePicker.swift in Sources */,
 				5442E20E2C4637AE008E4C2B /* FileManager+Extensions.swift in Sources */,
 				54D69DBB2C3D124D0048E5BD /* PriorityIcon.swift in Sources */,
 				54D69E232C3EBD7A0048E5BD /* FilterSheet.swift in Sources */,
@@ -789,8 +809,11 @@
 				54D69DBF2C3D124D0048E5BD /* ScheduleItemView.swift in Sources */,
 				54D69DBC2C3D124D0048E5BD /* BlockDivider.swift in Sources */,
 				54D69DF22C3D12880048E5BD /* String+Extensions.swift in Sources */,
+				54FF729C2C5BC911004DC1F5 /* ImagePicker.swift in Sources */,
 				54D69DE82C3D12810048E5BD /* TClient.swift in Sources */,
 				54D69DEC2C3D12810048E5BD /* MarkColor.swift in Sources */,
+				54FF72AB2C5D37CF004DC1F5 /* FileList.swift in Sources */,
+				54FF72A32C5CCFA2004DC1F5 /* TFile.swift in Sources */,
 				54D69E062C3D29360048E5BD /* SubTasksSheet.swift in Sources */,
 				54D69E212C3E72360048E5BD /* DetailView.swift in Sources */,
 				54D69DF72C3D1B310048E5BD /* ColorSheetButton.swift in Sources */,
@@ -827,6 +850,7 @@
 				54BB6B992C57805D00CA758B /* LinkableText.swift in Sources */,
 				54D69DEA2C3D12810048E5BD /* TLabel.swift in Sources */,
 				54D69E152C3D9B870048E5BD /* OpenAd.swift in Sources */,
+				54FF72A52C5D20E3004DC1F5 /* FileAttachable.swift in Sources */,
 				54D69DEF2C3D12810048E5BD /* TProject.swift in Sources */,
 				54D69E002C3D1CFD0048E5BD /* SelectSuperiorSheetButton.swift in Sources */,
 				54D69DF32C3D12880048E5BD /* Date+Extensions.swift in Sources */,
@@ -1070,6 +1094,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ProjectRunner/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Project Runner requires photo album permission to use photos from your album";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Project Runner requires photo album permission to use photos from your album";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1107,6 +1133,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ProjectRunner/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Project Runner requires photo album permission to use photos from your album";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Project Runner requires photo album permission to use photos from your album";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1281,6 +1309,14 @@
 				minimumVersion = 0.16.4;
 			};
 		};
+		54FF729D2C5BCE50004DC1F5 /* XCRemoteSwiftPackageReference "YPImagePicker" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Yummypets/YPImagePicker";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.2.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1298,6 +1334,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 54D69E1C2C3D9C530048E5BD /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */;
 			productName = SwiftyStoreKit;
+		};
+		54FF729E2C5BCE51004DC1F5 /* YPImagePicker */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 54FF729D2C5BCE50004DC1F5 /* XCRemoteSwiftPackageReference "YPImagePicker" */;
+			productName = YPImagePicker;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

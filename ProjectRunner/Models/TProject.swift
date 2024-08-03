@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol Schedulable: Markable {
+protocol Schedulable: Markable, FileAttachable {
     var id: String { get set }
     var description: String { get set }
     var name: String { get set}
@@ -18,8 +18,6 @@ protocol Schedulable: Markable {
     var status: Status { get set }
     var createdAt: Date { get set }
     var priority: Priority { get set }
-    var filePaths: [String] { get set }
-    var fileUrls: [URL] { get }
     var markColor: MarkColor { get set }
     var hasDeadline: Bool { get set }
     var labels: [TLabel] { get set }
@@ -77,14 +75,9 @@ struct TProject: Identifiable, Hashable, Codable, Schedulable {
     var markColor: MarkColor = .noColor
     var doneAt: Date?
     var priority: Priority = .none
-    var filePaths: [String] = []
+    var files: [TFile] = []
     var labels: [TLabel] = []
     var hasDeadline: Bool = false
-    var fileUrls: [URL] {
-        return filePaths.compactMap { path in
-            return URL(string: path)
-        }
-    }
     
     static func empty() -> Self {
         return TProject(
@@ -118,7 +111,7 @@ struct TProject: Identifiable, Hashable, Codable, Schedulable {
         case appointments
         case doneAt
         case priority
-        case filePaths
+        case files
         case hasDeadline
         case markColor
         case labels
@@ -150,11 +143,12 @@ struct TProject: Identifiable, Hashable, Codable, Schedulable {
         
         self.priority = (try? container.decode(Priority.self, forKey: .priority)) ?? Priority.none
         
-        self.filePaths = (try? container.decode([String].self, forKey: .filePaths)) ?? []
+        self.files = (try? container.decode([TFile].self, forKey: .files)) ?? []
         
         self.hasDeadline = (try? container.decode(Bool.self, forKey: .hasDeadline)) ?? true
         
         self.markColor = (try? container.decode(MarkColor.self, forKey: .markColor)) ?? MarkColor.noColor
+        
         self.labels = (try? container.decode([TLabel].self, forKey: .labels)) ?? []
     }
 }
