@@ -270,16 +270,18 @@ struct DetailView: View {
                     .padding(.bottom)
                     
                     BlockDivider()
+                        .padding(.bottom)
                     
                     VStack(alignment: .leading) {
                         HStack {
                             Text("References")
                                 .font(.headline)
-                                .padding(.top)
                             Button {
                                 self.isRefBigSize.toggle()
                             } label: {
                                 Image(systemName: isRefBigSize ? "arrow.down.right.and.arrow.up.left" : "arrow.up.left.and.arrow.down.right")
+                                    .foregroundStyle(.gray)
+                                    .font(.headline)
                             }
 
                             Spacer()

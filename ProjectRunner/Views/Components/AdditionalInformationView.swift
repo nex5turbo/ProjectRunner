@@ -29,6 +29,14 @@ struct AdditionalInformationView: View {
             
             Text("\(schedule.moments.count)")
                 .font(.caption2)
+            Color.clear.frame(width: 1, height: 1)
+            let hasRef = !schedule.files.isEmpty
+            Image(systemName: hasRef ? "paperclip" : "paperclip")
+                .font(.caption2)
+                .foregroundStyle(hasRef ? .green : .gray)
+            
+            Text("\(schedule.files.count)")
+                .font(.caption2)
             Spacer()
             
             if schedule.hasDeadline && (schedule.status != .done && schedule.status != .canceled) {
