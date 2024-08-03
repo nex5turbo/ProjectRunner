@@ -10,9 +10,6 @@ import SwiftUI
 struct ProjectAddView: View {
     @Environment(\.dismiss) private var dismiss
     @Binding var appData: AppData
-    @State private var isFileConfirmPresented: Bool = false
-    @State private var isImagePickerPresented: Bool = false
-    @State private var isFilePickerPresented: Bool = false
     
     init(project: TProject, appData: Binding<AppData>) {
         self._newProject = State(initialValue: project)
@@ -79,6 +76,27 @@ struct ProjectAddView: View {
                     
                 }
                 .padding()
+                
+                HStack {
+                    sectionText("References")
+                    
+                    Spacer()
+                    
+                    FileSheetButton { files in
+                        newProject.files.append(contentsOf: files)
+                    }
+                }
+                .padding(.horizontal)
+                
+                FileList(fileAttachable: newProject) { file in
+                    do {
+                        try file.delete()
+                        newProject.files.removeAll(where: { $0 == file })
+                    } catch {
+                        print(error.localizedDescription)
+                    }
+                }
+                
                 ScrollView(.horizontal) {
                     HStack {
                         Menu {
@@ -210,59 +228,6 @@ struct ProjectAddView: View {
                             .foregroundStyle(.red)
                     }
                 }
-                
-#if DEBUG
-                
-                HStack {
-                    sectionText("References")
-                    
-                    Spacer()
-                    
-                    PremiumButton(reachedLimit: true, reason: "Subscribe and attach files to your schedules!", action: {
-                        self.isFileConfirmPresented.toggle()
-                    }, label: {
-                        HStack {
-                            Text("+")
-                                .padding(8)
-                                .foregroundStyle(.gray)
-                                .background(.gray.opacity(0.2))
-                                .clipShape(Circle())
-                                .clipped()
-                        }
-                        .font(.headline)
-                    })
-                    .confirmationDialog("", isPresented: $isFileConfirmPresented) {
-                        Button("Files") {
-                            self.isFilePickerPresented.toggle()
-                        }
-                        
-                        Button("Images") {
-                            self.isImagePickerPresented.toggle()
-                        }
-                    }
-                    .sheet(isPresented: $isFilePickerPresented) {
-                        FilePicker { files in
-                            newProject.files.append(contentsOf: files)
-                        }
-                    }
-                    .sheet(isPresented: $isImagePickerPresented) {
-                        ImagePicker { files in
-                            newProject.files.append(contentsOf: files)
-                        }
-                    }
-                }
-                .padding(.horizontal)
-                
-                FileList(fileAttachable: newProject) { file in
-                    do {
-                        try file.delete()
-                        newProject.files.removeAll(where: { $0 == file })
-                    } catch {
-                        print(error.localizedDescription)
-                    }
-                }
-                
-#endif
             }
         }
         .navigationTitle(navTitle)

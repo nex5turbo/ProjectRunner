@@ -8,10 +8,13 @@
 import SwiftUI
 
 struct FileList: View {
+    private var isBigSize: Bool = true
     private let fileAttachable: FileAttachable
     private let onDelete: (TFile) -> Void
     
-    private let height: CGFloat = 70
+    private var height: CGFloat {
+        isBigSize ? 140 : 70
+    }
     private let cornerRadius: CGFloat = 16
     
     init(fileAttachable: FileAttachable, onDelete: @escaping (TFile) -> Void) {
@@ -29,37 +32,34 @@ struct FileList: View {
                         fileImage(image, file: file)
                     } else {
                         let fileName = file.fileName
-                        Text(fileName)
-                            .frame(height: height)
-                            .padding(.horizontal)
-                            .cornerRadius(cornerRadius)
-                            .overlay {
-                                VStack {
-                                    HStack {
-                                        Spacer()
-                                        Button {
-                                            onDelete(file)
-                                        } label: {
-                                            Image(systemName: "xmark")
-                                                .font(.footnote)
-                                                .bold()
-                                                .padding(8)
-                                        }
-                                    }
-                                    Spacer()
-                                }
+                        VStack(alignment: .leading, spacing: 0) {
+                            Text(fileName)
+                                .font(.subheadline.weight(.semibold))
+                            Text(file.fileExtension.uppercased())
+                                .font(.subheadline)
+                                .foregroundStyle(.gray)
+                        }
+                        .padding(.horizontal)
+                        .frame(height: height)
+                        .cornerRadius(cornerRadius)
+                        .overlay {
+                            RoundedRectangle(cornerRadius: cornerRadius)
+                                .stroke(.gray.opacity(0.3), lineWidth: 1.2)
+                        }
+                        .overlay {
+                            closeButton {
+                                onDelete(file)
                             }
-                            .overlay {
-                                RoundedRectangle(cornerRadius: cornerRadius)
-                                    .stroke(.gray.opacity(0.3), lineWidth: 1.2)
-                            }
-                            .padding(4)
+                        }
+                        .padding(4)
                     }
                     
                 }
             }
             .padding(.horizontal)
         }
+        .scrollIndicators(.never)
+        .animation(.spring, value: fileAttachable.files)
     }
     
     @ViewBuilder func fileImage(_ image: UIImage, file: TFile) -> some View {
@@ -69,22 +69,41 @@ struct FileList: View {
             .frame(width: height, height: height)
             .cornerRadius(cornerRadius)
             .overlay {
-                VStack {
-                    HStack {
-                        Spacer()
-                        Button {
-                            onDelete(file)
-                        } label: {
-                            Image(systemName: "xmark")
-                                .font(.footnote)
-                                .bold()
-                                .padding(8)
-                        }
-                    }
-                    Spacer()
+                closeButton {
+                    onDelete(file)
                 }
             }
             .padding(4)
+    }
+    
+    @ViewBuilder func closeButton(_ action: @escaping () -> Void) -> some View {
+        VStack {
+            HStack {
+                Spacer()
+                Button {
+                    action()
+                } label: {
+                    Circle().fill(.black)
+                        .stroke(.white, lineWidth: 2)
+                        .overlay {
+                            Image(systemName: "xmark")
+                                .resizable()
+                                .bold()
+                                .frame(width: 8, height: 8)
+                                .foregroundStyle(.white)
+                        }
+                        .frame(width: 16, height: 16)
+                }
+                .offset(x: 4, y: -4)
+            }
+            Spacer()
+        }
+    }
+    
+    public func bigSize(_ value: Bool) -> Self {
+        var view = self
+        view.isBigSize = value
+        return view
     }
 }
 

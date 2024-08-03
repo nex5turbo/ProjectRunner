@@ -54,15 +54,11 @@ struct TFile: Codable, Identifiable, Equatable, Hashable {
         }
     }
     
-    func delete() throws {
-        print(folderUrl, cloudUrl)
-        print(folderUrl.path(percentEncoded: true))
-        print(cloudUrl?.path(percentEncoded: true))
-        print(FileManager.default.fileExists(atPath: folderUrl.path))
-        try FileManager.default.removeItem(at: folderUrl)
+    func delete() {
+        try? FileManager.default.removeItem(at: folderUrl)
         if let cloudUrl {
             print(FileManager.default.fileExists(atPath: cloudUrl.path))
-            try FileManager.default.removeItem(at: cloudUrl)
+            try? FileManager.default.removeItem(at: cloudUrl)
         }
         
     }

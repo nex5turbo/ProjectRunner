@@ -106,6 +106,7 @@
 		54FF72A52C5D20E3004DC1F5 /* FileAttachable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FF72A42C5D20E3004DC1F5 /* FileAttachable.swift */; };
 		54FF72A92C5D24F5004DC1F5 /* FilePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FF72A82C5D24F5004DC1F5 /* FilePicker.swift */; };
 		54FF72AB2C5D37CF004DC1F5 /* FileList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FF72AA2C5D37CF004DC1F5 /* FileList.swift */; };
+		54FF72AD2C5E41D0004DC1F5 /* FileSheetButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FF72AC2C5E41D0004DC1F5 /* FileSheetButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -245,6 +246,7 @@
 		54FF72A42C5D20E3004DC1F5 /* FileAttachable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileAttachable.swift; sourceTree = "<group>"; };
 		54FF72A82C5D24F5004DC1F5 /* FilePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePicker.swift; sourceTree = "<group>"; };
 		54FF72AA2C5D37CF004DC1F5 /* FileList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileList.swift; sourceTree = "<group>"; };
+		54FF72AC2C5E41D0004DC1F5 /* FileSheetButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSheetButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -550,6 +552,7 @@
 				54D69DFF2C3D1CFD0048E5BD /* SelectSuperiorSheetButton.swift */,
 				54D69E032C3D1E630048E5BD /* LabelSheetButton.swift */,
 				54D69E072C3D2BBD0048E5BD /* SubTaskSheetButton.swift */,
+				54FF72AC2C5E41D0004DC1F5 /* FileSheetButton.swift */,
 			);
 			path = SheetButton;
 			sourceTree = "<group>";
@@ -812,6 +815,7 @@
 				54FF729C2C5BC911004DC1F5 /* ImagePicker.swift in Sources */,
 				54D69DE82C3D12810048E5BD /* TClient.swift in Sources */,
 				54D69DEC2C3D12810048E5BD /* MarkColor.swift in Sources */,
+				54FF72AD2C5E41D0004DC1F5 /* FileSheetButton.swift in Sources */,
 				54FF72AB2C5D37CF004DC1F5 /* FileList.swift in Sources */,
 				54FF72A32C5CCFA2004DC1F5 /* TFile.swift in Sources */,
 				54D69E062C3D29360048E5BD /* SubTasksSheet.swift in Sources */,

@@ -18,9 +18,7 @@ struct DetailView: View {
     @AppStorage("showDone") private var shouldShowDone = false
     @AppStorage("isTaskFolded") private var isTaskFolded: Bool = false
     
-    @State private var isFilePickerPresented: Bool = false
-    @State private var isImagePickerPresented: Bool = false
-    @State private var isFileConfirmPresented: Bool = false
+    @State private var isRefBigSize: Bool = false
     
     var titlePrompt: String {
         if task != nil {
@@ -277,60 +275,28 @@ struct DetailView: View {
                         HStack {
                             Text("References")
                                 .font(.headline)
+                                .padding(.top)
+                            Button {
+                                self.isRefBigSize.toggle()
+                            } label: {
+                                Image(systemName: isRefBigSize ? "arrow.down.right.and.arrow.up.left" : "arrow.up.left.and.arrow.down.right")
+                            }
+
                             Spacer()
-                            PremiumButton(reachedLimit: true, reason: "Subscribe and attach files to your schedules!", action: {
-                                self.isFileConfirmPresented.toggle()
-                            }, label: {
-                                HStack {
-                                    Text("+")
-                                        .padding(8)
-                                        .foregroundStyle(.gray)
-                                        .background(.gray.opacity(0.2))
-                                        .clipShape(Circle())
-                                        .clipped()
-                                }
-                                .font(.headline)
-                            })
-                            .confirmationDialog("", isPresented: $isFileConfirmPresented) {
-                                Button("Files") {
-                                    self.isFilePickerPresented.toggle()
-                                }
-                                
-                                Button("Images") {
-                                    self.isImagePickerPresented.toggle()
-                                }
-                            }
-                            .sheet(isPresented: $isFilePickerPresented) {
-                                FilePicker { files in
-                                    schedule.files.append(contentsOf: files)
-                                    do {
-                                        if let task {
-                                            try appData.addTask(task: task)
-                                        } else if let project {
-                                            try appData.addProject(project: project)
-                                        }
-                                    } catch {
-                                        print(error.localizedDescription)
+                            FileSheetButton { files in
+                                schedule.files.append(contentsOf: files)
+                                do {
+                                    if let task {
+                                        try appData.addTask(task: task)
+                                    } else if let project {
+                                        try appData.addProject(project: project)
                                     }
-                                }
-                            }
-                            .sheet(isPresented: $isImagePickerPresented) {
-                                ImagePicker { files in
-                                    schedule.files.append(contentsOf: files)
-                                    do {
-                                        if let task {
-                                            try appData.addTask(task: task)
-                                        } else if let project {
-                                            try appData.addProject(project: project)
-                                        }
-                                    } catch {
-                                        print(error.localizedDescription)
-                                    }
+                                } catch {
+                                    print(error.localizedDescription)
                                 }
                             }
                         }
                         .padding(.horizontal)
-                        .padding(.top)
                         
                         FileList(fileAttachable: schedule) { file in
                             do {
@@ -345,6 +311,7 @@ struct DetailView: View {
                                 print(error.localizedDescription)
                             }
                         }
+                        .bigSize(isRefBigSize)
                     }
                     
                     Group {
@@ -544,6 +511,7 @@ struct DetailView: View {
         }
         .navigationTitle("")
         .navigationBarTitleDisplayMode(.inline)
+        .animation(.spring, value: isRefBigSize)
     }
     
 }
