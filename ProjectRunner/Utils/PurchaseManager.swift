@@ -35,7 +35,10 @@ class PurchaseManager: ObservableObject {
 
     @Published var isPremiumUser: Bool = false
     @Published var subscriptionViewPresent: Bool = false
-
+    @Published var isDebugMode: Bool = false
+    var canAccessPremium: Bool {
+        isPremiumUser || isDebugMode
+    }
     private var purchaseProperties: PurchaseProperties?
     private var products: Set<SKProduct> = []
     

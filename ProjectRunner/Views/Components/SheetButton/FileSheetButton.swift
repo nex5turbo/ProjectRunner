@@ -9,8 +9,9 @@ import SwiftUI
 
 struct FileSheetButton: View {
     private let onSelected: ([TFile]) -> Void
-    
-    init(onSelected: @escaping ([TFile]) -> Void) {
+    private var hasReachedLimit: Bool
+    init(hasReachedLimit: Bool, onSelected: @escaping ([TFile]) -> Void) {
+        self.hasReachedLimit = hasReachedLimit
         self.onSelected = onSelected
     }
     
@@ -19,7 +20,7 @@ struct FileSheetButton: View {
     @State private var isFileConfirmPresented: Bool = false
     
     var body: some View {
-        PremiumButton(reachedLimit: true, reason: "Subscribe and attach files to your schedules!", action: {
+        PremiumButton(reachedLimit: hasReachedLimit, reason: "Subscribe and attach files to your schedules!", action: {
             self.isFileConfirmPresented.toggle()
         }, label: {
             HStack {
@@ -42,12 +43,12 @@ struct FileSheetButton: View {
             }
         }
         .sheet(isPresented: $isFilePickerPresented) {
-            FilePicker { files in
+            FilePicker(multiSelectEnabled: PurchaseManager.shared.canAccessPremium) { files in
                 onSelected(files)
             }
         }
         .sheet(isPresented: $isImagePickerPresented) {
-            ImagePicker { files in
+            ImagePicker(multiSelectEnabled: PurchaseManager.shared.canAccessPremium) { files in
                 onSelected(files)
             }
         }
@@ -55,7 +56,7 @@ struct FileSheetButton: View {
 }
 
 #Preview {
-    FileSheetButton { _ in
+    FileSheetButton(hasReachedLimit: false) { _ in
         
     }
 }

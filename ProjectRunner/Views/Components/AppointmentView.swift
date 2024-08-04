@@ -30,77 +30,96 @@ struct AppointmentView: View {
                     self.newAppointment = TAppointment()
                     self.isAddPresented = !self.isAddPresented
                 } label: {
-                    Text("+ New Event")
+                    HStack {
+                        Text("+")
+                            .padding(8)
+                            .foregroundStyle(.gray)
+                            .background(.gray.opacity(0.2))
+                            .clipShape(Circle())
+                            .clipped()
+                    }
+                    .font(.headline)
                 }
             }
 
-            ForEach(schedule.appointments, id: \.self) { appointment in
+            if schedule.appointments.isEmpty {
                 HStack {
-                    VStack(alignment: .leading) {
-                        Text(appointment.comment)
-                            .overlay {
-                                if appointment.isDone {
-                                    Color.black.frame(height: 1)
-                                        .frame(maxWidth: .infinity)
-                                }
-                            }
-                        Text(appointment.notifyAt.toString(true))
-                            .font(.footnote)
-                            .foregroundStyle(.gray)
-                    }
-                    Spacer(minLength: 0)
-                    VStack {
-                        HStack {
-                            Button {
-                                NotificationManager.instance.requestAuthorization { granted in
-                                    if granted {
-                                        guard let index = schedule.appointments.firstIndex(of: appointment) else {
-                                            return
-                                        }
-                                        var modifiedAppointment = appointment
-                                        modifiedAppointment.hasNotification = !modifiedAppointment.hasNotification
-                                        do {
-                                            try appData.addAppointment(schedule: schedule, appintment: modifiedAppointment)
-                                            schedule.appointments[index] = modifiedAppointment
-                                        } catch {
-                                            print(error.localizedDescription)
-                                        }
-                                    } else {
-                                        self.permissionAlert.toggle()
+                    Spacer()
+                    Text("No activated event")
+                        .font(.headline)
+                        .foregroundStyle(.gray)
+                        .padding()
+                    Spacer()
+                }
+            } else {
+                ForEach(schedule.appointments, id: \.self) { appointment in
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text(appointment.comment)
+                                .overlay {
+                                    if appointment.isDone {
+                                        Color.black.frame(height: 1)
+                                            .frame(maxWidth: .infinity)
                                     }
                                 }
-                            } label: {
-                                Image(systemName: appointment.hasNotification ? "bell.fill" : "bell.slash")
-                                    .font(.footnote)
-                                    .foregroundStyle(appointment.hasNotification ? .yellow : .gray)
-                            }
-                            Button {
-                                do {
-                                    try appData.removeAppointment(schedule: schedule, appointment: appointment)
-                                    self.schedule.appointments.removeAll(where: { $0.id == appointment.id })
-                                } catch {
-                                    print(error.localizedDescription)
+                            Text(appointment.notifyAt.toString(true))
+                                .font(.footnote)
+                                .foregroundStyle(.gray)
+                        }
+                        Spacer(minLength: 0)
+                        VStack {
+                            HStack {
+                                Button {
+                                    NotificationManager.instance.requestAuthorization { granted in
+                                        if granted {
+                                            guard let index = schedule.appointments.firstIndex(of: appointment) else {
+                                                return
+                                            }
+                                            var modifiedAppointment = appointment
+                                            modifiedAppointment.hasNotification = !modifiedAppointment.hasNotification
+                                            do {
+                                                try appData.addAppointment(schedule: schedule, appintment: modifiedAppointment)
+                                                schedule.appointments[index] = modifiedAppointment
+                                            } catch {
+                                                print(error.localizedDescription)
+                                            }
+                                        } else {
+                                            self.permissionAlert.toggle()
+                                        }
+                                    }
+                                } label: {
+                                    Image(systemName: appointment.hasNotification ? "bell.fill" : "bell.slash")
+                                        .font(.footnote)
+                                        .foregroundStyle(appointment.hasNotification ? .yellow : .gray)
+                                }
+                                Button {
+                                    do {
+                                        try appData.removeAppointment(schedule: schedule, appointment: appointment)
+                                        self.schedule.appointments.removeAll(where: { $0.id == appointment.id })
+                                    } catch {
+                                        print(error.localizedDescription)
+                                    }
+                                    
+                                } label: {
+                                    Image(systemName: "xmark")
+                                        .foregroundStyle(.gray)
+                                        .font(.footnote)
                                 }
                                 
-                            } label: {
-                                Image(systemName: "xmark")
-                                    .foregroundStyle(.gray)
-                                    .font(.footnote)
                             }
-
+                            
+                            Spacer()
                         }
-
-                        Spacer()
                     }
-                }
-                .frame(maxWidth: .infinity)
-                .padding()
-                .background(.white)
-                .cornerRadius(8)
-                .shadow(radius: 1, x: 1, y: 1)
-                .onTapGesture {
-                    self.newAppointment = appointment
-                    self.isAddPresented = true
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(.white)
+                    .cornerRadius(8)
+                    .shadow(radius: 1, x: 1, y: 1)
+                    .onTapGesture {
+                        self.newAppointment = appointment
+                        self.isAddPresented = true
+                    }
                 }
             }
         }
@@ -122,6 +141,7 @@ struct AppointmentView: View {
                         }
                     }
                 }
+                .navigationBarTitleDisplayMode(.inline)
                 .navigationTitle("New Event")
                 .toolbar {
                     ToolbarItem {

@@ -11,11 +11,8 @@ import GoogleMobileAds
 import SwiftUI
 
 struct GADBanner: UIViewControllerRepresentable {
-#if DEBUG
-    private let adID = "ca-app-pub-3940256099942544/6300978111"
-#else
+
     private let adID = "ca-app-pub-6235545617614297/1325117271"
-#endif
     
     func makeUIViewController(context: Context) -> some UIViewController {
         let view = GADBannerView(adSize: GADAdSizeBanner)

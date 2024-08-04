@@ -17,6 +17,7 @@ struct DetailView: View {
     
     @AppStorage("showDone") private var shouldShowDone = false
     @AppStorage("isTaskFolded") private var isTaskFolded: Bool = false
+    @AppStorage("showAd") private var showAd: Bool = false
     
     @State private var isRefBigSize: Bool = false
     
@@ -285,7 +286,7 @@ struct DetailView: View {
                             }
 
                             Spacer()
-                            FileSheetButton { files in
+                            FileSheetButton(hasReachedLimit: schedule.files.count > 0) { files in
                                 schedule.files.append(contentsOf: files)
                                 do {
                                     if let task {
@@ -301,16 +302,18 @@ struct DetailView: View {
                         .padding(.horizontal)
                         
                         FileList(fileAttachable: schedule) { file in
-                            do {
-                                try file.delete()
-                                schedule.files.removeAll(where: { $0 == file })
-                                if let task {
-                                    try appData.addTask(task: task)
-                                } else if let project {
-                                    try appData.addProject(project: project)
+                            schedule.files.removeAll(where: { $0 == file })
+                            DispatchQueue.global(qos: .background).async {
+                                file.delete()
+                                do {
+                                    if let task {
+                                        try appData.addTask(task: task)
+                                    } else if let project {
+                                        try appData.addProject(project: project)
+                                    }
+                                } catch {
+                                    print(error.localizedDescription)
                                 }
-                            } catch {
-                                print(error.localizedDescription)
                             }
                         }
                         .bigSize(isRefBigSize)
@@ -493,7 +496,13 @@ struct DetailView: View {
                 }
             }
 #if !DEBUG
-            GADBanner().frame(width: GADAdSizeBanner.size.width, height: GADAdSizeBanner.size.height)
+            if !PurchaseManager.shared.isPremiumUser {
+                GADBanner().frame(width: GADAdSizeBanner.size.width, height: GADAdSizeBanner.size.height)
+            }
+#else
+            if showAd {
+                GADBanner().frame(width: GADAdSizeBanner.size.width, height: GADAdSizeBanner.size.height)
+            }
 #endif
         }
         .task {

@@ -11,14 +11,16 @@ import YPImagePicker
 
 struct ImagePicker: UIViewControllerRepresentable {
     let onImageSelected: ([TFile]) -> Void
-    init(onImageSelected: @escaping ([TFile]) -> Void) {
+    let multiSelectEnabled: Bool
+    init(multiSelectEnabled: Bool, onImageSelected: @escaping ([TFile]) -> Void) {
+        self.multiSelectEnabled = multiSelectEnabled
         self.onImageSelected = onImageSelected
     }
     func makeUIViewController(context: Context) -> some UIViewController {
         var config = YPImagePickerConfiguration()
 
         config.showsPhotoFilters = false
-        config.library.defaultMultipleSelection = true
+        config.library.defaultMultipleSelection = multiSelectEnabled
         config.showsVideoTrimmer = true
         config.screens = [.library]
         config.library.maxNumberOfItems = 10

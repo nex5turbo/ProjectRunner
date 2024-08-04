@@ -13,7 +13,11 @@ struct FileList: View {
     private let onDelete: (TFile) -> Void
     
     private var height: CGFloat {
-        isBigSize ? 140 : 70
+        if fileAttachable.files.isEmpty {
+            return 70
+        } else {
+            return isBigSize ? 140 : 70
+        }
     }
     private let cornerRadius: CGFloat = 16
     
@@ -23,43 +27,54 @@ struct FileList: View {
     }
     
     var body: some View {
-        ScrollView(.horizontal) {
+        if fileAttachable.files.isEmpty {
             HStack {
-                ForEach(fileAttachable.files, id: \.self) { file in
-                    if let image = file.cloudUrl?.asSmallImage {
-                        fileImage(image, file: file)
-                    } else if let image = file.folderUrl.asSmallImage {
-                        fileImage(image, file: file)
-                    } else {
-                        let fileName = file.fileName
-                        VStack(alignment: .leading, spacing: 0) {
-                            Text(fileName)
-                                .font(.subheadline.weight(.semibold))
-                            Text(file.fileExtension.uppercased())
-                                .font(.subheadline)
-                                .foregroundStyle(.gray)
-                        }
-                        .padding(.horizontal)
-                        .frame(height: height)
-                        .cornerRadius(cornerRadius)
-                        .overlay {
-                            RoundedRectangle(cornerRadius: cornerRadius)
-                                .stroke(.gray.opacity(0.3), lineWidth: 1.2)
-                        }
-                        .overlay {
-                            closeButton {
-                                onDelete(file)
-                            }
-                        }
-                        .padding(4)
-                    }
-                    
-                }
+                Spacer()
+                Text("No attached file")
+                    .font(.headline)
+                    .foregroundStyle(.gray)
+                Spacer()
             }
-            .padding(.horizontal)
+            .frame(height: height)
+        } else {
+            ScrollView(.horizontal) {
+                HStack {
+                    ForEach(fileAttachable.files, id: \.self) { file in
+                        if let image = file.cloudUrl?.asSmallImage {
+                            fileImage(image, file: file)
+                        } else if let image = file.folderUrl.asSmallImage {
+                            fileImage(image, file: file)
+                        } else {
+                            let fileName = file.fileName
+                            VStack(alignment: .leading, spacing: 0) {
+                                Text(fileName)
+                                    .font(.subheadline.weight(.semibold))
+                                Text(file.fileExtension.uppercased())
+                                    .font(.subheadline)
+                                    .foregroundStyle(.gray)
+                            }
+                            .padding(.horizontal)
+                            .frame(height: height)
+                            .cornerRadius(cornerRadius)
+                            .overlay {
+                                RoundedRectangle(cornerRadius: cornerRadius)
+                                    .stroke(.gray.opacity(0.3), lineWidth: 1.2)
+                            }
+                            .overlay {
+                                closeButton {
+                                    onDelete(file)
+                                }
+                            }
+                            .padding(4)
+                        }
+                        
+                    }
+                }
+                .padding(.horizontal)
+            }
+            .scrollIndicators(.never)
+            .animation(.spring, value: fileAttachable.files)
         }
-        .scrollIndicators(.never)
-        .animation(.spring, value: fileAttachable.files)
     }
     
     @ViewBuilder func fileImage(_ image: UIImage, file: TFile) -> some View {

@@ -82,7 +82,7 @@ struct ProjectAddView: View {
                     
                     Spacer()
                     
-                    FileSheetButton { files in
+                    FileSheetButton(hasReachedLimit: newProject.files.count > 0) { files in
                         newProject.files.append(contentsOf: files)
                     }
                 }

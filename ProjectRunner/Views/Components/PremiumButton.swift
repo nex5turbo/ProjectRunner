@@ -15,11 +15,7 @@ struct PremiumButton<Content: View>: View {
     
     @State private var isAlertPresented: Bool = false
     var isPremium: Bool {
-#if DEBUG
-        true
-#else
-        PurchaseManager.shared.isPremiumUser || !condition
-#endif
+        PurchaseManager.shared.canAccessPremium || !condition
     }
     
     init(reachedLimit condition: Bool, reason: String, action: @escaping () -> Void, @ViewBuilder label: () -> Content) {
@@ -58,11 +54,7 @@ struct PremiumNavigationLink<Content: View, Destination: View>: View {
     
     @State private var isAlertPresented: Bool = false
     var isPremium: Bool {
-#if DEBUG
-        true
-#else
-        PurchaseManager.shared.isPremiumUser || !condition
-#endif
+        PurchaseManager.shared.canAccessPremium || !condition
     }
     init(reachedLimit condition: Bool, reason: String, @ViewBuilder destination: () -> Destination, @ViewBuilder label: () -> Content) {
         self.reason = reason

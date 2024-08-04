@@ -8,12 +8,8 @@
 import GoogleMobileAds
 
 final class OpenAd: NSObject, GADFullScreenContentDelegate {
-#if DEBUG
-    private let adID = "ca-app-pub-3940256099942544/9257395921"
-    
-#else
     private let adID = "ca-app-pub-6235545617614297/1617046726"
-#endif
+
     var appOpenAd: GADAppOpenAd?
     var loadTime = Date()
     

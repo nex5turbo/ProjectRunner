@@ -10,7 +10,9 @@ import MobileCoreServices
 import UniformTypeIdentifiers
 
 struct FilePicker: UIViewControllerRepresentable {
+    let multiSelectEnabled: Bool
     let onSelected: ([TFile]) -> Void
+    
     @Environment(\.presentationMode) var presentationMode
 
     func makeCoordinator() -> Coordinator {
@@ -19,7 +21,7 @@ struct FilePicker: UIViewControllerRepresentable {
 
     func makeUIViewController(context: Context) -> UIDocumentPickerViewController {
         let picker = UIDocumentPickerViewController(forOpeningContentTypes: [UTType.item])
-        picker.allowsMultipleSelection = true
+        picker.allowsMultipleSelection = multiSelectEnabled
         picker.delegate = context.coordinator
         return picker
     }

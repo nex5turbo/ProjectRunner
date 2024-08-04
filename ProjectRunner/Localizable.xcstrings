@@ -32,9 +32,6 @@
     "+" : {
 
     },
-    "+ New Event" : {
-
-    },
     "1" : {
 
     },
@@ -54,6 +51,9 @@
 
     },
     "Add description..." : {
+
+    },
+    "Advertisement" : {
 
     },
     "All Tasks" : {
@@ -109,6 +109,9 @@
 
     },
     "Data" : {
+
+    },
+    "debugMode" : {
 
     },
     "Delete" : {
@@ -219,10 +222,16 @@
     "New Event" : {
 
     },
+    "No activated event" : {
+
+    },
     "No active project" : {
 
     },
     "No active task" : {
+
+    },
+    "No attached file" : {
 
     },
     "No label list" : {

@@ -108,7 +108,7 @@ struct TaskAddView: View {
                     
                     Spacer()
                     
-                    FileSheetButton { files in
+                    FileSheetButton(hasReachedLimit: newTask.files.count > 0) { files in
                         newTask.files.append(contentsOf: files)
                     }
                 }

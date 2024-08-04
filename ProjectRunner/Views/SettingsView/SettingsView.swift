@@ -10,6 +10,8 @@ import StoreKit
 
 struct SettingsView: View {
     @Binding var appData: AppData
+    @ObservedObject private var purchaseManager = PurchaseManager.shared
+    @AppStorage("showAd") private var showAd: Bool = true
     var body: some View {
         List {
 #if DEBUG
@@ -27,6 +29,12 @@ struct SettingsView: View {
 
                 Button("Load Data") {
                     
+                }
+                Toggle(isOn: $purchaseManager.isDebugMode) {
+                    Text("debugMode")
+                }
+                Toggle(isOn: $showAd) {
+                    Text("Advertisement")
                 }
             }
 #endif
