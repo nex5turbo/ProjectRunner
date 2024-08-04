@@ -70,7 +70,7 @@ struct CalenderView: View {
                         }
                     }
                 Spacer()
-#if DEBUG
+
                 Picker("", selection: $calendarStyle) {
                     ForEach(CalendarStyle.allCases, id: \.self) { style in
                         Text(style.rawValue)
@@ -78,7 +78,6 @@ struct CalenderView: View {
                 }
                 .pickerStyle(SegmentedPickerStyle())
                 .fixedSize()
-#endif
             }
             .padding()
             
