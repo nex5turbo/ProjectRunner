@@ -12,6 +12,7 @@ struct ImageViewer: View {
     let files: [TFile]
     @Binding private var currentIndex: Int
     @State private var isHeaderPresented: Bool = true
+    @State private var isShareSheetPresented: Bool = false
     
     init(files: [TFile], currentIndex: Binding<Int>) {
         self.files = files
@@ -33,15 +34,30 @@ struct ImageViewer: View {
                                     ProgressView()
                                 }
                             } else {
-                                Text("Invalid file url")
+                                VStack {
+                                    Spacer()
+                                    Text("Invalid file url")
+                                        .font(.headline)
+                                    Spacer()
+                                }
                             }
                         } else if file.fileType == "files" {
-                            
+                            VStack {
+                                Spacer()
+                                Text(file.fileName)
+                                    .font(.headline)
+                                Spacer()
+                            }
                         } else if file.fileType == "videos" {
                             if let url = file.validUrl {
                                 VideoViewer(url: url)
                             } else {
-                                Text("Invalid file url")
+                                VStack {
+                                    Spacer()
+                                    Text("Invalid file url")
+                                        .font(.headline)
+                                    Spacer()
+                                }
                             }
                         }
                     }
@@ -60,6 +76,7 @@ struct ImageViewer: View {
                             dismiss()
                         } label: {
                             Image(systemName: "xmark")
+                                .font(.caption)
                                 .foregroundStyle(.white)
                                 .bold()
                                 .padding(8)
@@ -69,6 +86,26 @@ struct ImageViewer: View {
                         }
 
                         Spacer()
+                        
+                        Button {
+                            self.isShareSheetPresented.toggle()
+                        } label: {
+                            Image(systemName: "square.and.arrow.up")
+                                .font(.caption)
+                                .foregroundStyle(.white)
+                                .bold()
+                                .padding(8)
+                                .background(.black)
+                                .clipShape(Circle())
+                                .clipped()
+                        }
+                        .sheet(isPresented: $isShareSheetPresented) {
+                            if let url = files[currentIndex].validUrl {
+                                ActivityViewController(activityItems: [url])
+                            } else {
+                                Text("Invalid file url")
+                            }
+                        }
                     }
                     HStack {
                         Spacer()
@@ -92,4 +129,20 @@ struct ImageViewer: View {
 
 #Preview {
     ImageViewer(files: [], currentIndex: .constant(0))
+}
+
+struct ActivityViewController: UIViewControllerRepresentable {
+    let activityItems: [Any]
+    let applicationActivities: [UIActivity]? = nil
+    let excludedActivityTypes: [UIActivity.ActivityType]? = nil
+
+    func makeUIViewController(context: Context) -> UIActivityViewController {
+        let controller = UIActivityViewController(activityItems: activityItems, applicationActivities: applicationActivities)
+        controller.excludedActivityTypes = excludedActivityTypes
+        return controller
+    }
+
+    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {
+        // No update needed
+    }
 }
