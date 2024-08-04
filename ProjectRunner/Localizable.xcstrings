@@ -53,6 +53,9 @@
     "Add description..." : {
 
     },
+    "Advertisement" : {
+
+    },
     "All Tasks" : {
 
     },
@@ -105,6 +108,12 @@
     "Created by Wonyoung Jang" : {
 
     },
+    "Data" : {
+
+    },
+    "debugMode" : {
+
+    },
     "Delete" : {
 
     },
@@ -147,6 +156,9 @@
     "Events" : {
 
     },
+    "Export Data" : {
+
+    },
     "Family Name" : {
 
     },
@@ -180,7 +192,13 @@
     "Instagram Id" : {
 
     },
+    "Invalid file url" : {
+
+    },
     "Label" : {
+
+    },
+    "Load Data" : {
 
     },
     "Mail" : {

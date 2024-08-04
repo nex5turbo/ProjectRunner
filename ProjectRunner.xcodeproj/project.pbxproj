@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5438BAF52C5F829E006494FF /* ImageViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5438BAF42C5F829E006494FF /* ImageViewer.swift */; };
+		5438BAF72C5F95DD006494FF /* VideoViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5438BAF62C5F95DD006494FF /* VideoViewer.swift */; };
 		5442E1E22C460FCF008E4C2B /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5442E1E12C460FCF008E4C2B /* WidgetKit.framework */; };
 		5442E1E42C460FCF008E4C2B /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5442E1E32C460FCF008E4C2B /* SwiftUI.framework */; };
 		5442E1E72C460FCF008E4C2B /* ProjectRunnerWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5442E1E62C460FCF008E4C2B /* ProjectRunnerWidgetBundle.swift */; };
@@ -148,6 +150,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5438BAF42C5F829E006494FF /* ImageViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewer.swift; sourceTree = "<group>"; };
+		5438BAF62C5F95DD006494FF /* VideoViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewer.swift; sourceTree = "<group>"; };
 		5442E1DF2C460FCF008E4C2B /* ProjectRunnerWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ProjectRunnerWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		5442E1E12C460FCF008E4C2B /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		5442E1E32C460FCF008E4C2B /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -512,6 +516,8 @@
 				54C1D7D32C53706E00BD3683 /* RoundedButton.swift */,
 				54C1D7D52C53708900BD3683 /* LottieView.swift */,
 				54BB6B982C57805D00CA758B /* LinkableText.swift */,
+				5438BAF42C5F829E006494FF /* ImageViewer.swift */,
+				5438BAF62C5F95DD006494FF /* VideoViewer.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -831,6 +837,7 @@
 				54D69E192C3D9B870048E5BD /* RewardAd.swift in Sources */,
 				54D69DA42C3D12390048E5BD /* ClientView.swift in Sources */,
 				54D69E042C3D1E630048E5BD /* LabelSheetButton.swift in Sources */,
+				5438BAF72C5F95DD006494FF /* VideoViewer.swift in Sources */,
 				54D69D6C2C3D11490048E5BD /* ContentView.swift in Sources */,
 				54D69E2A2C41582B0048E5BD /* DeleteErrors.swift in Sources */,
 				54BB6B972C54F30800CA758B /* Strings.swift in Sources */,
@@ -857,6 +864,7 @@
 				54FF72A52C5D20E3004DC1F5 /* FileAttachable.swift in Sources */,
 				54D69DEF2C3D12810048E5BD /* TProject.swift in Sources */,
 				54D69E002C3D1CFD0048E5BD /* SelectSuperiorSheetButton.swift in Sources */,
+				5438BAF52C5F829E006494FF /* ImageViewer.swift in Sources */,
 				54D69DF32C3D12880048E5BD /* Date+Extensions.swift in Sources */,
 				54BB6B9B2C57836D00CA758B /* View+Extensions.swift in Sources */,
 				54D69DEE2C3D12810048E5BD /* TMoment.swift in Sources */,

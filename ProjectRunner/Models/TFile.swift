@@ -10,7 +10,22 @@ import Foundation
 struct TFile: Codable, Identifiable, Equatable, Hashable {
     var id: String = UUID().uuidString
     var fileName: String
-    var fileType: String
+    var fileType: String {
+        let imageExtensions: Set<String> = ["jpg", "jpeg", "png", "gif", "bmp", "tiff", "tif", "heic", "webp"]
+        let videoExtensions: Set<String> = ["mp4", "mov", "wmv", "avi", "mkv", "flv", "webm", "m4v"]
+        
+        let fileExtension = (fileName as NSString).pathExtension.lowercased()
+        
+        // 파일 유형 판별
+        if imageExtensions.contains(fileExtension) {
+            return "images"
+        } else if videoExtensions.contains(fileExtension) {
+            return "videos"
+        } else {
+            return "files"
+        }
+    }
+    
     var isExistInCloud: Bool {
         if let cloudUrl {
             return FileManager.default.fileExists(atPath: cloudUrl.path(percentEncoded: true))
@@ -25,6 +40,15 @@ struct TFile: Codable, Identifiable, Equatable, Hashable {
     
     var fileExtension: String {
         String(fileName.split(separator: ".").last!)
+    }
+    
+    var validUrl: URL? {
+        if let cloudUrl {
+            if isExistInCloud {
+                return cloudUrl
+            }
+        }
+        return isExist ? folderUrl : nil
     }
     
     var folderUrl: URL {

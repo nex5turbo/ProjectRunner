@@ -50,12 +50,14 @@ struct FilePicker: UIViewControllerRepresentable {
                     return nil
                 }
                 
-                if let cloudUrl = FileManager.default.fileCloudFolder(fileName: url.lastPathComponent) {
+                let item = TFile(fileName: url.lastPathComponent)
+                
+                if let cloudUrl = item.cloudUrl {
                     try? data.write(to: cloudUrl)
                 }
-                try? data.write(to: FileManager.default.fileFolder(fileName: url.lastPathComponent))
+                try? data.write(to: item.folderUrl)
                 
-                let item = TFile(fileName: url.lastPathComponent, fileType: "files")
+                
                 return item
             }
             parent.onSelected(files)

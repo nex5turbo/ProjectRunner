@@ -21,6 +21,9 @@ struct FileList: View {
     }
     private let cornerRadius: CGFloat = 16
     
+    @State private var isSheetPresented: Bool = false
+    @State private var selectedIndex: Int = 0
+    
     init(fileAttachable: FileAttachable, onDelete: @escaping (TFile) -> Void) {
         self.fileAttachable = fileAttachable
         self.onDelete = onDelete
@@ -39,41 +42,49 @@ struct FileList: View {
         } else {
             ScrollView(.horizontal) {
                 HStack {
-                    ForEach(fileAttachable.files, id: \.self) { file in
-                        if let image = file.cloudUrl?.asSmallImage {
-                            fileImage(image, file: file)
-                        } else if let image = file.folderUrl.asSmallImage {
-                            fileImage(image, file: file)
-                        } else {
-                            let fileName = file.fileName
-                            VStack(alignment: .leading, spacing: 0) {
-                                Text(fileName)
-                                    .font(.subheadline.weight(.semibold))
-                                Text(file.fileExtension.uppercased())
-                                    .font(.subheadline)
-                                    .foregroundStyle(.gray)
-                            }
-                            .padding(.horizontal)
-                            .frame(height: height)
-                            .cornerRadius(cornerRadius)
-                            .overlay {
-                                RoundedRectangle(cornerRadius: cornerRadius)
-                                    .stroke(.gray.opacity(0.3), lineWidth: 1.2)
-                            }
-                            .overlay {
-                                closeButton {
-                                    onDelete(file)
+                    ForEach(Array(fileAttachable.files.enumerated()), id: \.element.id) { (index, file) in
+                        Group {
+                            if let image = file.cloudUrl?.asSmallImage {
+                                fileImage(image, file: file)
+                            } else if let image = file.folderUrl.asSmallImage {
+                                fileImage(image, file: file)
+                            } else {
+                                let fileName = file.fileName
+                                VStack(alignment: .leading, spacing: 0) {
+                                    Text(fileName)
+                                        .font(.subheadline.weight(.semibold))
+                                    Text(file.fileExtension.uppercased())
+                                        .font(.subheadline)
+                                        .foregroundStyle(.gray)
                                 }
+                                .padding(.horizontal)
+                                .frame(height: height)
+                                .cornerRadius(cornerRadius)
+                                .overlay {
+                                    RoundedRectangle(cornerRadius: cornerRadius)
+                                        .stroke(.gray.opacity(0.3), lineWidth: 1.2)
+                                }
+                                .overlay {
+                                    closeButton {
+                                        onDelete(file)
+                                    }
+                                }
+                                .padding(4)
                             }
-                            .padding(4)
                         }
-                        
+                        .onTapGesture {
+                            self.selectedIndex = index
+                            self.isSheetPresented.toggle()
+                        }
                     }
                 }
                 .padding(.horizontal)
             }
             .scrollIndicators(.never)
             .animation(.spring, value: fileAttachable.files)
+            .fullScreenCover(isPresented: $isSheetPresented) {
+                ImageViewer(files: fileAttachable.files, currentIndex: $selectedIndex)
+            }
         }
     }
     

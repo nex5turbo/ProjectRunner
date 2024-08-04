@@ -82,14 +82,17 @@ extension YPMediaPhoto {
         guard let pngData = self.image.pngData() else {
             return nil
         }
+        
         let imageName = "\(Date.now.timeIntervalSince1970).png"
-        let folderUrl = FileManager.default.imageFolder(fileName: imageName)
-        if let cloudUrl = FileManager.default.imageCloudFolder(fileName: imageName) {
+        let item = TFile(fileName: imageName)
+        
+        let folderUrl = item.folderUrl
+        if let cloudUrl = item.cloudUrl {
             try pngData.write(to: cloudUrl)
         }
         try pngData.write(to: folderUrl)
         
-        return TFile(fileName: imageName, fileType: "images")
+        return item
     }
 }
 
@@ -97,13 +100,14 @@ extension YPMediaVideo {
     func saveToFolder() throws -> TFile? {
         let data = try Data(contentsOf: self.url)
         let fileName = self.url.lastPathComponent
-        let folderUrl = FileManager.default.videoFolder(fileName: fileName)
-        if let cloudUrl = FileManager.default.videoCloudFolder(fileName: fileName) {
+        let item = TFile(fileName: fileName)
+        let folderUrl = item.folderUrl
+        if let cloudUrl = item.cloudUrl {
             try data.write(to: cloudUrl)
         }
         try data.write(to: folderUrl)
         
-        return TFile(fileName: fileName, fileType: "videos")
+        return item
     }
 }
 

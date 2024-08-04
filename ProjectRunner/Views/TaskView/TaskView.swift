@@ -539,7 +539,6 @@ extension TaskView {
                     .isSelected(in: $selectedTasks)
             }
         }
-        .padding(.bottom)
     }
     
     @ViewBuilder func colorSortedList() -> some View {
