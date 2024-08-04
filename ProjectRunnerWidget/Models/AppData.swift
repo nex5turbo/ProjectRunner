@@ -23,7 +23,7 @@ struct TProject: Codable {
     var taskIds: [String]
 }
 
-struct TTask: Codable {
+struct TTask: Codable, Identifiable, Hashable {
     var id: String
     var name: String
     var dueDate: Date

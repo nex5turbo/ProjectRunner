@@ -60,21 +60,25 @@ struct ProjectRunnerWidgetEntryView : View {
     var canceledTasks: [TTask] {
         entry.appData.tasks.filter { $0.status == .canceled }
     }
-    
+    var todoTask: [TTask] {
+        entry.appData.tasks.filter {
+            [Status.todo, Status.inProgress, Status.preparing].contains($0.status) &&
+            $0.hasDeadline
+        }
+    }
+    var sortedTasks: [TTask] {
+        Array(todoTask.sorted(by: { $0.dueDate < $1.dueDate} ).prefix(3))
+    }
     var body: some View {
-        HStack {
-            VStack(alignment:  .leading) {
-                Text("Process")
-                    .font(.headline)
-                Group {
-                    Text("Total tasks: \(entry.appData.tasks.count)")
-                    Text("Preparing: \(preparingTasks.count)")
-                    Text("Todo: \(todoTasks.count)")
-                    Text("In Progress: \(inProgressTasks.count)")
-                    Text("Done: \(doneTasks.count)")
-                    Text("Canceled: \(canceledTasks.count)")
-                }
-                .font(.footnote)
+        VStack(alignment: .leading) {
+            Text("Tasks")
+                .font(.subheadline)
+            Divider()
+            ForEach(sortedTasks, id: \.self) { task in
+                Text(task.name)
+                    .lineLimit(1)
+                    .font(.caption2)
+                Divider()
             }
             Spacer()
         }
