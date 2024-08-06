@@ -63,26 +63,55 @@ struct ProjectRunnerWidgetEntryView : View {
     var todoTask: [TTask] {
         entry.appData.tasks.filter {
             [Status.todo, Status.inProgress, Status.preparing].contains($0.status) &&
-            $0.hasDeadline
+            $0.hasDeadline && ($0.dueDate > entry.date)
         }
     }
     var sortedTasks: [TTask] {
-        Array(todoTask.sorted(by: { $0.dueDate < $1.dueDate} ).prefix(3))
+        Array(todoTask.sorted(by: { $0.dueDate < $1.dueDate} ).prefix(5))
     }
+    
+    @Environment(\.widgetFamily) var widgetFamily
+    
     var body: some View {
-        VStack(alignment: .leading) {
-            Text("Tasks")
-                .font(.subheadline)
+        VStack(alignment: .leading, spacing: 8) {
+            Text("In progress tasks")
+                .font(.caption.weight(.semibold))
+                .padding(.top)
+                .padding(.horizontal)
+            
             Divider()
-            ForEach(sortedTasks, id: \.self) { task in
-                Text(task.name)
-                    .lineLimit(1)
-                    .font(.caption2)
-                Divider()
+            GeometryReader { proxy in
+                let height = proxy.size.height
+                
+                VStack(alignment: .leading) {
+                    ForEach(sortedTasks, id: \.self) { task in
+                        HStack {
+                            Text(task.name)
+                                .lineLimit(1)
+                                .font(.system(size: 10))
+                                .minimumScaleFactor(0.1)
+                            
+                            Spacer()
+
+                            if widgetFamily != .systemSmall {
+                                Text("\(Calendar.current.timeLeft(from: entry.date, to: task.dueDate))")
+                                    .font(.system(size: 10))
+                                    .foregroundStyle(.gray)
+                                    .minimumScaleFactor(0.1)
+                            }
+                        }
+                        .padding(.horizontal, 8)
+                        .frame(height: height / 5)
+                    }
+                    
+                    let leftCount = 5 - sortedTasks.count
+                    let leftHeight = (height / 5) * CGFloat(leftCount)
+                    
+                    Color.clear.frame(height: leftHeight)
+                }
             }
-            Spacer()
         }
-        .containerBackground(.yellow.opacity(0.3), for: .widget)
+        .background(.yellow.opacity(0.1))
     }
 }
 
@@ -94,6 +123,7 @@ struct ProjectRunnerWidget: Widget {
             ProjectRunnerWidgetEntryView(entry: entry)
                 .containerBackground(.fill.tertiary, for: .widget)
         }
+        .contentMarginsDisabled()
     }
 }
 
