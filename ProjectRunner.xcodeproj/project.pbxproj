@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5438BAF52C5F829E006494FF /* ImageViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5438BAF42C5F829E006494FF /* ImageViewer.swift */; };
 		5438BAF72C5F95DD006494FF /* VideoViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5438BAF62C5F95DD006494FF /* VideoViewer.swift */; };
+		5438BAFA2C60CE2B006494FF /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D69DF12C3D12880048E5BD /* Date+Extensions.swift */; };
 		5442E1E22C460FCF008E4C2B /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5442E1E12C460FCF008E4C2B /* WidgetKit.framework */; };
 		5442E1E42C460FCF008E4C2B /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5442E1E32C460FCF008E4C2B /* SwiftUI.framework */; };
 		5442E1E72C460FCF008E4C2B /* ProjectRunnerWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5442E1E62C460FCF008E4C2B /* ProjectRunnerWidgetBundle.swift */; };
@@ -787,6 +788,7 @@
 				5442E1E92C460FCF008E4C2B /* ProjectRunnerWidgetLiveActivity.swift in Sources */,
 				5442E1ED2C460FCF008E4C2B /* AppIntent.swift in Sources */,
 				5442E2162C463A79008E4C2B /* MarkColor.swift in Sources */,
+				5438BAFA2C60CE2B006494FF /* Date+Extensions.swift in Sources */,
 				5442E2172C463A79008E4C2B /* Priority.swift in Sources */,
 				5442E2182C463A79008E4C2B /* Status.swift in Sources */,
 				5442E20F2C463934008E4C2B /* FileManager+Extensions.swift in Sources */,

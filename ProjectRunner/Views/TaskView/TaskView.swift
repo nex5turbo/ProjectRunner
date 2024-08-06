@@ -96,44 +96,62 @@ struct TaskView: View {
     }
     
     var filtered: [TTask] {
+        let fromDate = filterOptions.fromDate
+        let toDate = filterOptions.toDate
+        
+        let isColorEmpty = filterOptions.colors.isEmpty
+        let isStatusEmpty = filterOptions.status.isEmpty
+        let isPriorityEmpty = filterOptions.priorities.isEmpty
+        let isLabelEmpty = filterOptions.labels.isEmpty
+        let isTextBlank = filterOptions.searchText != ""
+        let hasSubTask = filterOptions.hasSubTask
         return taskListWithDone.filter { task in
-            var result: Bool = true
-            if !filterOptions.colors.isEmpty {
-                if filterOptions.colors.contains(task.markColor) {
-                    return true
-                } else {
-                    result = false
+            
+            if filterOptions.isDateOn {
+                if !task.hasDeadline {
+                    return false
+                }
+                if fromDate?.date ?? Date(timeIntervalSince1970: .zero) > task.dueDate ||
+                    toDate?.date ?? Date(timeIntervalSince1970: .infinity) < task.dueDate {
+                    return false
                 }
             }
-            if !filterOptions.status.isEmpty {
-                if filterOptions.status.contains(task.status) {
-                    return true
-                } else {
-                    result = false
+            
+            if !isColorEmpty {
+                if !filterOptions.colors.contains(task.markColor) {
+                    return false
                 }
             }
-            if !filterOptions.priorities.isEmpty {
-                if filterOptions.priorities.contains(task.priority) {
-                    return true
-                } else {
-                    result = false
+            if !isStatusEmpty {
+                if !filterOptions.status.contains(task.status) {
+                    return false
                 }
             }
-            if !filterOptions.labels.isEmpty {
-                if filterOptions.labels.contains(task.labels) {
-                    return true
-                } else {
-                    result = false
+            if !isPriorityEmpty {
+                if !filterOptions.priorities.contains(task.priority) {
+                    return false
                 }
             }
-            if filterOptions.searchText != "" {
-                if task.contains(string: filterOptions.searchText) {
-                    return true
-                } else {
-                    result = false
+            if !isLabelEmpty {
+                if !filterOptions.labels.contains(task.labels) {
+                    return false
                 }
             }
-            return result
+            if !isTextBlank {
+                if !task.contains(string: filterOptions.searchText) {
+                    return false
+                }
+            }
+            
+            if let hasSubTask {
+                if hasSubTask {
+                    return !task.taskIds.isEmpty
+                } else {
+                    return task.taskIds.isEmpty
+                }
+            }
+            
+            return true
         }
     }
     
@@ -391,6 +409,7 @@ struct TaskView: View {
                 TopButtonChip(title: "Filtering", imageName: "line.3.horizontal.decrease", isSystem: true) {
                     
                 }
+                .isSelected(filterOptions.isActivated)
             }
             .sheet(isPresented: $isFilterSheetPresented) {
                 FilterSheet(filterOptions: filterOptions, appData: $appData) { filterOptions in

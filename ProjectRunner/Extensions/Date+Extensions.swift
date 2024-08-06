@@ -8,6 +8,49 @@
 import Foundation
 
 extension Date {
+    enum SelectableDates: CaseIterable {
+        
+        case today, tomorrow, threeDays, thisWeek, nextWeek, thisMonth
+        var title: String {
+            switch self {
+            case .today:
+                "Today"
+            case .tomorrow:
+                "Tomorrow"
+            case .threeDays:
+                "3 Days"
+            case .thisWeek:
+                "This week"
+            case .nextWeek:
+                "Next week"
+            case .thisMonth:
+                "This month"
+            }
+        }
+        var date: Date {
+            let calendar = Calendar.current
+            let now = Date()
+            
+            switch self {
+            case .today:
+                return now.endOfDayDate()
+            case .tomorrow:
+                return calendar.date(byAdding: .day, value: 1, to: now)!.endOfDayDate()
+            case .threeDays:
+                return calendar.date(byAdding: .day, value: 3, to: now)!.endOfDayDate()
+            case .thisWeek:
+                let startOfWeek = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: now))!.endOfDayDate()
+                return startOfWeek
+            case .nextWeek:
+                let startOfNextWeek = calendar.date(byAdding: .weekOfYear, value: 1, to: calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: now))!)!.endOfDayDate()
+                return startOfNextWeek
+            case .thisMonth:
+                let startOfMonth = calendar.date(from: calendar.dateComponents([.year, .month], from: now))!.endOfDayDate()
+                return startOfMonth
+            }
+        }
+    }
+    
     func toString(_ withHour: Bool = false) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = withHour ? "yyyy-MM-dd HH:mm" : "yyyy-MM-dd"

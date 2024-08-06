@@ -27,11 +27,24 @@ struct FilterOptions {
     var status: Set<Status> = []
     var priorities: Set<Priority> = []
     var labels: Set<TLabel> = []
-    var shouldPresentNoDeadline: Bool = true
-    var isDateOn: Bool = false
-    var fromDate: Date? = Date.now
-    var toDate: Date? = Date.now
+    var shouldPresentNoDeadline: Bool = false
+    var isDateOn: Bool {
+        fromDate != nil || toDate != nil
+    }
+    var fromDate: Date.SelectableDates? = nil
+    var toDate: Date.SelectableDates? = nil
     var filterParentType: FilterParentType = .all
+    var hasSubTask: Bool? = nil
+    var isActivated: Bool {
+        !colors.isEmpty ||
+        !status.isEmpty ||
+        !priorities.isEmpty ||
+        !labels.isEmpty ||
+        shouldPresentNoDeadline ||
+        isDateOn ||
+        hasSubTask != nil ||
+        filterParentType != .all
+    }
     
     func filter(tasks: [TTask], appData: AppData) -> [TTask] {
         // TODO: IMPLEMENT
@@ -176,6 +189,79 @@ struct FilterSheet: View {
                             .padding(.horizontal)
                         }
                     }
+                    VStack(alignment: .leading) {
+                        Text("Sub tasks")
+                            .font(headerFont)
+                            .padding(.horizontal)
+                        ScrollView(.horizontal) {
+                            HStack {
+                                Button {
+                                    self.filterOptions.hasSubTask = nil
+                                } label: {
+                                    TopButtonChip(
+                                        title: "All tasks",
+                                        imageName: "",
+                                        isSystem: true) {
+                                        }
+                                        .isSelected(self.filterOptions.hasSubTask == nil)
+                                }
+                                Button {
+                                    self.filterOptions.hasSubTask = true
+                                } label: {
+                                    TopButtonChip(
+                                        title: "Sub task",
+                                        imageName: "",
+                                        isSystem: true) {
+                                        }
+                                        .isSelected(self.filterOptions.hasSubTask == true)
+                                }
+                                Button {
+                                    self.filterOptions.hasSubTask = false
+                                } label: {
+                                    TopButtonChip(
+                                        title: "No Sub task",
+                                        imageName: "",
+                                        isSystem: true) {
+                                        }
+                                        .isSelected(self.filterOptions.hasSubTask == false)
+                                }
+                            }
+                            .padding(.horizontal)
+                        }
+                    }
+                    
+                    VStack(alignment: .leading) {
+                        Text("Due date")
+                            .font(headerFont)
+                            .padding(.horizontal)
+                        ScrollView(.horizontal) {
+                            HStack {
+                                Button {
+                                    self.filterOptions.toDate = nil
+                                } label: {
+                                    TopButtonChip(
+                                        title: "Without",
+                                        imageName: "",
+                                        isSystem: true) {
+                                        }
+                                        .isSelected(self.filterOptions.toDate == nil)
+                                }
+                                ForEach(Date.SelectableDates.allCases, id: \.self) { date in
+                                    Button {
+                                        self.filterOptions.toDate = date
+                                    } label: {
+                                        TopButtonChip(
+                                            title: date.title,
+                                            imageName: "",
+                                            isSystem: true) {
+                                            }
+                                            .isSelected(self.filterOptions.toDate == date)
+                                    }
+                                }
+                            }
+                            .padding(.horizontal)
+                        }
+                    }
 //                    VStack(alignment: .leading) {
 //                        Toggle(isOn: $filterOptions.isDateOn, label: {
 //                            Text("Date filter")
@@ -193,6 +279,17 @@ struct FilterSheet: View {
                 }
             }
             .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button {
+                        onDismiss(.init())
+                        dismiss()
+                    } label: {
+                        Image(systemName: "arrow.clockwise")
+                            .bold()
+                    }
+                    .disabled(!filterOptions.isActivated)
+                }
+                
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
                         onDismiss(filterOptions)
