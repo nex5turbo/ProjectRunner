@@ -83,7 +83,7 @@ struct AppData: Codable, Hashable {
         }
     }
     
-    func save() throws {
+    func save(isFirst: Bool = false) throws {
         let encoder = JSONEncoder()
         encoder.outputFormatting = JSONEncoder.OutputFormatting.prettyPrinted
         
@@ -92,10 +92,10 @@ struct AppData: Codable, Hashable {
         let iCloudFolder = FileManager.default.cloudDocumentDirectory?.appendingPathComponent("AppData.tm")
         let groupFolder = FileManager.default.sharedDirectory?.appendingPathComponent("AppData.tm")
         try data.write(to: folder)
-        if let iCloudFolder {
+        if let iCloudFolder, !isFirst {
             try data.write(to: iCloudFolder)
         }
-        if let groupFolder {
+        if let groupFolder, !isFirst {
             try data.write(to: groupFolder)
         }
         

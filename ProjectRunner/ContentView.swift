@@ -20,6 +20,8 @@ struct ContentView: View {
     @ObservedObject var purchaseManager: PurchaseManager = PurchaseManager.shared
     @State private var appData: AppData = AppData()
     @State private var isError: Bool = false
+    @State private var isOnBoardingPagePresented: Bool = false
+    
     init() {
         UITabBar.appearance().backgroundColor = UIColor.white
     }
@@ -80,6 +82,9 @@ struct ContentView: View {
         .fullScreenCover(isPresented: $purchaseManager.subscriptionViewPresent) {
             SubscriptionView()
         }
+        .fullScreenCover(isPresented: $isOnBoardingPagePresented) {
+            OnBoardingSheet()
+        }
         .refreshable {
             do {
                 self.appData = try AppData.load()
@@ -95,6 +100,10 @@ struct ContentView: View {
             }
         }
         .task {
+//            if isFirst {
+//                self.isOnBoardingPagePresented = true
+//            }
+            self.isOnBoardingPagePresented = true
             loadAppData()
         }
     }
@@ -102,7 +111,7 @@ struct ContentView: View {
         if isFirst {
             do {
                 self.appData = try AppData.tutorial()
-                try self.appData.save()
+                try self.appData.save(isFirst: true)
                 self.isError = false
             } catch {
                 isError = true

@@ -10,6 +10,7 @@
 		5438BAF52C5F829E006494FF /* ImageViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5438BAF42C5F829E006494FF /* ImageViewer.swift */; };
 		5438BAF72C5F95DD006494FF /* VideoViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5438BAF62C5F95DD006494FF /* VideoViewer.swift */; };
 		5438BAFA2C60CE2B006494FF /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D69DF12C3D12880048E5BD /* Date+Extensions.swift */; };
+		5438BAFC2C64A455006494FF /* OnBoardingSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5438BAFB2C64A455006494FF /* OnBoardingSheet.swift */; };
 		5442E1E22C460FCF008E4C2B /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5442E1E12C460FCF008E4C2B /* WidgetKit.framework */; };
 		5442E1E42C460FCF008E4C2B /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5442E1E32C460FCF008E4C2B /* SwiftUI.framework */; };
 		5442E1E72C460FCF008E4C2B /* ProjectRunnerWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5442E1E62C460FCF008E4C2B /* ProjectRunnerWidgetBundle.swift */; };
@@ -26,6 +27,10 @@
 		5442E2182C463A79008E4C2B /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D69DE22C3D12810048E5BD /* Status.swift */; };
 		5442E21B2C465AAE008E4C2B /* CalenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5442E21A2C465AAE008E4C2B /* CalenderView.swift */; };
 		5442E2802C4A633F008E4C2B /* TDiary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5442E27F2C4A633F008E4C2B /* TDiary.swift */; };
+		547810912C65DDA30011BE3E /* Task.json in Resources */ = {isa = PBXBuildFile; fileRef = 5478108D2C65DDA30011BE3E /* Task.json */; };
+		547810922C65DDA30011BE3E /* Diary.json in Resources */ = {isa = PBXBuildFile; fileRef = 5478108E2C65DDA30011BE3E /* Diary.json */; };
+		547810932C65DDA30011BE3E /* Notification.json in Resources */ = {isa = PBXBuildFile; fileRef = 5478108F2C65DDA30011BE3E /* Notification.json */; };
+		547810942C65DDA30011BE3E /* Project.json in Resources */ = {isa = PBXBuildFile; fileRef = 547810902C65DDA30011BE3E /* Project.json */; };
 		54BB6B972C54F30800CA758B /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BB6B962C54F30800CA758B /* Strings.swift */; };
 		54BB6B992C57805D00CA758B /* LinkableText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BB6B982C57805D00CA758B /* LinkableText.swift */; };
 		54BB6B9B2C57836D00CA758B /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BB6B9A2C57836D00CA758B /* View+Extensions.swift */; };
@@ -153,6 +158,7 @@
 /* Begin PBXFileReference section */
 		5438BAF42C5F829E006494FF /* ImageViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewer.swift; sourceTree = "<group>"; };
 		5438BAF62C5F95DD006494FF /* VideoViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewer.swift; sourceTree = "<group>"; };
+		5438BAFB2C64A455006494FF /* OnBoardingSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingSheet.swift; sourceTree = "<group>"; };
 		5442E1DF2C460FCF008E4C2B /* ProjectRunnerWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ProjectRunnerWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		5442E1E12C460FCF008E4C2B /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		5442E1E32C460FCF008E4C2B /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -168,6 +174,10 @@
 		5442E2142C463A13008E4C2B /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
 		5442E21A2C465AAE008E4C2B /* CalenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderView.swift; sourceTree = "<group>"; };
 		5442E27F2C4A633F008E4C2B /* TDiary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDiary.swift; sourceTree = "<group>"; };
+		5478108D2C65DDA30011BE3E /* Task.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Task.json; sourceTree = "<group>"; };
+		5478108E2C65DDA30011BE3E /* Diary.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Diary.json; sourceTree = "<group>"; };
+		5478108F2C65DDA30011BE3E /* Notification.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Notification.json; sourceTree = "<group>"; };
+		547810902C65DDA30011BE3E /* Project.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Project.json; sourceTree = "<group>"; };
 		54BB6B962C54F30800CA758B /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		54BB6B982C57805D00CA758B /* LinkableText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkableText.swift; sourceTree = "<group>"; };
 		54BB6B9A2C57836D00CA758B /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
@@ -334,6 +344,10 @@
 		54C1D7DB2C53726300BD3683 /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
+				5478108E2C65DDA30011BE3E /* Diary.json */,
+				5478108F2C65DDA30011BE3E /* Notification.json */,
+				547810902C65DDA30011BE3E /* Project.json */,
+				5478108D2C65DDA30011BE3E /* Task.json */,
 				54C1D7DA2C53726300BD3683 /* subscription.json */,
 			);
 			path = Lottie;
@@ -576,6 +590,7 @@
 				54FF729B2C5BC911004DC1F5 /* ImagePicker.swift */,
 				54FF72A82C5D24F5004DC1F5 /* FilePicker.swift */,
 				54FF72AA2C5D37CF004DC1F5 /* FileList.swift */,
+				5438BAFB2C64A455006494FF /* OnBoardingSheet.swift */,
 			);
 			path = Sheets;
 			sourceTree = "<group>";
@@ -756,9 +771,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				54D69E272C41271A0048E5BD /* tutorial.json in Resources */,
+				547810942C65DDA30011BE3E /* Project.json in Resources */,
 				54D69D712C3D114A0048E5BD /* Preview Assets.xcassets in Resources */,
 				54C1D7DC2C53726300BD3683 /* subscription.json in Resources */,
+				547810922C65DDA30011BE3E /* Diary.json in Resources */,
 				54D69D6E2C3D114A0048E5BD /* Assets.xcassets in Resources */,
+				547810912C65DDA30011BE3E /* Task.json in Resources */,
+				547810932C65DDA30011BE3E /* Notification.json in Resources */,
 				54D69DF52C3D162B0048E5BD /* Localizable.xcstrings in Resources */,
 				54D69E142C3D9B870048E5BD /* Purchase.plist in Resources */,
 			);
@@ -844,6 +863,7 @@
 				54D69E2A2C41582B0048E5BD /* DeleteErrors.swift in Sources */,
 				54BB6B972C54F30800CA758B /* Strings.swift in Sources */,
 				54D69DC22C3D124D0048E5BD /* MarqueeText.swift in Sources */,
+				5438BAFC2C64A455006494FF /* OnBoardingSheet.swift in Sources */,
 				54D69DD32C3D12600048E5BD /* SettingsView.swift in Sources */,
 				54D69E0A2C3D6AC90048E5BD /* CircleName.swift in Sources */,
 				54D69DD82C3D12670048E5BD /* TaskAddView.swift in Sources */,
