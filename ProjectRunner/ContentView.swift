@@ -100,10 +100,9 @@ struct ContentView: View {
             }
         }
         .task {
-//            if isFirst {
-//                self.isOnBoardingPagePresented = true
-//            }
-            self.isOnBoardingPagePresented = true
+            if isFirst {
+                self.isOnBoardingPagePresented = true
+            }
             loadAppData()
         }
     }
